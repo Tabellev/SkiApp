@@ -1,0 +1,32 @@
+﻿{
+    "Destinations": [
+
+        {
+            "DestinationId": 1,
+            "DestinationName": "Hemsedal",
+            "ImgPath": "Assets/BackgroundPictures/Hemsedal.jpg"
+        },
+        {
+            "DestinationId": 2,
+            "DestinationName": "Trysil",
+            "ImgPath": "Assets/BackgroundPictures/trysil.jpg"
+        },
+        {
+            "DestinationId": 3,
+            "DestinationName": "Vemdalen",
+            "ImgPath": "Assets/BackgroundPictures/vemdalen.jpg"
+        },
+        {
+            "DestinationId": 4,
+            "DestinationName": "Salen",
+            "ImgPath": "Assets/BackgroundPictures/salen.png"
+        },
+        {
+    "DestinationId": 5,
+    "DestinationName": "Aare",
+    "ImgPath": "Assets/BackgroundPictures/aare.jpg"
+}
+  ]
+}
+
+

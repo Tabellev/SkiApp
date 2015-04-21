@@ -1,0 +1,12 @@
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\skiAppDatamodel.dll.config
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\skiAppDatamodel.dll
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\skiAppDatamodel.pdb
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\EntityFramework.dll
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\EntityFramework.xml
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\obj\Debug\skiAppDatamodel.dll
+c:\users\isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\obj\Debug\skiAppDatamodel.pdb
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\skiAppDatamodel.dll.CodeAnalysisLog.xml
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\bin\Debug\skiAppDatamodel.dll.lastcodeanalysissucceeded
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\skiAppDatamodel\obj\Debug\skiAppDatamodel.csprojResolveAssemblyReference.cache

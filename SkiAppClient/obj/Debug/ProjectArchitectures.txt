@@ -1,0 +1,1 @@
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\SkiAppClient.csproj;neutral
