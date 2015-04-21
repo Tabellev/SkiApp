@@ -1,6 +1,8 @@
 ﻿using SkiAppClient.Common;
+using SkiAppClient.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,6 +28,10 @@ namespace SkiAppClient
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private List<string> lifts;
+        private List<string> slopes;
+        private User user;
+        private ObservableCollection<Destination> destinations; 
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -64,8 +70,17 @@ namespace SkiAppClient
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session. The state will be null the first time a page is visited.</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            lifts = new List<string>();
+            slopes = new List<string>();
+            user = (User)e.NavigationParameter;
+            destinations = await SkiAppDataSource.GetDestinationAsync();
+            foreach (var destination in destinations)
+            {
+                cbDestinations.Items.Add(destination.DestinationName);
+            }
+
         }
 
         /// <summary>
@@ -103,13 +118,71 @@ namespace SkiAppClient
 
         #endregion
 
-        private void SaveSkiDay_Click(object sender, RoutedEventArgs e)
+        private async void SaveSkiDay_Click(object sender, RoutedEventArgs e)
         {
+            var date = tbDate.Text;
+            var fromClock = tbFromClock.Text;
+            var toClock = tbToClock.Text;
+            var equipment = tbEquipment.Text;
+            var totalTrips = Convert.ToInt32(tbTotalTrips.Text);
+            var comment = tbComment.Text;
+            var destinationName = cbDestinations.SelectedItem.ToString();
 
+            await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, lifts, slopes);
+
+            
         }
 
         private void SeeHistory_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void AddLift_Click(object sender, RoutedEventArgs e)
+        {
+            var lift = cbLifts.SelectedItem.ToString();
+            lifts.Add(lift);
+            lbLifts.Items.Add(lift);
+        }
+
+        private void AddSlope_Click(object sender, RoutedEventArgs e)
+        {
+            var slope = cbSlopes.SelectedItem.ToString();
+            slopes.Add(slope);
+            lbSlopes.Items.Add(slope);
+        }
+
+        private async void cbDestinations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Destination chosenDestination = null;
+            List<string> dest = new List<string>();
+           
+            if (cbDestinations.SelectedItem != null)
+            {
+                var selectedDestination = (string)cbDestinations.SelectedItem.ToString();
+                var destinationLifts = await SkiAppDataSource.GetLiftsAsync();
+                foreach (var d in destinations)
+                {
+                    if (d.DestinationName.Equals(selectedDestination))
+                    {
+                        foreach (var lift in destinationLifts)
+                        {
+                            if (lift.LiftDestination.DestinationId.Equals(d.DestinationId))
+                            {
+                                cbLifts.Items.Add(lift.LiftName);
+                            }
+                        }
+                    }
+                }
+
+                if (chosenDestination != null)
+                {
+                    chosenDestination = await SkiAppDataSource.GetOneDestinationAsync(chosenDestination.DestinationId);
+
+                }
+
+
+            }
 
         }
     }

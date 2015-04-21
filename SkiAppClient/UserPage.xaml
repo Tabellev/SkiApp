@@ -117,6 +117,7 @@
                 <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" Margin="0,22,10,0">
                     <TextBlock x:Name="itemTitle" Margin="0,0,0,0" Text="Bruker" HorizontalAlignment="Left" FontSize="50"/>
                     <TextBlock x:Name="itemSubtitle" Margin="0,10,0,20" Text="På disse sidene kan du finne opprette bruker,&#x0a;logge inn og ut, endre passord,&#x0a;og lagre innlegg til din skidagbok." FontSize="30"  Height="387"/>
+                    <TextBlock x:Name="tbWarning" TextWrapping="Wrap" Text="Du må logge på for å lagre eller se skidager!" Foreground="Red" FontSize="50" Height="115" Visibility="Collapsed"/>
                 </StackPanel>
             </Grid>
 

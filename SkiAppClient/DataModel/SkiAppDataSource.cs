@@ -41,6 +41,31 @@ namespace SkiAppClient.DataModel
         } 
       }
 
+        public static async Task<Destination> GetOneDestinationAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:2219/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.GetAsync("api/Destinations/" + id);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultStream = await result.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(Destination));
+                    Destination destination = (Destination)serializer.ReadObject(resultStream);
+
+                    return destination;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         //Not appropriate
         public static async Task<ObservableCollection<DestinationInfoType>> GetDestinationInfoTypeAsync()
@@ -136,6 +161,27 @@ namespace SkiAppClient.DataModel
             }
         }
 
+        public static async Task AddSkiDayAsync(User user, string destination, string date, string startTime, string stopTime, string equipment, int numberOfTrips, string comment, List<string> lifts, List<string> slopes)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:2219/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                SkiDay newSkiDay = new SkiDay(user, destination, date, startTime, stopTime, equipment, numberOfTrips, comment, lifts, slopes);
+                var jsonSerializer = new DataContractJsonSerializer(typeof(SkiDay));
+
+                var stream = new MemoryStream();
+                jsonSerializer.WriteObject(stream, newSkiDay);
+                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("api/SkiDays", content);
+
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
         public static async Task ChangePasswordAsync(User user, string password)
         {
             using (var client = new HttpClient())
@@ -167,6 +213,54 @@ namespace SkiAppClient.DataModel
             }
         }
 
+
+        public static async Task<ObservableCollection<Lift>> GetLiftsAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:2219/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.GetAsync("api/Lifts");
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lift>));
+                    ObservableCollection<Lift> lifts = (ObservableCollection<Lift>)serializer.ReadObject(resultSTream);
+                    return lifts;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static async Task<ObservableCollection<Slope>> GetSlopesAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:2219/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.GetAsync("api/Lifts");
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Slope>));
+                    ObservableCollection<Slope> slopes = (ObservableCollection<Slope>)serializer.ReadObject(resultSTream);
+                    return slopes;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
 

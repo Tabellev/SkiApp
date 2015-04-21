@@ -74,6 +74,11 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Lift))]
         public IHttpActionResult PostLift(Lift lift)
         {
+            var destination = lift.LiftDestination;
+            Destination liftDestination = db.Destinations.Find(destination.DestinationId);
+            lift.LiftDestination = liftDestination;
+            ModelState.Clear();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

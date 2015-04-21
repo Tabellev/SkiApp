@@ -39,7 +39,7 @@ namespace SkiAppClient.DataModel
 
         public string LiftName { get; set; }
 
-        //public int NumberOfTrips { get; set; }
+        public Destination LiftDestination { get; set; }
     }
 
     public class Slope
@@ -50,18 +50,31 @@ namespace SkiAppClient.DataModel
 
         public string SlopeName { get; set; }
 
-        // public int NumberOfTrips { get; set; }
+        public Destination SlopeDestination { get; set; }
     }
 
     public class SkiDay
     {
-        public SkiDay() { }
+        public SkiDay(User user, string destination, string date, string startTime, string stopTime, string equipment, int numberOfTrips, string comment, 
+            List<string> lifts, List<string> slopes) 
+        {
+            SkiDayUser = user;
+            SkiDayDestination = destination;
+            Date = date;
+            StartTime = startTime;
+            StopTime = stopTime;
+            Equipment = equipment;
+            TotalNumberOfTrips = numberOfTrips;
+            Comment = comment;
+            Lifts = lifts;
+            Slopes = slopes;
+        }
 
         public int SkiDayId { get; set; }
 
-        public User user { get; set; }
+        public User SkiDayUser { get; set; }
 
-        public string Destination { get; set; }
+        public string SkiDayDestination { get; set; }
 
         public string Date { get; set; }
 
@@ -77,11 +90,11 @@ namespace SkiAppClient.DataModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //Må ha med setter eller så får jeg feilmelding.
-        public ObservableCollection<Lift> Lifts { get; set; }
+        public List<string> Lifts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //Må ha med setter eller så får jeg feilmelding.
-        public ObservableCollection<Slope> Slopes { get; set; }
+        public List<string> Slopes { get; set; }
 
     }
 

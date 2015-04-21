@@ -74,6 +74,11 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Slope))]
         public IHttpActionResult PostSlope(Slope slope)
         {
+            var destination = slope.SlopeDestination;
+            Destination slopeDestination = db.Destinations.Find(destination.DestinationId);
+            slope.SlopeDestination = slopeDestination;
+            ModelState.Clear();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

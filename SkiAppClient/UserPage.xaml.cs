@@ -222,7 +222,7 @@ namespace SkiAppClient
         /// <param name="e">Event data that describes how the selection was changed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         //Kan hende jeg skal bruke de senere
-        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void  itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Invalidate the view state when logical page navigation is in effect, as a change
             // in selection may cause a corresponding change in the current logical page.  When
@@ -231,7 +231,6 @@ namespace SkiAppClient
             // opposite effect.
             if (this.itemListView.SelectedItem != null)
             {
-               
                 var selected = (UserText)this.itemListView.SelectedItem;
                 var selectedType = selected.Information;
                 if (selectedType.Equals("Opprett bruker"))
@@ -241,14 +240,28 @@ namespace SkiAppClient
                 else if (selectedType.Equals("Logg inn"))
                 {
                     this.Frame.Navigate(typeof(LogOnPage));
-                }else if(selectedType.Equals("Endre passord"))
+                }
+                else if(selectedType.Equals("Endre passord"))
                 {
                     this.Frame.Navigate(typeof(ChangePasswordPage));
+                }
+                else if (selectedType.Equals("Skidagbok"))
+                {
+                    if (user == null)
+                    {
+                        tbWarning.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    }
+                    else
+                    {
+                        this.Frame.Navigate(typeof(SkiDayPage), user);
+                    }
+                    
                 }
             }
             
             if (this.UsingLogicalPageNavigation()) this.InvalidateVisualState();
         }
+
 
         private bool CanGoBack()
         {

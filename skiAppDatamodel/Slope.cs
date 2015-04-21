@@ -17,6 +17,8 @@ namespace skiAppDatamodel
          [StringLength(50)]
         public string SlopeName { get; set; }
 
+        public Destination SlopeDestination { get; set; }
+
         // public int NumberOfTrips { get; set; }
     }
 }

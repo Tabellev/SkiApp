@@ -17,6 +17,6 @@ namespace skiAppDatamodel
          [StringLength(50)]
         public string LiftName { get; set; }
 
-         //public int NumberOfTrips { get; set; }
+        public Destination LiftDestination { get; set; }
     }
 }

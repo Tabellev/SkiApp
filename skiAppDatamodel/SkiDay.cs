@@ -12,23 +12,20 @@ namespace skiAppDatamodel
         public SkiDay() { }
 
         public int SkiDayId { get; set; }
-         [Required]
-         [StringLength(50)]
-
-       //public User user { get; set; }
+        
+       [Required]
+        public User SkiDayUser { get; set; }
         public string Destination { get; set; }
 
-         public DateTime Date { get; set; }
+         public string Date { get; set; }
 
-         public DateTime StartTime { get; set; }
+         public string StartTime { get; set; }
 
-         public DateTime StopTime { get; set; }
+         public string StopTime { get; set; }
 
          public string Equipment { get; set; }
 
          public int NumberOfTrips { get; set; }
-
-         public int Meters { get; set; }
 
          public string Comment { get; set; }
 

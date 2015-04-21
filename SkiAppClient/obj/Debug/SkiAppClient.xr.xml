@@ -107,6 +107,7 @@
       <RootProperty Name="Foreground" />
       <RootProperty Name="FontWeight" />
       <RootProperty Name="MaxHeight" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="HorizontalAlignment" />
@@ -179,6 +180,15 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
       <RootProperty Name="FontFamily" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="SkiAppClient.SkiDayPage" />
     <RootType FullName="Windows.UI.Xaml.VisualStateManager">
