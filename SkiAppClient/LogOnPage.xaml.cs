@@ -126,44 +126,54 @@ namespace SkiAppClient
                 var givenPassword = password.Text;
                 User currentUser = null;
 
-                foreach (var user in users)
+                if (users != null)
                 {
-                    if (givenUserName.Equals(user.UserName))
+                    foreach (var user in users)
                     {
-                        currentUser = user;   
+                        if (givenUserName.Equals(user.UserName))
+                        {
+                            currentUser = user;
+                        }
                     }
-                }
 
-                if (currentUser != null)
+                    if (currentUser != null)
+                    {
+                        if (givenPassword.Equals(currentUser.Password))
+                        {
+                            isLogedOn = true;
+                            MessageDialog md = new MessageDialog("Du er nå logget inn som " + givenUserName);
+                            await md.ShowAsync();
+                            userName.Text = String.Empty;
+                            password.Text = String.Empty;
+                            NavigationParameter navigationParameter = new NavigationParameter(isLogedOn, currentUser);
+                            this.Frame.Navigate(typeof(UserPage), navigationParameter);
+                            isLogedOn = false;
+                        }
+                        else
+                        {
+                            MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
+                            await md.ShowAsync();
+                            isLogedOn = false;
+
+                            userName.Text = String.Empty;
+                            password.Text = String.Empty;
+                        }
+                    }
+
+                }
+                else
                 {
-                    if (givenPassword.Equals(currentUser.Password))
-                    {
-                        isLogedOn = true;
-                        MessageDialog md = new MessageDialog("Du er nå logget inn som " + givenUserName);
-                        await md.ShowAsync();
-                        userName.Text = String.Empty;
-                        password.Text = String.Empty;
-                        NavigationParameter navigationParameter = new NavigationParameter(isLogedOn, currentUser);
-                        this.Frame.Navigate(typeof(UserPage), navigationParameter);
-                        isLogedOn = false;
-                    }else
-                    {
-                        MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
-                        await md.ShowAsync();
-                        isLogedOn = false;
+                    MessageDialog md = new MessageDialog("Du er allerede logget inn!");
+                    await md.ShowAsync();
 
-                        userName.Text = String.Empty;
-                        password.Text = String.Empty;
-                    }
                 }
-                
             }
             else
             {
-                MessageDialog md = new MessageDialog("Du er allerede logget inn! ");
+                MessageDialog md = new MessageDialog("Ingen brukere er registrert!");
                 await md.ShowAsync();
-              
             }
+               
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

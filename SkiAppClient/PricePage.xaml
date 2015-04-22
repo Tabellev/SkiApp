@@ -124,7 +124,7 @@
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="593,410,0,0" Grid.Row="2" TextWrapping="Wrap" Text="4085"  VerticalAlignment="Top" Height="35" Width="117"  FontSize="25" RenderTransformOrigin="0.512,1.721"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="900,410,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Gratis"  VerticalAlignment="Top" Height="35" Width="117"  FontSize="25" RenderTransformOrigin="0.512,1.721"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,460,0,0" Grid.Row="2" TextWrapping="Wrap" Text="*Langweekend torsdag klokken 15.00 til og med søndag"  VerticalAlignment="Top" Height="35" Width="388"  FontSize="15" RenderTransformOrigin="0.512,1.721"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="170,500,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Samme priser gjelder på samtlige Skistar destinasjoner." TextAlignment="Center" VerticalAlignment="Top" Height="52" Width="781"  FontSize="30" RenderTransformOrigin="0.512,1.721"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,495,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Samme priser gjelder på samtlige Skistar destinasjoner." TextAlignment="Left" VerticalAlignment="Top" Height="52" Width="781"  FontSize="30" RenderTransformOrigin="0.512,1.721"/>
             </Grid>
         </ScrollViewer>
     </Grid>
