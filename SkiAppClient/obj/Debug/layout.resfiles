@@ -6,6 +6,11 @@ Assets\BackgroundPictures\vemdalen.jpg
 Assets\DarkGray.png
 Assets\LightGray.png
 Assets\Logo.scale-100.png
+Assets\Loypekart\loypekartAare.PNG
+Assets\Loypekart\loypekartHemsedal.PNG
+Assets\Loypekart\loypekartSalen.PNG
+Assets\Loypekart\loypekartTrysil.PNG
+Assets\Loypekart\loypekartVemdalen.PNG
 Assets\MediumGray.png
 Assets\SmallLogo.scale-100.png
 Assets\SplashScreen.scale-100.png
@@ -13,12 +18,14 @@ Assets\StoreLogo.scale-100.png
 App.xbf
 ChangePasswordPage.xbf
 CreateUserPage.xbf
+HistoryPage.xbf
 ItemsPage.xbf
 LogOnPage.xbf
 OpeningHoursPage.xbf
 PricePage.xbf
 SkiAppClient.xr.xml
 SkiDayPage.xbf
+SlopeInformationPage.xbf
 SplitPage.xbf
 UserPage.xbf
 DataModel\SampleData.json

@@ -19,7 +19,7 @@ namespace SkiAppDataService.Controllers
         // GET: api/SkiDays
         public IQueryable<SkiDay> GetSkidays()
         {
-            return db.SkiDays;
+            return db.SkiDays.Include(s => s.Lifts).Include(s => s.Slopes).Include(s => s.SkiDayUser);
         }
 
         // GET: api/SkiDays/5
@@ -74,6 +74,29 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(SkiDay))]
         public IHttpActionResult PostSkiDay(SkiDay skiDay)
         {
+            var user = skiDay.SkiDayUser;
+            User skiDayUser = db.Users.Find(user.UserId);
+            skiDay.SkiDayUser = skiDayUser;
+
+            var lifts = skiDay.Lifts.ToList<Lift>();
+            skiDay.Lifts.Clear();
+
+            foreach (var l in lifts)
+            {
+                Lift lift = db.Lifts.Find(l.LiftId);
+                skiDay.Lifts.Add(lift);
+            }
+
+            var slopes = skiDay.Slopes.ToList<Slope>();
+            skiDay.Slopes.Clear();
+
+            foreach (var s in slopes)
+            {
+                Slope slope = db.Slopes.Find(s.SlopeId);
+                skiDay.Slopes.Add(slope);
+            }
+            
+            ModelState.Clear();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

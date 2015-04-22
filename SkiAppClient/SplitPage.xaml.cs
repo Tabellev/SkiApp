@@ -213,7 +213,11 @@ namespace SkiAppClient
                     }
                     else if (selectedType.Equals("Priser"))
                     {
-                        this.Frame.Navigate(typeof(OpeningHoursPage), destination);
+                        this.Frame.Navigate(typeof(PricePage), destination);
+                    }
+                    else if (selectedType.Equals("Løypeinformasjon"))
+                    {
+                        this.Frame.Navigate(typeof(SlopeInformationPage), destination);
                     }
                 }
 

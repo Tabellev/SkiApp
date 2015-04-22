@@ -19,7 +19,8 @@ namespace SkiAppDataService.Controllers
         // GET: api/Slopes
         public IQueryable<Slope> GetSlopes()
         {
-            return db.Slopes;
+            return db.Slopes
+                           .Include(s => s.SlopeDestination);
         }
 
         // GET: api/Slopes/5

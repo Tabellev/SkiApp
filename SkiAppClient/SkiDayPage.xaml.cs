@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,8 +29,10 @@ namespace SkiAppClient
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private List<string> lifts;
-        private List<string> slopes;
+        private ObservableCollection<Lift> lifts;
+        private ObservableCollection<string> liftNames;
+        private ObservableCollection<Slope> slopes;
+        private ObservableCollection<string> slopeNames;
         private User user;
         private ObservableCollection<Destination> destinations; 
 
@@ -72,8 +75,10 @@ namespace SkiAppClient
         /// session. The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            lifts = new List<string>();
-            slopes = new List<string>();
+            lifts = new ObservableCollection<Lift>();
+            liftNames = new ObservableCollection<string>();
+            slopes = new ObservableCollection<Slope>();
+            slopeNames = new ObservableCollection<string>();
             user = (User)e.NavigationParameter;
             destinations = await SkiAppDataSource.GetDestinationAsync();
             foreach (var destination in destinations)
@@ -120,56 +125,95 @@ namespace SkiAppClient
 
         private async void SaveSkiDay_Click(object sender, RoutedEventArgs e)
         {
+            var destinationName = cbDestinations.SelectedItem.ToString();
             var date = tbDate.Text;
             var fromClock = tbFromClock.Text;
             var toClock = tbToClock.Text;
             var equipment = tbEquipment.Text;
             var totalTrips = Convert.ToInt32(tbTotalTrips.Text);
             var comment = tbComment.Text;
-            var destinationName = cbDestinations.SelectedItem.ToString();
+            ObservableCollection<Lift> destinationLifts = new ObservableCollection<Lift>();
+            ObservableCollection<Slope> destinationSlopes = new ObservableCollection<Slope>();
+            foreach(var lift in lifts)
+            {
+                foreach (var chosenLift in liftNames)
+                {
+                    if (lift.LiftName.Equals(chosenLift))
+                    {
+                        destinationLifts.Add(lift);
+                    }
+                }
+            }
 
-            await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, lifts, slopes);
+            foreach (var slope in slopes)
+            {
+                foreach (var chosenSlope in slopeNames)
+                {
+                    if (slope.SlopeName.Equals(chosenSlope))
+                    {
+                        destinationSlopes.Add(slope);
+                    }
+                }
+            }
 
-            
+           await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, destinationLifts, destinationSlopes);
+           MessageDialog md = new MessageDialog("Skidag lagret!");
+           await md.ShowAsync();
         }
 
         private void SeeHistory_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(HistoryPage), user);
         }
 
         private void AddLift_Click(object sender, RoutedEventArgs e)
         {
             var lift = cbLifts.SelectedItem.ToString();
-            lifts.Add(lift);
-            lbLifts.Items.Add(lift);
+            liftNames.Add(lift);
+            cbChosenLifts.Items.Add(lift);
         }
 
         private void AddSlope_Click(object sender, RoutedEventArgs e)
         {
             var slope = cbSlopes.SelectedItem.ToString();
-            slopes.Add(slope);
-            lbSlopes.Items.Add(slope);
+            slopeNames.Add(slope);
+            cbChosenSlopes.Items.Add(slope);
         }
 
         private async void cbDestinations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Destination chosenDestination = null;
-            List<string> dest = new List<string>();
-           
+            //List<string> dest = new List<string>();
+            this.cbLifts.Items.Clear();
+            this.cbSlopes.Items.Clear();
+            slopes = await SkiAppDataSource.GetSlopesAsync();
             if (cbDestinations.SelectedItem != null)
             {
                 var selectedDestination = (string)cbDestinations.SelectedItem.ToString();
-                var destinationLifts = await SkiAppDataSource.GetLiftsAsync();
+                 lifts = await SkiAppDataSource.GetLiftsAsync();
+                
+                
                 foreach (var d in destinations)
                 {
                     if (d.DestinationName.Equals(selectedDestination))
                     {
-                        foreach (var lift in destinationLifts)
+                        foreach (var lift in lifts)
                         {
-                            if (lift.LiftDestination.DestinationId.Equals(d.DestinationId))
+                            var destination = (Destination)lift.LiftDestination;
+                            if (destination.DestinationId.Equals(d.DestinationId))
                             {
                                 cbLifts.Items.Add(lift.LiftName);
+                            }
+                        }
+
+                        
+                        foreach (var s in slopes)
+                        {
+                            var sd = (Destination)s.SlopeDestination;
+                            
+                            if (sd.DestinationId.Equals(d.DestinationId))
+                            {
+                               cbSlopes.Items.Add(s.SlopeName);
                             }
                         }
                     }
@@ -184,6 +228,16 @@ namespace SkiAppClient
 
             }
 
+        }
+
+        private void RemoveLift_Click(object sender, RoutedEventArgs e)
+        {
+           cbChosenLifts.Items.Remove(cbChosenLifts.SelectedItem);
+        }
+
+        private void RemoveSlope_Click(object sender, RoutedEventArgs e)
+        {
+            cbChosenSlopes.Items.Remove(cbChosenSlopes.SelectedItem);
         }
     }
 }

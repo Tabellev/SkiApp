@@ -19,7 +19,8 @@ namespace SkiAppDataService.Controllers
         // GET: api/Lifts
         public IQueryable<Lift> GetLifts()
         {
-            return db.Lifts;
+            return db.Lifts
+                           .Include(l => l.LiftDestination);
         }
 
         // GET: api/Lifts/5
@@ -27,6 +28,7 @@ namespace SkiAppDataService.Controllers
         public IHttpActionResult GetLift(int id)
         {
             Lift lift = db.Lifts.Find(id);
+            
             if (lift == null)
             {
                 return NotFound();

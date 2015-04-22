@@ -1,0 +1,94 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="SkiAppClient.HistoryPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SkiAppClient"
+    xmlns:common="using:SkiAppClient.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">My Application</x:String>
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="Historikk" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
+        <ScrollViewer
+            x:Name="itemDetail"
+            AutomationProperties.AutomationId="ItemDetailScrollViewer"
+            Grid.RowSpan="2"
+            Padding="60,0,10,0"
+            Margin="408,0,0,0"
+            HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Enabled"
+            ScrollViewer.ZoomMode="Disabled" >
+
+            <Grid x:Name="itemDetailGrid" Height="688" Width="895">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Dato:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,63,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Fra kl:" VerticalAlignment="Top" Height="35" Width="89"  FontSize="30"/>
+                <TextBlock x:Name="tbDate" Text="Dato" Grid.Column="1" HorizontalAlignment="Left" Margin="402,9,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock x:Name="tbFromClock" Text="Klokkeslett" Grid.Column="1" HorizontalAlignment="Left" Margin="402,69,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,115,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Til kl:" VerticalAlignment="Top" Height="35" Width="89"  FontSize="30"/>
+                <TextBlock x:Name="tbToClock" Text="Klokkeslett" Grid.Column="1" HorizontalAlignment="Left" Margin="402,121,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,169,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Utstyr:" VerticalAlignment="Top" Height="35" Width="89"  FontSize="30"/>
+                <TextBlock x:Name="tbEquipment" Text="Brukt Utstyr" Grid.Column="1" HorizontalAlignment="Left" Margin="402,175,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,226,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Destinasjon" VerticalAlignment="Top" Height="35" Width="156"  FontSize="30"/>
+                <TextBlock x:Name="tbDestination"  Grid.Column="1" HorizontalAlignment="Left" Margin="402,229,0,0" Grid.Row="2" Text="Destinasjon" VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,285,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Heiser:" VerticalAlignment="Top" Height="35" Width="127"  FontSize="30"/>
+                <TextBlock x:Name="tbLifts"  Grid.Column="1" HorizontalAlignment="Left" Margin="402,288,0,0" Grid.Row="2" Text="Heiser" VerticalAlignment="Top" Width="481" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,349,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Bakker:" VerticalAlignment="Top" Height="35" Width="112"  FontSize="30"/>
+                <TextBlock x:Name="tbSlopes"  Grid.Column="1" HorizontalAlignment="Left" Margin="402,344,0,0" Grid.Row="2" Text="Bakker" VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,401,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Antall turer:" VerticalAlignment="Top" Height="35" Width="165"  FontSize="30"/>
+                <TextBlock x:Name="tbTotalTrips" Text="Antall turer" Grid.Column="1" HorizontalAlignment="Left" Margin="402,401,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="212,464,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Kommentar:" VerticalAlignment="Top" Height="35" Width="165"  FontSize="30"/>
+                <TextBlock x:Name="tbComment" Text="Kommentar" Grid.Column="1" HorizontalAlignment="Left" Margin="402,464,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="481" FontSize="30" FontFamily="Global User Interface" Height="120"/>
+
+            </Grid>
+        </ScrollViewer>
+        <Button HorizontalAlignment="Left" Margin="23,490,0,0" Grid.Row="1" Content="Se på skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="SeeSkiDay_Click"/>
+        <ListBox x:Name="lbSkiDays" HorizontalAlignment="Left" Height="445" Margin="42,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="303"/>
+        <Button HorizontalAlignment="Left" Margin="218,490,0,0" Grid.Row="1" Content="Slett skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="DeleteSkiDay_Click"/>
+    </Grid>
+</Page>

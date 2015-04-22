@@ -16,6 +16,12 @@ namespace skiAppDatamodel
 
         public DbSet<Slope> Slopes { get; set; }
 
+        public DbSet<Destination> Destinations { get; set; }
+
+        public DbSet<DestinationInfoType> DestinationInfoTypes { get; set; }
+
+        public DbSet<OpeningHours> OpeningHours { get; set; }
+
 
         public SkiEntities()
             : base(@"Data Source=donau.hiof.no;Initial Catalog=isabelev;Persist Security Info=True;User ID=isabelev;Password=Sommer15")
@@ -23,11 +29,7 @@ namespace skiAppDatamodel
             this.Configuration.ProxyCreationEnabled = false;  // Fix One - avoid cycles
         }
 
-        public System.Data.Entity.DbSet<skiAppDatamodel.Destination> Destinations { get; set; }
-
-        public System.Data.Entity.DbSet<skiAppDatamodel.DestinationInfoType> DestinationInfoTypes { get; set; }
-
-        public System.Data.Entity.DbSet<skiAppDatamodel.OpeningHours> OpeningHours { get; set; }
+        
 
     }
 }

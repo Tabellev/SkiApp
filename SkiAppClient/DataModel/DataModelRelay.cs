@@ -55,26 +55,13 @@ namespace SkiAppClient.DataModel
 
     public class SkiDay
     {
-        public SkiDay(User user, string destination, string date, string startTime, string stopTime, string equipment, int numberOfTrips, string comment, 
-            List<string> lifts, List<string> slopes) 
-        {
-            SkiDayUser = user;
-            SkiDayDestination = destination;
-            Date = date;
-            StartTime = startTime;
-            StopTime = stopTime;
-            Equipment = equipment;
-            TotalNumberOfTrips = numberOfTrips;
-            Comment = comment;
-            Lifts = lifts;
-            Slopes = slopes;
-        }
+         public SkiDay() { }
 
         public int SkiDayId { get; set; }
 
         public User SkiDayUser { get; set; }
 
-        public string SkiDayDestination { get; set; }
+        public string Destination { get; set; }
 
         public string Date { get; set; }
 
@@ -90,11 +77,11 @@ namespace SkiAppClient.DataModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //Må ha med setter eller så får jeg feilmelding.
-        public List<string> Lifts { get; set; }
+        public ObservableCollection<Lift> Lifts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //Må ha med setter eller så får jeg feilmelding.
-        public List<string> Slopes { get; set; }
+        public ObservableCollection<Slope> Slopes { get; set; }
 
     }
 
@@ -209,18 +196,11 @@ namespace SkiAppClient.DataModel
 
     public class Price
     {
-        public Price(string duration, int passPriceAdult, int passPriceTeenSenior) 
-        {
-            Duration = duration;
-            PassPriceAdult = passPriceAdult;
-            PassPriceTeenSenior = passPriceTeenSenior;
-        }
+        public Price() { }
 
         public int PriceId { get; set; }
 
         public string Duration { get; set; }
-
-        //public string Age { get; set; }
 
         public int PassPriceAdult { get; set; }
         public int PassPriceTeenSenior { get; set; }
@@ -230,42 +210,6 @@ namespace SkiAppClient.DataModel
         public const string Children = "Barn";
         public const string PassPriceChildren = "Gratis";
 
-        /*public string OneDay { get; set; }
-
-        public string TwoDays { get; set; }
-
-        public string ThreeDays { get; set; }
-
-        public string FourDays { get; set; }
-
-        public string FiveDays { get; set; }
-
-        public string SixToEightDays { get; set; }
-
-        public string NineDays { get; set; }
-
-        public string TenDays { get; set; }
-
-        public string ElevenDays { get; set; }
-
-        public string TwelveDays { get; set; }
-
-        public string ThirteenDays { get; set; }
-
-        public string FourteenDays { get; set; }
-
-        public string EighteenDays { get; set; }
-
-        public string SeasonPass { get; set; }
-
-        public int OneDayPrice { get; set; }
-
-        public int TwoDayPrice { get; set; }
-
-        public int ThreeDayPrice { get; set; }
-
-        public int FourDayPrice { get; set; }
-
-        public int FiveDayPrice { get; set; }*/
+       
     }
 }

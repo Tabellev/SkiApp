@@ -51,12 +51,12 @@
             AutomationProperties.AutomationId="ItemDetailScrollViewer"
             Grid.RowSpan="2"
             Padding="60,0,66,0"
-            Margin="106,0,-6,0"
+            Margin="107,0,-7,0"
             HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Enabled"
             ScrollViewer.ZoomMode="Disabled" >
 
-            <Grid x:Name="itemDetailGrid" Height="608" Width="1059" Margin="0,150,0,0">
+            <Grid x:Name="itemDetailGrid" Height="608" Width="1059" Margin="0,50,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -68,30 +68,32 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button x:ConnectionId='1' Grid.Column="1" HorizontalAlignment="Left" Margin="896,19,0,0" Grid.Row="2" Content="Historikk" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                         />
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Dato:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,63,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Fra kl:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <TextBox x:Name="tbDate" PlaceholderText="Dato" Grid.Column="1" HorizontalAlignment="Left" Margin="381,16,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBox x:Name="tbFromClock" PlaceholderText="Klokkeslett" Grid.Column="1" HorizontalAlignment="Left" Margin="381,69,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,115,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Til kl:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <TextBox x:Name="tbToClock" PlaceholderText="Klokkeslett" Grid.Column="1" HorizontalAlignment="Left" Margin="381,121,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,169,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Utstyr:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <TextBox x:Name="tbEquipment" PlaceholderText="Brukt Utstyr" Grid.Column="1" HorizontalAlignment="Left" Margin="381,175,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,226,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Destinasjon" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <ComboBox x:ConnectionId='2' x:Name="cbDestinations"  Grid.Column="1" HorizontalAlignment="Left" Margin="381,229,0,0" Grid.Row="2" PlaceholderText="Destinasjon" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"                                                   />
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,285,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Heiser:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <ComboBox x:Name="cbLifts"  Grid.Column="1" HorizontalAlignment="Left" Margin="381,288,0,0" Grid.Row="2" PlaceholderText="Heiser" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,349,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Bakker:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <ComboBox x:Name="cbSlopes"  Grid.Column="1" HorizontalAlignment="Left" Margin="381,344,0,0" Grid.Row="2" PlaceholderText="Bakker" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,401,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Antall turer:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <TextBox x:Name="tbTotalTrips" PlaceholderText="Antall turer" Grid.Column="1" HorizontalAlignment="Left" Margin="381,401,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,464,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Kommentar:" VerticalAlignment="Top" Height="35" Width="209"  FontSize="30"/>
-                <TextBox x:Name="tbComment" PlaceholderText="Kommentar" Grid.Column="1" HorizontalAlignment="Left" Margin="381,464,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="481" FontFamily="Global User Interface" Height="120"/>
-                <Button x:ConnectionId='3' Grid.Column="1" HorizontalAlignment="Left" Margin="896,542,0,0" Grid.Row="2" Content="Lagre skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                         />
-                <Button x:ConnectionId='4' Grid.Column="1" HorizontalAlignment="Left" Margin="688,285,0,0" Grid.Row="2" Content="Legg til" VerticalAlignment="Top" Width="108" FontFamily="Global User Interface" Height="45"                      />
-                <Button x:ConnectionId='5' Grid.Column="1" HorizontalAlignment="Left" Margin="688,341,0,0" Grid.Row="2" Content="Legg til" VerticalAlignment="Top" Width="108" FontFamily="Global User Interface" Height="45"                       />
-                <ListBox x:Name="lbLifts"  Grid.Column="1" HorizontalAlignment="Left" Margin="817,295,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="232" FontFamily="Global User Interface" Height="32"/>
-                <ListBox x:Name="lbSlopes"  Grid.Column="1" HorizontalAlignment="Left" Margin="817,351,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="232" FontFamily="Global User Interface" Height="32"/>
+                <Button x:ConnectionId='1' Grid.Column="1" HorizontalAlignment="Left" Margin="879,542,0,0" Grid.Row="2" Content="Historikk" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                         />
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Dato:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,63,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Fra kl:" VerticalAlignment="Top" Height="35" Width="89"  FontSize="30"/>
+                <TextBox x:Name="tbDate" PlaceholderText="Dato" Grid.Column="1" HorizontalAlignment="Left" Margin="200,16,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBox x:Name="tbFromClock" PlaceholderText="Klokkeslett" Grid.Column="1" HorizontalAlignment="Left" Margin="200,69,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,115,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Til kl:" VerticalAlignment="Top" Height="35" Width="89"  FontSize="30"/>
+                <TextBox x:Name="tbToClock" PlaceholderText="Klokkeslett" Grid.Column="1" HorizontalAlignment="Left" Margin="200,121,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,169,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Utstyr:" VerticalAlignment="Top" Height="35" Width="89"  FontSize="30"/>
+                <TextBox x:Name="tbEquipment" PlaceholderText="Brukt Utstyr" Grid.Column="1" HorizontalAlignment="Left" Margin="200,175,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,226,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Destinasjon" VerticalAlignment="Top" Height="35" Width="156"  FontSize="30"/>
+                <ComboBox x:ConnectionId='2' x:Name="cbDestinations"  Grid.Column="1" HorizontalAlignment="Left" Margin="200,229,0,0" Grid.Row="2" PlaceholderText="Destinasjon" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"                                                   />
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,285,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Heiser:" VerticalAlignment="Top" Height="35" Width="127"  FontSize="30"/>
+                <ComboBox x:Name="cbLifts"  Grid.Column="1" HorizontalAlignment="Left" Margin="200,288,0,0" Grid.Row="2" PlaceholderText="Heiser" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,349,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Bakker:" VerticalAlignment="Top" Height="35" Width="112"  FontSize="30"/>
+                <ComboBox x:Name="cbSlopes"  Grid.Column="1" HorizontalAlignment="Left" Margin="200,344,0,0" Grid.Row="2" PlaceholderText="Bakker" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,401,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Antall turer:" VerticalAlignment="Top" Height="35" Width="165"  FontSize="30"/>
+                <TextBox x:Name="tbTotalTrips" PlaceholderText="Antall turer" Grid.Column="1" HorizontalAlignment="Left" Margin="200,401,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,464,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Kommentar:" VerticalAlignment="Top" Height="35" Width="165"  FontSize="30"/>
+                <TextBox x:Name="tbComment" PlaceholderText="Kommentar" Grid.Column="1" HorizontalAlignment="Left" Margin="200,464,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="481" FontFamily="Global User Interface" Height="120"/>
+                <Button x:ConnectionId='3' Grid.Column="1" HorizontalAlignment="Left" Margin="703,542,0,0" Grid.Row="2" Content="Lagre skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                         />
+                <Button x:ConnectionId='4' Grid.Column="1" HorizontalAlignment="Left" Margin="508,288,0,0" Grid.Row="2" Content="Legg til" VerticalAlignment="Top" Width="108" FontFamily="Global User Interface" Height="45"                      />
+                <Button x:ConnectionId='5' Grid.Column="1" HorizontalAlignment="Left" Margin="508,341,0,0" Grid.Row="2" Content="Legg til" VerticalAlignment="Top" Width="108" FontFamily="Global User Interface" Height="45"                       />
+                <ComboBox x:Name="cbChosenLifts" PlaceholderText="Valgte heiser"  Grid.Column="1" HorizontalAlignment="Left" Margin="675,295,0,0" Grid.Row="2"  VerticalAlignment="Top"  Width="232" FontFamily="Global User Interface" Height="32"/>
+                <ComboBox x:Name="cbChosenSlopes" PlaceholderText="Valgte bakker"  Grid.Column="1" HorizontalAlignment="Left" Margin="675,351,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="232" FontFamily="Global User Interface" Height="32"/>
+                <Button x:ConnectionId='6' Grid.Column="1" HorizontalAlignment="Left" Margin="927,288,0,0" Grid.Row="2" Content="Fjern" VerticalAlignment="Top" Width="108" FontFamily="Global User Interface" Height="45"                         />
+                <Button x:ConnectionId='7' Grid.Column="1" HorizontalAlignment="Left" Margin="927,342,0,0" Grid.Row="2" Content="Fjern" VerticalAlignment="Top" Width="108" FontFamily="Global User Interface" Height="45"                          />
 
             </Grid>
         </ScrollViewer>

@@ -124,7 +124,7 @@ namespace SkiAppClient
             {
                 if (givenPassword.Equals(givenRepeatPassword))
                 {
-                    await SkiAppDataSource.AddStudentAsync(givenUserName, givenPassword);
+                    await SkiAppDataSource.AddUserAsync(givenUserName, givenPassword);
                     userName.Text = String.Empty;
                     password.Text = String.Empty;
                     repeatPassword.Text = String.Empty;

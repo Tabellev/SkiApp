@@ -72,3 +72,13 @@ C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\De
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SkiDayPage.xaml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SkiDayPage.xbf
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiDayPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\HistoryPage.g.i.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\HistoryPage.g.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\HistoryPage.xaml
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\HistoryPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\HistoryPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SlopeInformationPage.g.i.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SlopeInformationPage.g.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SlopeInformationPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SlopeInformationPage.xaml
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SlopeInformationPage.xbf
