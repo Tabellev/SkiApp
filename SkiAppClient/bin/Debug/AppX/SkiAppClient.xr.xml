@@ -17,9 +17,14 @@
     <RootPropertyPathName Name="ImgPath" />
     <RootPropertyPathName Name="Title" />
     <RootPropertyPathName Name="SlopeInformation" />
+    <RootPropertyPathName Name="OtherInformation" />
+    <RootPropertyPathName Name="ChildrenArea" />
+    <RootPropertyPathName Name="NumberOfParks" />
+    <RootPropertyPathName Name="NumberOfSlopes" />
+    <RootPropertyPathName Name="NumberOfLifts" />
+    <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="DestinationInfoType" />
     <RootPropertyPathName Name="InfoType" />
-    <RootPropertyPathName Name="ImagePath" />
     <RootPropertyPathName Name="Group" />
     <RootPropertyPathName Name="Information" />
   </Roots.PropertyPathNames>

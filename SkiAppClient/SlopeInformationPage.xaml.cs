@@ -120,12 +120,14 @@ namespace SkiAppClient
                 slopeInformation.OtherInformation = "Arena for cross, speedtesting, parallellslalåm, kuler m.m";
             }
 
-            tbName.Text = slopeInformation.DestinationName;
+            this.DefaultViewModel["SlopeInformation"] = slopeInformation;
+
+            /*tbName.Text = slopeInformation.DestinationName;
             tbNumberOfLifts.Text = slopeInformation.NumberOfLifts;
             tbNumberOfSlopes.Text = slopeInformation.NumberOfSlopes;
             tbNumberOfParks.Text = slopeInformation.NumberOfParks;
             tbChildrenAreas.Text = slopeInformation.ChildrenArea;
-            tbOtherInformation.Text = slopeInformation.OtherInformation;
+            tbOtherInformation.Text = slopeInformation.OtherInformation;*/
         }
 
         /// <summary>
