@@ -1,9 +1,5 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-<<<<<<< HEAD
-    <LocalAssembly PathName="c:\users\isabel\documents\visual studio 2013\projects\skiapp\skiappclient\obj\debug\intermediatexaml\skiappclient.exe" HashGuid="c6126b8f-3b59-5a1e-3ab4-9e22aba970ed" />
-=======
-    <LocalAssembly PathName="c:\users\isabel\documents\visual studio 2013\projects\skiapp\skiappclient\obj\debug\intermediatexaml\skiappclient.exe" HashGuid="4ba79b4e-885c-c0ff-3e69-5e6fd9905323" />
->>>>>>> f89860a4141f6b404e2b28ca01f8af38ea78734b
+    <LocalAssembly PathName="c:\users\isabel\documents\visual studio 2013\projects\skiapp\skiappclient\obj\debug\intermediatexaml\skiappclient.exe" HashGuid="1dabd4a1-a683-0ca5-7101-f830dcafdbd9" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

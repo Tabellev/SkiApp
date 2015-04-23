@@ -9,5 +9,7 @@
 
         <!-- Application-specific resources -->
         <x:String x:Key="AppName">SkiAppClient</x:String>
+        <Color x:Key="appColor">#FF802F6D</Color>
+        <Color x:Key="appColor1">#FFF61D8C</Color>
     </Application.Resources>
 </Application>
