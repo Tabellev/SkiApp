@@ -11,11 +11,11 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-       
+
     </Page.Resources>
 
-    
-    
+
+
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -34,22 +34,24 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <Grid Margin="0,0,10,33">
+        <Grid Margin="0,0,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="43,40,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="43,26,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
+            <Button x:ConnectionId='1' Width="145" Height="45" Content="Til startsiden" Margin="11,83,0,1"                         Grid.ColumnSpan="2"/>
+
             <TextBlock x:Name="pageTitle" Text="Løypeinformasjon" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,27"/>
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="63,0,30,27"/>
         </Grid>
-       <Grid Grid.Row="1">
-            <Image Source="{Binding SlopeInformation.ImagePath}" HorizontalAlignment="Left" Height="608" Margin="20,10,0,0" VerticalAlignment="Top" Width="705" Grid.Row="1"/>
+        <Grid Grid.Row="1">
+            <Image Source="{Binding SlopeInformation.ImagePath}" HorizontalAlignment="Left" Height="538" Margin="20,80,0,0" VerticalAlignment="Top" Width="705"/>
             <TextBlock x:Name="tbName" HorizontalAlignment="Left" Margin="761,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SlopeInformation.DestinationName}" FontSize="30" VerticalAlignment="Top" Height="60" Width="605"/>
             <TextBlock x:Name="tbNumberOfLifts" HorizontalAlignment="Left" Margin="761,93,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SlopeInformation.NumberOfLifts}" FontSize="30" VerticalAlignment="Top" Height="60" Width="605"/>
             <TextBlock x:Name="tbNumberOfSlopes" HorizontalAlignment="Left" Margin="761,173,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SlopeInformation.NumberOfSlopes}" FontSize="30" VerticalAlignment="Top" Height="60" Width="605"/>

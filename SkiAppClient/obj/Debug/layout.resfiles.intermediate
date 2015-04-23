@@ -19,6 +19,7 @@ App.xbf
 ChangePasswordPage.xbf
 CreateUserPage.xbf
 HistoryPage.xbf
+InformationPage.xbf
 ItemsPage.xbf
 LogOnPage.xbf
 OpeningHoursPage.xbf
@@ -26,6 +27,5 @@ PricePage.xbf
 SkiAppClient.xr.xml
 SkiDayPage.xbf
 SlopeInformationPage.xbf
-SplitPage.xbf
 UserPage.xbf
 DataModel\SampleData.json

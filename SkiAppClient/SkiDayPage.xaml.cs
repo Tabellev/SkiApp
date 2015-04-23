@@ -245,5 +245,10 @@ namespace SkiAppClient
             cbChosenSlopes.Items.Remove(removedSlope);
             cbSlopes.Items.Add(removedSlope);
         }
+
+        private void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemsPage));
+        }
     }
 }

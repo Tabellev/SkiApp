@@ -87,9 +87,10 @@
 
             </Grid>
         </ScrollViewer>
-        <Button x:ConnectionId='1' HorizontalAlignment="Left" Margin="23,490,0,0" Grid.Row="1" Content="Se på skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                        />
-        <ListBox x:Name="lbSkiDays" HorizontalAlignment="Left" Height="445" Margin="42,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="303"/>
-        <Button x:ConnectionId='2' HorizontalAlignment="Left" Margin="218,490,0,0" Grid.Row="1" Content="Slett skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                           />
+        <Button x:ConnectionId='1' HorizontalAlignment="Left" Margin="23,526,0,0" Grid.Row="1" Content="Se på skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                        />
+        <ListBox x:Name="lbSkiDays" HorizontalAlignment="Left" Height="445" Margin="42,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="303"/>
+        <Button x:ConnectionId='2' HorizontalAlignment="Left" Margin="218,526,0,0" Grid.Row="1" Content="Slett skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                           />
+        <Button x:ConnectionId='3' HorizontalAlignment="Left" Margin="17,111,0,0" Content="Til startsiden" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                         Grid.RowSpan="2"/>
     </Grid>
 </Page>
 

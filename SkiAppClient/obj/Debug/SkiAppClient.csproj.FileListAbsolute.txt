@@ -1,6 +1,5 @@
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\App.xbf
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\ItemsPage.xbf
-C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SplitPage.xbf
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.xr.xml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.exe
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.pdb
@@ -11,15 +10,11 @@ C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\De
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\App.g.cs
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\ItemsPage.g.i.cs
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\ItemsPage.g.cs
-C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SplitPage.g.i.cs
-C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SplitPage.g.cs
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\XamlTypeInfo.g.cs
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\App.xaml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\ItemsPage.xaml
-C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SplitPage.xaml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\App.xbf
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\ItemsPage.xbf
-C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SplitPage.xbf
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\XamlSaveStateFile.xml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SkiAppClient.exe
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SkiAppClient.pdb
@@ -82,3 +77,8 @@ C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\De
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SlopeInformationPage.xbf
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SlopeInformationPage.xaml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\SlopeInformationPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\InformationPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.g.i.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.g.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.xaml
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.xbf
