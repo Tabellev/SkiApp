@@ -189,11 +189,10 @@ namespace SkiAppClient
             this.cbLifts.Items.Clear();
             this.cbSlopes.Items.Clear();
             slopes = await SkiAppDataSource.GetSlopesAsync();
+            lifts = await SkiAppDataSource.GetLiftsAsync();
             if (cbDestinations.SelectedItem != null)
             {
                 var selectedDestination = (string)cbDestinations.SelectedItem.ToString();
-                 lifts = await SkiAppDataSource.GetLiftsAsync();
-                
                 
                 foreach (var d in destinations)
                 {

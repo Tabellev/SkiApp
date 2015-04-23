@@ -104,65 +104,7 @@ namespace SkiAppClient.DataModel
         public ObservableCollection<OpeningHours> DestinationOpeningHours { get; set; }
     }
 
-    public class Destination2
-    {
-        public Destination2() { }
-
-        public int DestinationId2 { get; set; }
-
-        public string DestinationName2 { get; set; }
-
-        public string ImgPath2 { get; set; }
-
-        public ObservableCollection<string> DestinationUrl { get; set; }
-
-        public ObservableCollection<Price> DestinationPrice { get; set; }
-
-        public ObservableCollection<OpeningHours> DestinationOpeningHours2 { get; set; }
-
-        public async Task<string> getOpeningHours()
-        {
-            if (DestinationOpeningHours2 == null)
-            {
-                return "";
-            }
-            else
-            {
-                DestinationOpeningHours2 = new ObservableCollection<OpeningHours>();
-                OpeningHours oh = new OpeningHours();
-                DestinationUrl.Add("https://www.skistar.com/no/Hemsedal/Skipass-skikjoring/Apningstider/");
-                string html = await Parser.getOpeningHours(this);
-
-                /*oh.FromDate = "01/12-15";
-                oh.FromClockToClockWeek = "Mandag-Fredag: 09:00-16:30";
-                oh.FromClockToClockSat = "Lørdag: 09:00-18:00";
-                oh.FromClockToClockSun = "Søndag: 10:00-16:30";
-                oh.MorningRiding = "Morgenkjøring: Lørdag 07:00-09:00";
-                oh.NightRiding = "Kveldskjøring = Fredag 18:00-22:00";
-                DestinationOpeningHours2.Add(oh);*/
-                return html;
-            }
-        }
-
-        public ObservableCollection<string> getUrl()
-        {
-            if (DestinationUrl != null)
-            {
-                return DestinationUrl;
-            }
-            else
-            {
-                DestinationUrl = new ObservableCollection<string>();
-                string url = "Assets/BackgroundPictures/Hemsedal.jpg";
-                string url2 = "Assets/BackgroundPictures/trysil.jpg";
-                
-                DestinationUrl.Add(url);
-                DestinationUrl.Add(url2);
-                return DestinationUrl;
-            }
-        }
-    }
-
+   
     public class DestinationInfoType
     {
         public DestinationInfoType(string infoType) 

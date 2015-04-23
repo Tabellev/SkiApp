@@ -95,6 +95,8 @@ namespace SkiAppDataService.Controllers
                 Slope slope = db.Slopes.Find(s.SlopeId);
                 skiDay.Slopes.Add(slope);
             }
+
+
             
             ModelState.Clear();
             if (!ModelState.IsValid)

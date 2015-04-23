@@ -107,7 +107,7 @@ namespace SkiAppClient
             // by passing required information as a navigation parameter
             var destination = (Destination)e.ClickedItem;
             //destinationInfo.setDestination(destination);
-            this.Frame.Navigate(typeof(SplitPage), destination);
+            this.Frame.Navigate(typeof(InformationPage), destination);
         }
 
         #region NavigationHelper registration

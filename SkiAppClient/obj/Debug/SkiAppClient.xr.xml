@@ -244,7 +244,7 @@
       <RootProperty Name="KeyTime" />
       <RootProperty Name="Value" />
     </RootType>
-    <RootType FullName="SkiAppClient.SplitPage" />
+    <RootType FullName="SkiAppClient.InformationPage" />
     <RootType FullName="SkiAppClient.UserPage" />
   </Roots.RootTypes>
 </Roots>

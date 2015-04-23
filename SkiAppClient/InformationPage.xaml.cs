@@ -31,7 +31,7 @@ namespace SkiAppClient
     /// A page that displays a group title, a list of items within the group, and details for
     /// the currently selected item.
     /// </summary>
-    public sealed partial class SplitPage : Page
+    public sealed partial class InformationPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -54,7 +54,7 @@ namespace SkiAppClient
             get { return this.navigationHelper; }
         }
 
-        public SplitPage()
+        public InformationPage()
         {
             //Dårlig Maintainability Index, Class Coupling og Lines of code. Dette er autogenerert kode, så regner med at det er ok?
             this.InitializeComponent();

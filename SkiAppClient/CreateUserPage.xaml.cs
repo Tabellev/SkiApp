@@ -130,7 +130,7 @@ namespace SkiAppClient
                     repeatPassword.Text = String.Empty;
                     MessageDialog md = new MessageDialog("Bruker " + givenUserName + " er opprettet!");
                     await md.ShowAsync();
-                    this.Frame.Navigate(typeof(SplitPage));
+                    this.Frame.Navigate(typeof(UserPage));
                 }else
                 {
                     MessageDialog md = new MessageDialog("Passord er ulike! Venligst fyll ut på nytt.");
