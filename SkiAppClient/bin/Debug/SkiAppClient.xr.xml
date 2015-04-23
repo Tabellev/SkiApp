@@ -11,8 +11,8 @@
     <RootPropertyPathName Name="FromClockToClockSat" />
     <RootPropertyPathName Name="FromClockToClockWeek" />
     <RootPropertyPathName Name="FromDate" />
-    <RootPropertyPathName Name="Subtitle" />
     <RootPropertyPathName Name="Destination" />
+    <RootPropertyPathName Name="Subtitle" />
     <RootPropertyPathName Name="DestinationName" />
     <RootPropertyPathName Name="ImgPath" />
     <RootPropertyPathName Name="Title" />
@@ -61,12 +61,15 @@
       <RootMethod Name="SetRowSpan" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
+      <RootMethod Name="GetColumnSpan" />
+      <RootMethod Name="SetColumnSpan" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition" />
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
+      <RootProperty Name="MinHeight" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Padding" />
@@ -86,6 +89,20 @@
       <RootMethod Name="SetName" />
       <RootMethod Name="GetItemType" />
       <RootMethod Name="SetItemType" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="FontSize" />
+      <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />
@@ -127,20 +144,6 @@
       <RootProperty Name="Width" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="Height" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="FontFamily" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Command" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="FontSize" />
-      <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="SkiAppClient.ChangePasswordPage" />

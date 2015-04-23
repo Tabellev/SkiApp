@@ -118,5 +118,10 @@ namespace SkiAppClient
         }
 
         #endregion
+
+        private void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemsPage));
+        }
     }
 }

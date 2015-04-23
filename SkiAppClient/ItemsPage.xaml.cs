@@ -31,6 +31,7 @@ namespace SkiAppClient
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private User user;
        
 
         /// <summary>
@@ -70,29 +71,7 @@ namespace SkiAppClient
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            //var sampleDataGroups = await SampleDataSource.GetGroupsAsync();
-           
             this.DefaultViewModel["Destination"] = await SkiAppDataSource.GetDestinationAsync();
-            /*ObservableCollection<Destination2> destinations = new ObservableCollection<Destination2>();
-            Destination2 d2 = new Destination2();
-            string html = await d2.getOpeningHours();
-            MessageDialog md = new MessageDialog("YO");
-            await md.ShowAsync();
-            /*ObservableCollection<string> urls = d2.getUrl();
-            string url = "";
-            foreach (string s in urls)
-            {
-                if (s.Contains("Hemsedal"))
-                {
-                    url = s;
-                }
-                 
-            }
-            d2.ImgPath2 = url;
-            d2.DestinationName2 = "Hemsedal";
-            destinations.Add(d2);
-            this.DefaultViewModel["Destination"] = destinations;*/
         }
 
         /// <summary>
@@ -103,8 +82,6 @@ namespace SkiAppClient
         /// <param name="e">Event data that describes the item clicked.</param>
         void ItemGridView_DestinationClick(object sender, ItemClickEventArgs e)
         {
-            // Navigate to the appropriate destination page, configuring the new page
-            // by passing required information as a navigation parameter
             var destination = (Destination)e.ClickedItem;
             //destinationInfo.setDestination(destination);
             this.Frame.Navigate(typeof(InformationPage), destination);
@@ -133,17 +110,9 @@ namespace SkiAppClient
 
         #endregion
 
-        private static void itemView_DestinationClick(object sender, ItemClickEventArgs e)
-        {
-            //var destination = (Destination)e.ClickedItem;
-           // this.Frame.Navigate(typeof(SplitPage), destination);
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
             this.Frame.Navigate(typeof(UserPage));
         }
-
     }
 }

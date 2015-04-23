@@ -127,8 +127,8 @@ namespace SkiAppClient
                 // Restore the previously saved state associated with this page
                 if (e.PageState.ContainsKey("SelectedItem") && this.itemsViewSource.View != null)
                 {
-                    var selectedItem = this.itemListView.SelectedItem;//await SampleDataSource.GetItemAsync((String)e.PageState["SelectedItem"]);
-                    this.itemsViewSource.View.MoveCurrentTo(selectedItem);
+                    //var selectedItem = this.itemListView.SelectedItem;//await SampleDataSource.GetItemAsync((String)e.PageState["SelectedItem"]);
+                    //this.itemsViewSource.View.MoveCurrentTo(selectedItem);
                 }
             }
             //var currentItem = this.itemsViewSource.View.CurrentItem;
@@ -195,28 +195,25 @@ namespace SkiAppClient
         //Kan hende jeg skal bruke de senere
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (this.itemListView.SelectedItem != null)
-            {
-                if (this.itemListView.SelectedItem != null)
+             if (this.itemListView.SelectedItem != null)
+             {
+                var selected = (DestinationInfoType)this.itemListView.SelectedItem;
+                var selectedType = selected.InfoType;
+                if (selectedType.Equals("Åpningstider"))
                 {
-                    var selected = (DestinationInfoType)this.itemListView.SelectedItem;
-                    var selectedType = selected.InfoType;
-                    if (selectedType.Equals("Åpningstider"))
-                    {
-                        this.Frame.Navigate(typeof(OpeningHoursPage), destination);
-                    }
-                    else if (selectedType.Equals("Priser"))
-                    {
-                        this.Frame.Navigate(typeof(PricePage), destination);
-                    }
-                    else if (selectedType.Equals("Løypeinformasjon"))
-                    {
-                        this.Frame.Navigate(typeof(SlopeInformationPage), destination);
-                    }
+                    this.Frame.Navigate(typeof(OpeningHoursPage), destination);
                 }
+                else if (selectedType.Equals("Priser"))
+                {
+                    this.Frame.Navigate(typeof(PricePage), destination);
+                }
+                else if (selectedType.Equals("Løypeinformasjon"))
+                {
+                    this.Frame.Navigate(typeof(SlopeInformationPage), destination);
+                }
+             }
 
-                if (this.UsingLogicalPageNavigation()) this.InvalidateVisualState();
-            }
+             if (this.UsingLogicalPageNavigation()) this.InvalidateVisualState();
         }
 
         private bool CanGoBack()
@@ -227,6 +224,7 @@ namespace SkiAppClient
             }
             else
             {
+                this.itemListView.SelectedItem = null;
                 return this.navigationHelper.CanGoBack();
             }
         }
@@ -298,6 +296,11 @@ namespace SkiAppClient
         }
 
         #endregion
+
+        private void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemsPage));
+        }
 
 
 

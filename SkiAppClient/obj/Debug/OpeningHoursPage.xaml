@@ -41,12 +41,13 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="39,32,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
+            <Button x:ConnectionId='1' Width="145" Height="45" Content="Til startsiden" Margin="13,83,0,1"                         Grid.ColumnSpan="2"/>
 
 
         </Grid>
@@ -74,10 +75,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-               
+
                 <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1">
                     <TextBlock x:Name="itemTitle" Margin="82,0,0,0" Text="Åpningstider" HorizontalAlignment="Left" FontSize="50"/>
-                    <TextBlock x:Name="itemSubtitle" Margin="0,0,0,20" Text="{Binding Subtitle}" Style="{StaticResource SubtitleTextBlockStyle}"/>
                 </StackPanel>
 
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,20,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding FromDate}"  VerticalAlignment="Top" Height="35" Width="823"  FontSize="30"/>

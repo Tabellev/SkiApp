@@ -104,7 +104,10 @@ namespace SkiAppClient.DataModel
         public ObservableCollection<OpeningHours> DestinationOpeningHours { get; set; }
     }
 
+<<<<<<< HEAD
    
+=======
+>>>>>>> f89860a4141f6b404e2b28ca01f8af38ea78734b
     public class DestinationInfoType
     {
         public DestinationInfoType(string infoType) 

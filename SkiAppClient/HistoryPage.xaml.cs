@@ -253,5 +253,10 @@ namespace SkiAppClient
             await SkiAppDataSource.DeleteSkiDayAsync(skiDay.SkiDayId);
             lbSkiDays.Items.Remove(skiDayDate);
         }
+
+        private void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemsPage));
+        }
     }
 }

@@ -97,5 +97,6 @@
 
             </Grid>
         </ScrollViewer>
+        <Button HorizontalAlignment="Left" Margin="9,111,0,0" Content="Til startsiden" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="StartPage_Click" Grid.RowSpan="2"/>
     </Grid>
 </Page>

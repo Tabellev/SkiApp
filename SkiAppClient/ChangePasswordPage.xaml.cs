@@ -149,5 +149,10 @@ namespace SkiAppClient
                 newPassword.Text = String.Empty;
             }
         }
+
+        private void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemsPage));
+        }
     }
 }

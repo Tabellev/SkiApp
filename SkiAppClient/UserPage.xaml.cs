@@ -111,58 +111,43 @@ namespace SkiAppClient
             userInfo.Add(skiDiary);
             this.DefaultViewModel["Group"] = userInfo;
 
-            /*if(e.NavigationParameter != null)
+            if (e.NavigationParameter != null)
             {
                 navigationParameter = (SkiAppClient.LogOnPage.NavigationParameter)e.NavigationParameter;
                 hasLogedOn = navigationParameter.LogedOn;
                 user = navigationParameter.LogedOnUser;
+
                 if (hasLogedOn)
                 {
                     logInName.Text = "Brukernavn: " + user.UserName;//LogOnPage.givenUserName;
                     logInButton.Content = "Logg ut";
-
-                    MessageDialog md = new MessageDialog(user.UserName);
-                    md.ShowAsync();
                 }
                 else
                 {
-                    
                     logInButton.Content = "Logg inn";
                     logInName.Text = "Ikke innlogget ";
                 }
-            }else if(e.NavigationParameter == null && e.PageState != null)
+            }
+            else if (e.NavigationParameter == null)
             {
                 hasLogedOn = false;
                 logInButton.Content = "Logg inn";
                 logInName.Text = "Ikke innlogget ";
+            }
             
-            }*/
-
             if (e.PageState == null)
             {
                 this.itemListView.SelectedItem = null;
                
-                // When this is a new page, select the first item automatically unless logical page
-                // navigation is being used (see the logical page navigation #region below.)
                 if (!this.UsingLogicalPageNavigation() && this.itemsViewSource.View != null)
                 {
-                    //this.itemsViewSource.View.MoveCurrentToFirst();
                     this.itemListView.SelectedItem = null;
                 }
             }
             else
             {
                 this.itemListView.SelectedItem = null;
-                // Restore the previously saved state associated with this page
-                if (e.PageState.ContainsKey("SelectedItem") && this.itemsViewSource.View != null)
-                {
-                    // TODO: Invoke Me.itemsViewSource.View.MoveCurrentTo() with the selected
-                    //       item as specified by the value of pageState("SelectedItem")
-
-                }
             }
-            //var currentItem = this.itemsViewSource.View.CurrentItem;
-            //this.DefaultViewModel["Items"] = currentItem;
         }
 
         /// <summary>
@@ -224,15 +209,11 @@ namespace SkiAppClient
         //Kan hende jeg skal bruke de senere
         private void  itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Invalidate the view state when logical page navigation is in effect, as a change
-            // in selection may cause a corresponding change in the current logical page.  When
-            // an item is selected this has the effect of changing from displaying the item list
-            // to showing the selected item's details.  When the selection is cleared this has the
-            // opposite effect.
             if (this.itemListView.SelectedItem != null)
             {
                 var selected = (UserText)this.itemListView.SelectedItem;
                 var selectedType = selected.Information;
+                
                 if (selectedType.Equals("Opprett bruker"))
                 {
                     this.Frame.Navigate(typeof(CreateUserPage));
@@ -254,8 +235,7 @@ namespace SkiAppClient
                     else
                     {
                         this.Frame.Navigate(typeof(SkiDayPage), user);
-                    }
-                    
+                    } 
                 }
             }
             
@@ -278,10 +258,6 @@ namespace SkiAppClient
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
             {
-                // When logical page navigation is in effect and there's a selected item that
-                // item's details are currently displayed.  Clearing the selection will return to
-                // the item list.  From the user's point of view this is a logical backward
-                // navigation.
                 this.itemListView.SelectedItem = null;
             }
             else
@@ -311,7 +287,7 @@ namespace SkiAppClient
                 return "PrimaryView";
 
             // Update the back button's enabled state when the view state changes
-            var logicalPageBack = this.UsingLogicalPageNavigation(); //&& this.itemListView.SelectedItem != null;
+            var logicalPageBack = this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null;
 
             return logicalPageBack ? "SinglePane_Detail" : "SinglePane";
         }
@@ -332,37 +308,6 @@ namespace SkiAppClient
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.itemListView.SelectedItem = null;
-
-            if (e.Parameter != null)
-            {
-                navigationParameter = (SkiAppClient.LogOnPage.NavigationParameter)e.Parameter;
-                hasLogedOn = navigationParameter.LogedOn;
-                user = navigationParameter.LogedOnUser;
-
-                 if (hasLogedOn)
-                {
-                    logInName.Text = "Brukernavn: " + user.UserName;//LogOnPage.givenUserName;
-                    logInButton.Content = "Logg ut";
-
-                    /*MessageDialog md = new MessageDialog(user.UserName);
-                    md.ShowAsync();*/
-                }
-                else
-                {
-                    
-                    logInButton.Content = "Logg inn";
-                    logInName.Text = "Ikke innlogget ";
-                }
-            }
-            else if(e.Parameter == null)
-            {
-                hasLogedOn = false;
-                logInButton.Content = "Logg inn";
-                logInName.Text = "Ikke innlogget ";
-            
-            }
-            
-           
             navigationHelper.OnNavigatedTo(e);
         }
 
@@ -390,6 +335,11 @@ namespace SkiAppClient
                 this.Frame.Navigate(typeof(LogOnPage));
             }
             
+        }
+
+        private void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemsPage));
         }
         
     }
