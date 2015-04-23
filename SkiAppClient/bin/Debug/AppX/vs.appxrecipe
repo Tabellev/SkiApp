@@ -26,7 +26,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.exe">
       <PackagePath>SkiAppClient.exe</PackagePath>
-      <Modified>2015-04-23T10:23:43.511</Modified>
+      <Modified>2015-04-23T12:17:08.500</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\aare.jpg">
       <PackagePath>Assets\BackgroundPictures\aare.jpg</PackagePath>
@@ -118,7 +118,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\HistoryPage.xbf">
       <PackagePath>HistoryPage.xbf</PackagePath>
-      <Modified>2015-04-23T10:12:09.918</Modified>
+      <Modified>2015-04-23T11:17:39.193</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\LogOnPage.xbf">
       <PackagePath>LogOnPage.xbf</PackagePath>
@@ -154,7 +154,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.xr.xml">
       <PackagePath>SkiAppClient.xr.xml</PackagePath>
-      <Modified>2015-04-23T10:23:43.080</Modified>
+      <Modified>2015-04-23T10:56:51.790</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

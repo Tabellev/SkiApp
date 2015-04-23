@@ -71,7 +71,7 @@ namespace SkiAppClient.DataModel
 
         public string Equipment { get; set; }
 
-        public int TotalNumberOfTrips { get; set; }
+        public int NumberOfTrips { get; set; }
 
         public string Comment { get; set; }
 

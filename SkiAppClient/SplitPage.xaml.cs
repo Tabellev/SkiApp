@@ -195,14 +195,8 @@ namespace SkiAppClient
         //Kan hende jeg skal bruke de senere
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Invalidate the view state when logical page navigation is in effect, as a change
-            // in selection may cause a corresponding change in the current logical page.  When
-            // an item is selected this has the effect of changing from displaying the item list
-            // to showing the selected item's details.  When the selection is cleared this has the
-            // opposite effect.
             if (this.itemListView.SelectedItem != null)
             {
-
                 if (this.itemListView.SelectedItem != null)
                 {
                     var selected = (DestinationInfoType)this.itemListView.SelectedItem;

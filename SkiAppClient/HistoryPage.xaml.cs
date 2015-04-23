@@ -173,9 +173,9 @@ namespace SkiAppClient
                 tbDestination.Text = "-";
             }
 
-            if (skiDay.TotalNumberOfTrips != 0)
+            if (skiDay.NumberOfTrips != 0)
             {
-                tbTotalTrips.Text = Convert.ToString(skiDay.TotalNumberOfTrips); 
+                tbTotalTrips.Text = skiDay.NumberOfTrips.ToString(); 
             }
             else
             {

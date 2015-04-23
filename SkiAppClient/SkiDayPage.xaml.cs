@@ -130,7 +130,7 @@ namespace SkiAppClient
             var fromClock = tbFromClock.Text;
             var toClock = tbToClock.Text;
             var equipment = tbEquipment.Text;
-            var totalTrips = Convert.ToInt32(tbTotalTrips.Text);
+            int totalTrips = (int)Convert.ToInt32(tbTotalTrips.Text);
             var comment = tbComment.Text;
             ObservableCollection<Lift> destinationLifts = new ObservableCollection<Lift>();
             ObservableCollection<Slope> destinationSlopes = new ObservableCollection<Slope>();
@@ -171,13 +171,15 @@ namespace SkiAppClient
             var lift = cbLifts.SelectedItem.ToString();
             liftNames.Add(lift);
             cbChosenLifts.Items.Add(lift);
-        }
-
+            cbLifts.Items.Remove(lift);
+       }
+            
         private void AddSlope_Click(object sender, RoutedEventArgs e)
         {
             var slope = cbSlopes.SelectedItem.ToString();
             slopeNames.Add(slope);
             cbChosenSlopes.Items.Add(slope);
+            cbSlopes.Items.Remove(slope);
         }
 
         private async void cbDestinations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -232,12 +234,16 @@ namespace SkiAppClient
 
         private void RemoveLift_Click(object sender, RoutedEventArgs e)
         {
-           cbChosenLifts.Items.Remove(cbChosenLifts.SelectedItem);
+            var removedLift = cbChosenLifts.SelectedItem;
+            cbChosenLifts.Items.Remove(removedLift);
+            cbLifts.Items.Add(removedLift);
         }
 
         private void RemoveSlope_Click(object sender, RoutedEventArgs e)
         {
-            cbChosenSlopes.Items.Remove(cbChosenSlopes.SelectedItem);
+            var removedSlope = cbChosenSlopes.SelectedItem;
+            cbChosenSlopes.Items.Remove(removedSlope);
+            cbSlopes.Items.Add(removedSlope);
         }
     }
 }

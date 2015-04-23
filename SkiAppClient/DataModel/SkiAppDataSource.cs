@@ -171,7 +171,7 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                SkiDay newSkiDay = new SkiDay() { SkiDayUser = user, Destination = destination, Date = date, StartTime = startTime, StopTime = stopTime, Equipment = equipment, TotalNumberOfTrips = numberOfTrips, Comment = comment, Lifts = lifts, Slopes = slopes };
+                SkiDay newSkiDay = new SkiDay() { SkiDayUser = user, Destination = destination, Date = date, StartTime = startTime, StopTime = stopTime, Equipment = equipment, NumberOfTrips = numberOfTrips, Comment = comment, Lifts = lifts, Slopes = slopes };
                 
                 //var jsonSerializerSettings = new DataContractJsonSerializerSettings();
                 var jsonSerializer = new DataContractJsonSerializer(typeof(SkiDay));
