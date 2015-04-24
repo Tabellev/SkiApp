@@ -22,15 +22,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-
-// The Split Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234234
-
 namespace SkiAppClient
 {
-    /// <summary>
-    /// A page that displays a group title, a list of items within the group, and details for
-    /// the currently selected item.
-    /// </summary>
     public sealed partial class UserPage : Page
     {
         private NavigationHelper navigationHelper;
@@ -43,18 +36,11 @@ namespace SkiAppClient
         private UserText changePassword;
         private UserText skiDiary;
 
-        /// <summary>
-        /// This can be changed to a strongly typed view model.
-        /// </summary>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
 
-        /// <summary>
-        /// NavigationHelper is used on each page to aid in navigation and 
-        /// process lifetime management
-        /// </summary>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
@@ -65,18 +51,13 @@ namespace SkiAppClient
             //Dårlig Maintainability Index, Class Coupling og Lines of code. Dette er autogenerert kode, så regner med at det er ok?
             this.InitializeComponent();
 
-            // Setup the navigation helper
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
 
-            // Setup the logical page navigation components that allow
-            // the page to only show one pane at a time.
             this.navigationHelper.GoBackCommand = new SkiAppClient.Common.RelayCommand(() => this.GoBack(), () => this.CanGoBack());
             this.itemListView.SelectionChanged += itemListView_SelectionChanged;
 
-            // Start listening for Window size changes 
-            // to change from showing two panes to showing a single pane
             Window.Current.SizeChanged += Window_SizeChanged;
             this.InvalidateVisualState();
         }
@@ -86,19 +67,6 @@ namespace SkiAppClient
             Window.Current.SizeChanged -= Window_SizeChanged;
         }
 
-      
-
-        /// <summary>
-        /// Populates the page with content passed during navigation.  Any saved state is also
-        /// provided when recreating a page from a prior session.
-        /// </summary>
-        /// <param name="sender">
-        /// The source of the event; typically <see cref="NavigationHelper"/>
-        /// </param>
-        /// <param name="e">Event data that provides both the navigation parameter passed to
-        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
-        /// a dictionary of state preserved by this page during an earlier
-        /// session.  The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
@@ -107,26 +75,31 @@ namespace SkiAppClient
             createUser = new UserText("Opprett bruker");
             deleteUser = new UserText("Slett bruker");
             changePassword = new UserText("Endre passord");
-            //var logOff = new UserText("Logg ut");
             skiDiary = new UserText("Skidagbok");
             var userInfo = new ObservableCollection<UserText>();
             userInfo.Add(createUser);
             userInfo.Add(changePassword);
             userInfo.Add(deleteUser);
-            //userInfo.Add(logOff);
             userInfo.Add(skiDiary);
-            this.DefaultViewModel["Group"] = userInfo;
+            this.DefaultViewModel["UserChoice"] = userInfo;
 
             if (e.NavigationParameter != null)
             {
                 navigationParameter = (SkiAppClient.LogOnPage.NavigationParameter)e.NavigationParameter;
                 hasLogedOn = navigationParameter.LogedOn;
-                user = navigationParameter.LogedOnUser;
-
-                if (hasLogedOn)
+                if (navigationParameter.LogedOnUser != null)
                 {
-                    logInName.Text = "Brukernavn: " + user.UserName;//LogOnPage.givenUserName;
-                    logInButton.Content = "Logg ut";
+                    user = navigationParameter.LogedOnUser;
+                    if (hasLogedOn)
+                    {
+                        logInName.Text = "Brukernavn: " + user.UserName;//LogOnPage.givenUserName;
+                        logInButton.Content = "Logg ut";
+                    }
+                    else
+                    {
+                        logInButton.Content = "Logg inn";
+                        logInName.Text = "Ikke innlogget ";
+                    }
                 }
                 else
                 {
@@ -166,13 +139,6 @@ namespace SkiAppClient
         /// serializable state.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            if (this.itemsViewSource.View != null)
-            {
-                // TODO: Derive a serializable navigation parameter and assign it to
-                //       pageState("SelectedItem")
-                //this.itemListView.SelectedItem = null;
-
-            }
         }
 
         #region Logical page navigation
@@ -339,14 +305,12 @@ namespace SkiAppClient
                 logInButton.Content = "Logg inn";
                 logInName.Text = "Ikke innlogget";
                 this.Frame.Navigate(typeof(LogOnPage));
-            }
-            
+            } 
         }
 
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));
         }
-        
     }
 }

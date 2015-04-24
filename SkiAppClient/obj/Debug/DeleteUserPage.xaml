@@ -79,7 +79,7 @@
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,20,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Brukernavn:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
                 <TextBox x:Name="userName"  Grid.Column="1" HorizontalAlignment="Left" Margin="320,23,0,0" Grid.Row="2" TextWrapping="Wrap" PlaceholderText="Brukernavn" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,72,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Passord:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
-                <TextBox x:Name="password" PlaceholderText="Passord" Grid.Column="1" HorizontalAlignment="Left" Margin="320,75,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
+                <PasswordBox x:Name="password" PlaceholderText="Passord" Grid.Column="1" HorizontalAlignment="Left" Margin="320,75,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
                 <Button x:ConnectionId='2' Grid.Column="1" HorizontalAlignment="Left" Margin="317,150,0,0" Grid.Row="2" Content="Slett" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45"                         />
 
             </Grid>

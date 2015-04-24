@@ -15,7 +15,7 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
         x:Name="itemsViewSource"
-        Source="{Binding Group}"/>
+        Source="{Binding UserChoice}"/>
     </Page.Resources>
 
     <!--

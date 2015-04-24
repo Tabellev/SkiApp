@@ -109,7 +109,7 @@ namespace SkiAppClient
         {
             var users = await SkiAppDataSource.GetUsersAsync();
             var givenUserName = userName.Text;
-            var givenPassword = password.Text;
+            var givenPassword = password.Password;
             User currentUser = null;
 
             if (users != null)
@@ -136,7 +136,7 @@ namespace SkiAppClient
                         MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
                         await md.ShowAsync();
                         userName.Text = String.Empty;
-                        password.Text = String.Empty;
+                        password.Password = String.Empty;
                     }
                 }
                 else

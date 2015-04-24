@@ -114,7 +114,7 @@ namespace SkiAppClient
         {
             var users = await SkiAppDataSource.GetUsersAsync();
             givenUserName = userName.Text;
-            var givenPassword = password.Text;
+            var givenPassword = password.Password;
             User currentUser = null;
 
             if (users != null)
@@ -135,10 +135,10 @@ namespace SkiAppClient
                         MessageDialog md = new MessageDialog("Du er nå logget inn som " + givenUserName);
                         await md.ShowAsync();
                         userName.Text = String.Empty;
-                        password.Text = String.Empty;
+                        password.Password = String.Empty;
                         NavigationParameter navigationParameter = new NavigationParameter(isLogedOn, currentUser);
                         this.Frame.Navigate(typeof(UserPage), navigationParameter);
-                        isLogedOn = false;
+                       
                     }
                     else
                     {
@@ -147,7 +147,7 @@ namespace SkiAppClient
                         isLogedOn = false;
 
                         userName.Text = String.Empty;
-                        password.Text = String.Empty;
+                        password.Password = String.Empty;
                     }
                 }
                 else
@@ -158,10 +158,6 @@ namespace SkiAppClient
             }
         }
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            isLogedOn = false;
-        }
 
         //Bruker en struct for å kunne sende med to verdier som navigationpatameter.
         public struct NavigationParameter

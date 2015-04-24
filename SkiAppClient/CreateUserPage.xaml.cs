@@ -113,8 +113,8 @@ namespace SkiAppClient
         private async void RegisterUser_Click(object sender, RoutedEventArgs e)
         {
             string givenUserName = userName.Text;
-            string givenPassword = password.Text;
-            string givenRepeatPassword = repeatPassword.Text;
+            string givenPassword = password.Password;
+            string givenRepeatPassword = repeatPassword.Password;
             
             if (givenUserName.Equals("") || givenPassword.Equals("") || givenRepeatPassword.Equals(""))
             {
@@ -126,8 +126,8 @@ namespace SkiAppClient
                 {
                     await SkiAppDataSource.AddUserAsync(givenUserName, givenPassword);
                     userName.Text = String.Empty;
-                    password.Text = String.Empty;
-                    repeatPassword.Text = String.Empty;
+                    password.Password = String.Empty;
+                    repeatPassword.Password = String.Empty;
                     MessageDialog md = new MessageDialog("Bruker " + givenUserName + " er opprettet!");
                     await md.ShowAsync();
 
@@ -136,8 +136,8 @@ namespace SkiAppClient
                 {
                     MessageDialog md = new MessageDialog("Passord er ulike! Venligst fyll ut på nytt.");
                     await md.ShowAsync();
-                    password.Text = String.Empty;
-                    repeatPassword.Text = String.Empty;
+                    password.Password = String.Empty;
+                    repeatPassword.Password = String.Empty;
                 }
             }
         }
