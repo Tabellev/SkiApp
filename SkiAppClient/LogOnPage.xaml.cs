@@ -163,6 +163,7 @@ namespace SkiAppClient
             isLogedOn = false;
         }
 
+        //Bruker en struct for å kunne sende med to verdier som navigationpatameter.
         public struct NavigationParameter
         {
             public bool LogedOn;

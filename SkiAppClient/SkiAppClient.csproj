@@ -164,6 +164,7 @@
     <None Include="SkiAppClient_TemporaryKey.pfx" />
     <Content Include="Assets\BackgroundPictures\aare.jpg" />
     <Content Include="Assets\BackgroundPictures\Hemsedal.jpg" />
+    <Content Include="Assets\BackgroundPictures\logo.PNG" />
     <Content Include="Assets\BackgroundPictures\salen.png" />
     <Content Include="Assets\BackgroundPictures\trysil.jpg" />
     <Content Include="Assets\BackgroundPictures\vemdalen.jpg" />

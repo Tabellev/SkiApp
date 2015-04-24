@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#OnModelCreating(System.Data.Entity.DbModelBuilder)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-23 20:06:22Z" FixCategory="DependsOnFix">
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-24 09:45:58Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\skiAppDatamodel" File="SkiEntities.cs" Line="37">In externally visible method 'SkiEntities.OnModelCreating(DbModelBuilder)', validate parameter 'modelBuilder' before using it.</Issue>
             </Message>
            </Messages>
