@@ -34,7 +34,25 @@ namespace skiAppDatamodel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Entity<SkiDay>()
+                    .HasMany<Lift>(b => b.Lifts)
+                    .WithMany(a => a.SkiDays)
+                    .Map(ab =>
+                    {
+                        ab.MapLeftKey("SkiDayRefId");
+                        ab.MapRightKey("LiftRefId");
+                        ab.ToTable("SkiDayLift");
+                    });
+
+            modelBuilder.Entity<SkiDay>()
+                    .HasMany<Slope>(b => b.Slopes)
+                    .WithMany(a => a.SkiDays)
+                    .Map(ab =>
+                    {
+                        ab.MapLeftKey("SkiDayRefId");
+                        ab.MapRightKey("SlopeRefId");
+                        ab.ToTable("SkiDaySlope");
+                    });
         }
 
     }

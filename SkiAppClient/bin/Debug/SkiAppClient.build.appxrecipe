@@ -37,6 +37,9 @@
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\salen.png">
       <PackagePath>Assets\BackgroundPictures\salen.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\skistar.png">
+      <PackagePath>Assets\BackgroundPictures\skistar.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\Loypekart\loypekartAare.PNG">
       <PackagePath>Assets\Loypekart\loypekartAare.PNG</PackagePath>
     </AppxPackagedFile>
@@ -88,6 +91,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\CreateUserPage.xbf">
       <PackagePath>CreateUserPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\DeleteUserPage.xbf">
+      <PackagePath>DeleteUserPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\HistoryPage.xbf">
       <PackagePath>HistoryPage.xbf</PackagePath>

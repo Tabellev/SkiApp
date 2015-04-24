@@ -40,6 +40,9 @@ namespace SkiAppClient.DataModel
         public string LiftName { get; set; }
 
         public Destination LiftDestination { get; set; }
+
+        public ObservableCollection<SkiDay> SkiDays { get; set; }
+
     }
 
     public class Slope
@@ -51,6 +54,9 @@ namespace SkiAppClient.DataModel
         public string SlopeName { get; set; }
 
         public Destination SlopeDestination { get; set; }
+
+        public ObservableCollection<SkiDay> SkiDays { get; set; }
+
     }
 
     public class SkiDay
@@ -109,6 +115,10 @@ namespace SkiAppClient.DataModel
         {
             InfoType = infoType;
         }
+
+        public int DestinationInfoTypeId { get; set; }
+
+        
         public string InfoType { get; set; }
     }
 

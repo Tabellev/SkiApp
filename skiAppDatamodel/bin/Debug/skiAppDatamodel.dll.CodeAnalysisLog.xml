@@ -8,12 +8,34 @@
      <Namespaces>
       <Namespace Name="skiAppDatamodel">
        <Types>
+        <Type Name="Lift" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SkiDays" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-24 12:28:43Z" FixCategory="Breaking">
+             <Issue Certainty="75" Level="Warning">Change 'Lift.SkiDays' to be read-only by removing the property setter.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
         <Type Name="SkiEntities" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
           <Member Name="#OnModelCreating(System.Data.Entity.DbModelBuilder)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-24 09:45:58Z" FixCategory="DependsOnFix">
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-24 12:28:43Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\skiAppDatamodel" File="SkiEntities.cs" Line="37">In externally visible method 'SkiEntities.OnModelCreating(DbModelBuilder)', validate parameter 'modelBuilder' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Slope" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SkiDays" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-24 12:28:43Z" FixCategory="Breaking">
+             <Issue Certainty="75" Level="Warning">Change 'Slope.SkiDays' to be read-only by removing the property setter.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -27,6 +49,16 @@
   </Target>
  </Targets>
  <Rules>
+  <Rule TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227">
+   <Name>Collection properties should be read only</Name>
+   <Description>Properties that return collections should be read-only so that users cannot entirely replace the backing store. Users can still modify the contents of the collection by calling relevant methods on the collection. Note that the XmlSerializer class has special support for deserializing read-only collections. See the XmlSerializer overview for more information.</Description>
+   <Resolution Name="Default">Change {0} to be read-only by removing the property setter.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182327.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="12.0.0.0" />
+  </Rule>
   <Rule TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062">
    <Name>Validate arguments of public methods</Name>
    <Description>All reference arguments passed to externally visible methods should be checked against null (Nothing in VB). If appropriate, throw a System.ArgumentNullException when the argument is null.</Description>

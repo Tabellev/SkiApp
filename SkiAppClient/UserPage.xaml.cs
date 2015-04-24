@@ -36,8 +36,12 @@ namespace SkiAppClient
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         private bool hasLogedOn = false;
-        SkiAppClient.LogOnPage.NavigationParameter navigationParameter;
+        private SkiAppClient.LogOnPage.NavigationParameter navigationParameter;
         private User user;
+        private UserText createUser;
+        private UserText deleteUser;
+        private UserText changePassword;
+        private UserText skiDiary;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -100,13 +104,15 @@ namespace SkiAppClient
             // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
             // Mulig jeg finner en bedre måte å gjøre det på etterhvert. Men måtte la det være sånn for å vise frem data nå.
             this.itemListView.SelectedItem = null;
-            var createUser = new UserText("Opprett bruker");
-            var changePassword = new UserText("Endre passord");
+            createUser = new UserText("Opprett bruker");
+            deleteUser = new UserText("Slett bruker");
+            changePassword = new UserText("Endre passord");
             //var logOff = new UserText("Logg ut");
-            var skiDiary = new UserText("Skidagbok");
+            skiDiary = new UserText("Skidagbok");
             var userInfo = new ObservableCollection<UserText>();
             userInfo.Add(createUser);
             userInfo.Add(changePassword);
+            userInfo.Add(deleteUser);
             //userInfo.Add(logOff);
             userInfo.Add(skiDiary);
             this.DefaultViewModel["Group"] = userInfo;
@@ -214,27 +220,27 @@ namespace SkiAppClient
                 var selected = (UserText)this.itemListView.SelectedItem;
                 var selectedType = selected.Information;
                 
-                if (selectedType.Equals("Opprett bruker"))
+                if (selectedType.Equals(createUser.Information))
                 {
                     this.Frame.Navigate(typeof(CreateUserPage));
                 }
-                else if (selectedType.Equals("Logg inn"))
-                {
-                    this.Frame.Navigate(typeof(LogOnPage));
-                }
-                else if(selectedType.Equals("Endre passord"))
+                else if(selectedType.Equals(changePassword.Information))
                 {
                     this.Frame.Navigate(typeof(ChangePasswordPage));
                 }
-                else if (selectedType.Equals("Skidagbok"))
+                else if (selectedType.Equals(deleteUser.Information))
                 {
-                    if (user == null)
+                    this.Frame.Navigate(typeof(DeleteUserPage));
+                }
+                else if (selectedType.Equals(skiDiary.Information))
+                {
+                    if (user != null)
                     {
-                        tbWarning.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                        this.Frame.Navigate(typeof(SkiDayPage), user);
                     }
                     else
                     {
-                        this.Frame.Navigate(typeof(SkiDayPage), user);
+                        tbWarning.Visibility = Windows.UI.Xaml.Visibility.Visible;
                     } 
                 }
             }

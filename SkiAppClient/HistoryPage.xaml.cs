@@ -123,118 +123,123 @@ namespace SkiAppClient
         {
             var skiDayDate= (string)lbSkiDays.SelectedItem;
             SkiDay skiDay = null;
-            foreach (var s in skiDays)
+
+            if (skiDayDate != null)
             {
-                if (skiDayDate.Equals(s.Date))
+                foreach (var s in skiDays)
                 {
-                    skiDay = s;
-                }
-            }
-            if (skiDay.Date != null)
-            {
-                tbDate.Text = skiDay.Date;
-            }
-            else
-            {
-                tbDate.Text = "-";
-            }
-
-            if (skiDay.StartTime != null)
-            {
-                tbFromClock.Text = skiDay.StartTime;
-            }
-            else
-            {
-                tbFromClock.Text = "-";
-            }
-
-            if (skiDay.StopTime != null)
-            {
-                tbToClock.Text = skiDay.StopTime;
-            }
-            else
-            {
-                tbToClock.Text = "-";
-            }
-            if (skiDay.Equipment != null)
-            {
-                tbEquipment.Text = skiDay.Equipment;
-            }
-            else
-            {
-                tbEquipment.Text = "-";
-            }
-            if (skiDay.Destination != null)
-            {
-                tbDestination.Text = skiDay.Destination;
-            }
-            else
-            {
-                tbDestination.Text = "-";
-            }
-
-            if (skiDay.NumberOfTrips != 0)
-            {
-                tbTotalTrips.Text = skiDay.NumberOfTrips.ToString(); 
-            }
-            else
-            {
-                tbTotalTrips.Text = "-";
-            }
-
-            if (skiDay.Comment != null)
-            {
-                tbComment.Text = skiDay.Comment;
-            }
-            else
-            {
-                tbComment.Text = "-";
-            }
-            
-            var lifts = (ObservableCollection<Lift>)skiDay.Lifts;
-            var allLifts = "";
-            var slopes = skiDay.Slopes;
-            var allSlopes = "";
-
-            if (lifts != null)
-            {
-                foreach (var l in lifts)
-                {
-                    if (lifts.First() == l)
+                    if (skiDayDate.Equals(s.Date))
                     {
-                        allLifts = l.LiftName;
-                    }
-                    else
-                    {
-                        allLifts += (", " + l.LiftName);
+                        skiDay = s;
                     }
                 }
-                tbLifts.Text = allLifts;
-            }
-            else
-            {
-                tbLifts.Text = "-";
-            }
-
-            if (slopes != null)
-            {
-                foreach (var s in slopes)
+                if (skiDay.Date != null)
                 {
-                    if (slopes.First() == s)
-                    {
-                        allSlopes = s.SlopeName;
-                    }
-                    else
-                    {
-                        allSlopes += (", " + s.SlopeName);
-                    }
+                    tbDate.Text = skiDay.Date;
                 }
-                tbSlopes.Text = allSlopes;
+                else
+                {
+                    tbDate.Text = "-";
+                }
+
+                if (skiDay.StartTime != null)
+                {
+                    tbFromClock.Text = skiDay.StartTime;
+                }
+                else
+                {
+                    tbFromClock.Text = "-";
+                }
+
+                if (skiDay.StopTime != null)
+                {
+                    tbToClock.Text = skiDay.StopTime;
+                }
+                else
+                {
+                    tbToClock.Text = "-";
+                }
+                if (skiDay.Equipment != null)
+                {
+                    tbEquipment.Text = skiDay.Equipment;
+                }
+                else
+                {
+                    tbEquipment.Text = "-";
+                }
+                if (skiDay.Destination != null)
+                {
+                    tbDestination.Text = skiDay.Destination;
+                }
+                else
+                {
+                    tbDestination.Text = "-";
+                }
+
+                if (skiDay.NumberOfTrips != 0)
+                {
+                    tbTotalTrips.Text = skiDay.NumberOfTrips.ToString();
+                }
+                else
+                {
+                    tbTotalTrips.Text = "-";
+                }
+
+                if (skiDay.Comment != null)
+                {
+                    tbComment.Text = skiDay.Comment;
+                }
+                else
+                {
+                    tbComment.Text = "-";
+                }
+
+                var lifts = (ObservableCollection<Lift>)skiDay.Lifts;
+                var allLifts = "";
+                var slopes = skiDay.Slopes;
+                var allSlopes = "";
+
+                if (lifts != null)
+                {
+                    foreach (var l in lifts)
+                    {
+                        if (lifts.First() == l)
+                        {
+                            allLifts = l.LiftName;
+                        }
+                        else
+                        {
+                            allLifts += (", " + l.LiftName);
+                        }
+                    }
+                    tbLifts.Text = allLifts;
+                }
+                else
+                {
+                    tbLifts.Text = "-";
+                }
+
+                if (slopes != null)
+                {
+                    foreach (var s in slopes)
+                    {
+                        if (slopes.First() == s)
+                        {
+                            allSlopes = s.SlopeName;
+                        }
+                        else
+                        {
+                            allSlopes += (", " + s.SlopeName);
+                        }
+                    }
+                    tbSlopes.Text = allSlopes;
+                }
+                else
+                {
+                    tbSlopes.Text = "-";
+                }
             }
-            else
-            {
-                tbSlopes.Text = "-";
-            }
+           
           
         }
 
@@ -252,6 +257,15 @@ namespace SkiAppClient
             //await SkiAppDataSource.ChangeSkiDayAsync(skiDay);
             await SkiAppDataSource.DeleteSkiDayAsync(skiDay.SkiDayId);
             lbSkiDays.Items.Remove(skiDayDate);
+            tbDate.Text = "-";
+            tbFromClock.Text = "-";
+            tbToClock.Text = "-";
+            tbEquipment.Text = "-";
+            tbDestination.Text = "-";
+            tbLifts.Text = "-";
+            tbSlopes.Text = "-";
+            tbTotalTrips.Text = "-";
+            tbComment.Text = "-";
         }
 
         private void StartPage_Click(object sender, RoutedEventArgs e)

@@ -157,6 +157,7 @@
     </RootType>
     <RootType FullName="SkiAppClient.ChangePasswordPage" />
     <RootType FullName="SkiAppClient.CreateUserPage" />
+    <RootType FullName="SkiAppClient.DeleteUserPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Height" />

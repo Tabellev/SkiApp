@@ -82,3 +82,8 @@ C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\De
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.g.cs
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.xaml
 C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\InformationPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\DeleteUserPage.g.i.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\DeleteUserPage.g.cs
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\DeleteUserPage.xaml
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\obj\Debug\DeleteUserPage.xbf
+C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\DeleteUserPage.xbf

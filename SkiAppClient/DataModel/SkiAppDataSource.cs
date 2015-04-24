@@ -31,9 +31,9 @@ namespace SkiAppClient.DataModel
               var result = await client.GetAsync("api/Destinations"); 
             
               if (result.IsSuccessStatusCode) 
-              { var resultSTream = await result.Content.ReadAsStreamAsync(); 
+              { var resultStream = await result.Content.ReadAsStreamAsync(); 
                 var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Destination>)); 
-                ObservableCollection<Destination> destinations = (ObservableCollection<Destination>)serializer.ReadObject(resultSTream); 
+                ObservableCollection<Destination> destinations = (ObservableCollection<Destination>)serializer.ReadObject(resultStream); 
                 return destinations; 
               } else 
               { 
@@ -81,9 +81,9 @@ namespace SkiAppClient.DataModel
 
                 if (result.IsSuccessStatusCode)
                 {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var resultStream = await result.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<DestinationInfoType>));
-                    ObservableCollection<DestinationInfoType> destinationInfoTypes = (ObservableCollection<DestinationInfoType>)serializer.ReadObject(resultSTream);
+                    ObservableCollection<DestinationInfoType> destinationInfoTypes = (ObservableCollection<DestinationInfoType>)serializer.ReadObject(resultStream);
                     return destinationInfoTypes;
                 }
                 else
@@ -105,9 +105,9 @@ namespace SkiAppClient.DataModel
 
                 if (result.IsSuccessStatusCode)
                 {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var resultStream = await result.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<OpeningHours>));
-                    ObservableCollection<OpeningHours> openingHours = (ObservableCollection<OpeningHours>)serializer.ReadObject(resultSTream);
+                    ObservableCollection<OpeningHours> openingHours = (ObservableCollection<OpeningHours>)serializer.ReadObject(resultStream);
                     return openingHours;
                 }
                 else
@@ -157,6 +157,20 @@ namespace SkiAppClient.DataModel
                 stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Users", content);
+
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+        public static async Task DeleteUserAsync(int userId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:2219/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await client.DeleteAsync("api/Users/" + userId);
 
                 response.EnsureSuccessStatusCode();
             }
@@ -241,38 +255,7 @@ namespace SkiAppClient.DataModel
             }
         }
 
-        public static async Task ChangeLiftAsync(Lift lift, string password)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:2219/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                Lift updatetLift = new Lift();
-                updatetLift.LiftId = lift.LiftId;
-                updatetLift.LiftDestination = lift.LiftDestination;
-                updatetLift.LiftName = lift.LiftName;
-                
-                //var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
-                var jsonSerializer = new DataContractJsonSerializer(typeof(Lift));
-
-                var stream = new MemoryStream();
-                jsonSerializer.WriteObject(stream, updatetLift);
-                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
-                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
-
-                //var client = new HttpClient { BaseAddress = new Uri(RestServiceUrl) };
-                var response = await client.PutAsync("api/lifts/" + updatetLift.LiftId, content);
-
-                response.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
-
-                // a smarter approach would be to update the element (remove/add is brute force)
-                //_academiaDataSource._courses.Remove(_academiaDataSource._courses.First(c => c.CourseId == aCourse.CourseId));
-                //_academiaDataSource._courses.Add(aCourse);
-            }
-        }
-
+       
         public static async Task ChangeSkiDayAsync(SkiDay skiDay)
         {
             using (var client = new HttpClient())
@@ -310,19 +293,7 @@ namespace SkiAppClient.DataModel
                 client.BaseAddress = new Uri("http://localhost:2219/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                
-                
-                //var result = await client.DeleteAsync("api/SkiDays");
-                
-
-                /*var jsonSerializer = new DataContractJsonSerializer(typeof(SkiDay));
-
-                var stream = new MemoryStream();
-                jsonSerializer.WriteObject(stream, skiDay);
-                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
-                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
-
-                //var client = new HttpClient { BaseAddress = new Uri(RestServiceUrl) };*/
+   
                 var response = await client.DeleteAsync("api/SkiDays/" + skiDayId);
 
                 response.EnsureSuccessStatusCode();

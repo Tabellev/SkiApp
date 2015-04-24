@@ -18,5 +18,7 @@ namespace skiAppDatamodel
         public string LiftName { get; set; }
 
         public Destination LiftDestination { get; set; }
+
+        public ICollection<SkiDay> SkiDays { get; set; }
     }
 }

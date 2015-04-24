@@ -35,7 +35,10 @@ namespace SkiAppClient
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        Destination destination;
+        private Destination destination;
+        private DestinationInfoType openingHours;
+        private DestinationInfoType prices;
+        private DestinationInfoType slopeInformation;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -99,17 +102,16 @@ namespace SkiAppClient
             // Mulig jeg finner en bedre måte å gjøre det på etterhvert. Men måtte la det være sånn for å vise frem data nå.
             this.itemListView.SelectedItem = null;
             destination = (Destination)e.NavigationParameter;//await SkiAppDataSource.GetDestinationAsync();
-            DestinationInfoType dit = new DestinationInfoType("Åpningstider");
-            DestinationInfoType dit2 = new DestinationInfoType("Priser");
-            DestinationInfoType dit3 = new DestinationInfoType("Løypeinformasjon");
-            ObservableCollection<DestinationInfoType> destinationInfoType = new ObservableCollection<DestinationInfoType>();
-            destinationInfoType.Add(dit);
-            destinationInfoType.Add(dit2);
-            destinationInfoType.Add(dit3);
-            //var destinationInfoType = //await SkiAppDataSource.GetDestinationInfoTypeAsync();
-            this.DefaultViewModel["DestinationInfoType"] = destinationInfoType;
-            this.DefaultViewModel["Destination"] = destination;
-            //this.DefaultViewModel["OpeningHours"] = destination.DestinationOpeningHours;
+            //var destinationInformation = await SkiAppDataSource.GetDestinationInfoTypeAsync();
+            this.itemListView.SelectedItem = null;
+            openingHours = new DestinationInfoType("Åpningstider");
+            prices = new DestinationInfoType("Priser");
+            slopeInformation = new DestinationInfoType("Løypeinformasjon");
+            ObservableCollection<DestinationInfoType> destinationInformation = new ObservableCollection<DestinationInfoType>();
+            destinationInformation.Add(openingHours);
+            destinationInformation.Add(prices);
+            destinationInformation.Add(slopeInformation);
+            this.DefaultViewModel["DestinationInfoType"] = destinationInformation;
 
             if (e.PageState == null)
             {
@@ -199,15 +201,15 @@ namespace SkiAppClient
              {
                 var selected = (DestinationInfoType)this.itemListView.SelectedItem;
                 var selectedType = selected.InfoType;
-                if (selectedType.Equals("Åpningstider"))
+                if (selectedType.Equals(openingHours.InfoType))
                 {
                     this.Frame.Navigate(typeof(OpeningHoursPage), destination);
                 }
-                else if (selectedType.Equals("Priser"))
+                else if (selectedType.Equals(prices.InfoType))
                 {
                     this.Frame.Navigate(typeof(PricePage), destination);
                 }
-                else if (selectedType.Equals("Løypeinformasjon"))
+                else if (selectedType.Equals(slopeInformation.InfoType))
                 {
                     this.Frame.Navigate(typeof(SlopeInformationPage), destination);
                 }

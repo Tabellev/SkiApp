@@ -19,6 +19,8 @@ namespace skiAppDatamodel
 
         public Destination SlopeDestination { get; set; }
 
+        public ICollection<SkiDay> SkiDays { get; set; }
+
         // public int NumberOfTrips { get; set; }
     }
 }

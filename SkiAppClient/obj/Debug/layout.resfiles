@@ -2,6 +2,7 @@ Assets\BackgroundPictures\aare.jpg
 Assets\BackgroundPictures\Hemsedal.jpg
 Assets\BackgroundPictures\logo.PNG
 Assets\BackgroundPictures\salen.png
+Assets\BackgroundPictures\skistar.png
 Assets\BackgroundPictures\trysil.jpg
 Assets\BackgroundPictures\vemdalen.jpg
 Assets\DarkGray.png
@@ -19,6 +20,7 @@ Assets\StoreLogo.scale-100.png
 App.xbf
 ChangePasswordPage.xbf
 CreateUserPage.xbf
+DeleteUserPage.xbf
 HistoryPage.xbf
 InformationPage.xbf
 ItemsPage.xbf

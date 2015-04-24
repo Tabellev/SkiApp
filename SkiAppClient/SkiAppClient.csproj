@@ -117,6 +117,9 @@
     <Compile Include="CreateUserPage.xaml.cs">
       <DependentUpon>CreateUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteUserPage.xaml.cs">
+      <DependentUpon>DeleteUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
     <Content Include="Assets\BackgroundPictures\Hemsedal.jpg" />
     <Content Include="Assets\BackgroundPictures\logo.PNG" />
     <Content Include="Assets\BackgroundPictures\salen.png" />
+    <Content Include="Assets\BackgroundPictures\skistar.png" />
     <Content Include="Assets\BackgroundPictures\trysil.jpg" />
     <Content Include="Assets\BackgroundPictures\vemdalen.jpg" />
     <Content Include="Assets\Loypekart\loypekartAare.PNG" />
@@ -194,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
