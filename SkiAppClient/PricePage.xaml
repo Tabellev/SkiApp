@@ -19,11 +19,6 @@
         <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -47,14 +42,13 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,34,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="39,50,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <Button Width="145" Height="45" Content="Til startsiden" Margin="11,83,0,1" Click="StartPage_Click" Grid.ColumnSpan="2"/>
-
+            <Button Width="145" Height="45" Content="Til startsiden" Margin="10,97,0,1" Click="StartPage_Click" Grid.ColumnSpan="2"/>
 
         </Grid>
         <ScrollViewer
@@ -64,7 +58,6 @@
             Padding="60,0,66,0"
             Margin="103,0,-3,0"
             DataContext="{Binding OpeningHours[0]}"
-            d:DataContext="{Binding Groups[0].Items[0], Source={d:DesignData Source=/DataModel/SkiAppSampleData.json, Type=data:SkiAppDataSource}}"
             HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Enabled"
             ScrollViewer.ZoomMode="Disabled" >
@@ -80,10 +73,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-
-                <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1">
-                    <TextBlock x:Name="itemTitle" Margin="82,0,0,0" Text="Priser" HorizontalAlignment="Left" FontSize="50"/>
-                    <TextBlock x:Name="itemSubtitle" Margin="0,0,0,20" Text="{Binding Subtitle}" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" Margin="0,0,0,20" HorizontalAlignment="Center">
+                    <TextBlock x:Name="itemTitle" Text="Priser" TextAlignment="Center" HorizontalAlignment="Left" FontSize="50" Width="276"/>
                 </StackPanel>
 
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,20" Grid.Row="2" TextWrapping="Wrap" Text="Antall dager"  VerticalAlignment="Top" Height="35" Width="187"  FontSize="30"/>

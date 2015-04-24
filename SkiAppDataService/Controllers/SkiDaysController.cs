@@ -31,7 +31,7 @@ namespace SkiAppDataService.Controllers
             {
                 return NotFound();
             }
-            db.Entry(skiDay).Collection(b => b.Lifts).Load(); // Fix Three - loads related objects (but not cycles)
+            db.Entry(skiDay).Collection(b => b.Lifts).Load(); 
             return Ok(skiDay);
         }
 

@@ -19,11 +19,6 @@
         <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -47,14 +42,13 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,32,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="39,50,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <Button Width="145" Height="45" Content="Til startsiden" Margin="13,83,0,1" Click="StartPage_Click" Grid.ColumnSpan="2"/>
-
+            <Button Width="145" Height="45" Content="Til startsiden" Margin="10,97,0,1" Click="StartPage_Click" Grid.ColumnSpan="2"/>
 
         </Grid>
         <ScrollViewer
@@ -65,7 +59,6 @@
             Padding="60,0,66,0"
             Margin="100,0,0,0"
             DataContext="{Binding OpeningHours[0]}"
-            d:DataContext="{Binding Groups[0].Items[0], Source={d:DesignData Source=/DataModel/SkiAppSampleData.json, Type=data:SkiAppDataSource}}"
             HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Enabled"
             ScrollViewer.ZoomMode="Disabled" >
@@ -80,7 +73,6 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
 
                 <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1">
                     <TextBlock x:Name="itemTitle" Margin="82,0,0,0" Text="Åpningstider" HorizontalAlignment="Left" FontSize="50"/>

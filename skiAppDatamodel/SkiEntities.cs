@@ -27,7 +27,7 @@ namespace skiAppDatamodel
         public SkiEntities()
             : base(@"Data Source=donau.hiof.no;Initial Catalog=isabelev;Persist Security Info=True;User ID=isabelev;Password=Sommer15")
         {
-            this.Configuration.ProxyCreationEnabled = false;  // Fix One - avoid cycles
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
 

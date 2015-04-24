@@ -15,15 +15,9 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="itemsViewSource"
-            Source="{Binding Destination}"
-            d:Source="{Binding Destinations, Source={d:DesignData Source=/DataModel/SkiAppSampleData.json, Type=data:SkiAppDataSource}}"/>
+            Source="{Binding Destination}"/>
     </Page.Resources>
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -58,15 +52,12 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left" Width="250" Height="250">
                         <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="{Binding ImgPath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                            <Image Source="{Binding ImgPath}" Stretch="UniformToFill"/>
                         </Border>
                         <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
                             <TextBlock Text="{Binding DestinationName}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}"  Height="40" Margin="15,20,15,0" FontWeight="SemiBold" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding Subtitle}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10" FontSize="12"/>
                         </StackPanel>
-
                     </Grid>
-
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
@@ -80,7 +71,6 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-
     </Grid>
 </Page>
 

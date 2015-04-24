@@ -10,16 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
-    </Page.Resources>
-
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -40,17 +30,18 @@
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="106"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="39,59,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
+                        AutomationProperties.ItemType="Navigation Button" Height="41" Width="41"/>
             <TextBlock x:Name="pageTitle" Text="Historikk" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40" Height="40"/>
+            <Button HorizontalAlignment="Left" Margin="17,111,0,-16" Content="Til startsiden" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="StartPage_Click" Grid.ColumnSpan="2"/>
         </Grid>
         <ScrollViewer
             x:Name="itemDetail"
@@ -90,12 +81,10 @@
                 <TextBlock x:Name="tbTotalTrips" Text="-" Grid.Column="1" HorizontalAlignment="Left" Margin="200,473,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontSize="30" FontFamily="Global User Interface"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,524,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Kommentar:" VerticalAlignment="Top" Height="35" Width="165"  FontSize="30"/>
                 <TextBlock x:Name="tbComment" Text="-" Grid.Column="1" HorizontalAlignment="Left" Margin="200,524,0,0" Grid.Row="2" Width="685" TextWrapping="Wrap" FontSize="30" FontFamily="Global User Interface" Height="154"/>
-
             </Grid>
         </ScrollViewer>
         <Button HorizontalAlignment="Left" Margin="23,526,0,0" Grid.Row="1" Content="Se på skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="SeeSkiDay_Click"/>
         <ListBox x:Name="lbSkiDays" HorizontalAlignment="Left" Height="445" Margin="42,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="303"/>
         <Button HorizontalAlignment="Left" Margin="218,526,0,0" Grid.Row="1" Content="Slett skidag" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="DeleteSkiDay_Click"/>
-        <Button HorizontalAlignment="Left" Margin="17,111,0,0" Content="Til startsiden" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="StartPage_Click" Grid.RowSpan="2"/>
     </Grid>
 </Page>
