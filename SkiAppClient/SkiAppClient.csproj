@@ -169,8 +169,6 @@
     <Content Include="Assets\BackgroundPictures\logo.PNG" />
     <Content Include="Assets\BackgroundPictures\salen.png" />
     <Content Include="Assets\BackgroundPictures\skistar.png" />
-    <Content Include="Assets\BackgroundPictures\skistarBruker.jpg" />
-    <Content Include="Assets\BackgroundPictures\skistarBruker2.jpg" />
     <Content Include="Assets\BackgroundPictures\trysil.jpg" />
     <Content Include="Assets\BackgroundPictures\userIcon.png" />
     <Content Include="Assets\BackgroundPictures\vemdalen.jpg" />

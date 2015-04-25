@@ -125,12 +125,27 @@ namespace SkiAppClient
 
         private async void SaveSkiDay_Click(object sender, RoutedEventArgs e)
         {
-            var destinationName = cbDestinations.SelectedItem.ToString();
+            int totalTrips;
+            var destinationName = "";
+            if (cbDestinations.SelectedItem != null)
+            {
+               destinationName = cbDestinations.SelectedItem.ToString();
+            }
+            
+            
             var date = tbDate.Text;
             var fromClock = tbFromClock.Text;
             var toClock = tbToClock.Text;
             var equipment = tbEquipment.Text;
-            int totalTrips = (int)Convert.ToInt32(tbTotalTrips.Text);
+            if (tbTotalTrips.Text.Equals(""))
+            {
+                totalTrips = 0;
+            }
+            else
+            {
+                totalTrips = Convert.ToInt32(tbTotalTrips.Text);
+            }
+          
             var comment = tbComment.Text;
             ObservableCollection<Lift> destinationLifts = new ObservableCollection<Lift>();
             ObservableCollection<Slope> destinationSlopes = new ObservableCollection<Slope>();
@@ -159,6 +174,18 @@ namespace SkiAppClient
            await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, destinationLifts, destinationSlopes);
            MessageDialog md = new MessageDialog("Skidag lagret!");
            await md.ShowAsync();
+
+           tbDate.Text = "";
+           tbFromClock.Text = "";
+           tbToClock.Text = "";
+           tbEquipment.Text = "";
+           tbTotalTrips.Text = "";
+           tbComment.Text = "";
+           cbDestinations.SelectedItem = null;
+           cbChosenLifts.Items.Clear();
+           cbChosenSlopes.Items.Clear();
+
+            
         }
 
         private void SeeHistory_Click(object sender, RoutedEventArgs e)
@@ -168,18 +195,24 @@ namespace SkiAppClient
 
         private void AddLift_Click(object sender, RoutedEventArgs e)
         {
-            var lift = cbLifts.SelectedItem.ToString();
-            liftNames.Add(lift);
-            cbChosenLifts.Items.Add(lift);
-            cbLifts.Items.Remove(lift);
+            if (cbLifts.SelectedItem != null)
+            {
+                var lift = cbLifts.SelectedItem.ToString();
+                liftNames.Add(lift);
+                cbChosenLifts.Items.Add(lift);
+                cbLifts.Items.Remove(lift);
+            }
        }
             
         private void AddSlope_Click(object sender, RoutedEventArgs e)
         {
-            var slope = cbSlopes.SelectedItem.ToString();
-            slopeNames.Add(slope);
-            cbChosenSlopes.Items.Add(slope);
-            cbSlopes.Items.Remove(slope);
+            if (cbSlopes.SelectedItem != null)
+            {
+                var slope = cbSlopes.SelectedItem.ToString();
+                slopeNames.Add(slope);
+                cbChosenSlopes.Items.Add(slope);
+                cbSlopes.Items.Remove(slope);
+            }
         }
 
         private async void cbDestinations_SelectionChanged(object sender, SelectionChangedEventArgs e)
