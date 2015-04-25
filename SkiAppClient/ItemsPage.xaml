@@ -61,7 +61,15 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button Content="Bruker" HorizontalAlignment="Left" Margin="908,76,0,0" Grid.Row="1" VerticalAlignment="Top" Width="283" Height="260" Click="Button_Click" Background="#FFEC0ED8" FontSize="50"/>
+        
+          <Button Content="Bruker" HorizontalAlignment="Left" Margin="908,76,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250" Height="250" Click="Button_Click" Background="#FFEC0ED8" Foreground="Black" FontSize="50">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="Assets/BackgroundPictures/userIcon.png"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>

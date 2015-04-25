@@ -81,11 +81,11 @@ namespace SkiAppClient
             slopeNames = new ObservableCollection<string>();
             user = (User)e.NavigationParameter;
             destinations = await SkiAppDataSource.GetDestinationAsync();
-            foreach (var destination in destinations)
+            foreach (var d in destinations)
             {
-                cbDestinations.Items.Add(destination.DestinationName);
+                 cbDestinations.Items.Add(d.DestinationName);
             }
-
+          
         }
 
         /// <summary>
@@ -245,7 +245,18 @@ namespace SkiAppClient
             cbSlopes.Items.Add(removedSlope);
         }
 
-        private void StartPage_Click(object sender, RoutedEventArgs e)
+        private async void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?" );
+            UICommand c1 = new UICommand("Fortsett");
+            UICommand c2 = new UICommand("Avbryt");
+            c1.Invoked = OkBtnClick;
+            md.Commands.Add(c1);
+            md.Commands.Add(c2);
+            await md.ShowAsync();
+        }
+
+        private void OkBtnClick(IUICommand command)
         {
             this.Frame.Navigate(typeof(ItemsPage));
         }

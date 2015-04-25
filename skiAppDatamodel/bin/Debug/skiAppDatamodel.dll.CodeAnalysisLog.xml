@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#SkiDays" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-24 12:28:43Z" FixCategory="Breaking">
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-25 14:53:31Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="Warning">Change 'Lift.SkiDays' to be read-only by removing the property setter.</Issue>
             </Message>
            </Messages>
@@ -23,7 +23,7 @@
          <Members>
           <Member Name="#OnModelCreating(System.Data.Entity.DbModelBuilder)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
            <Messages>
-            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-24 12:28:43Z" FixCategory="DependsOnFix">
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-25 14:53:31Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\skiAppDatamodel" File="SkiEntities.cs" Line="37">In externally visible method 'SkiEntities.OnModelCreating(DbModelBuilder)', validate parameter 'modelBuilder' before using it.</Issue>
             </Message>
            </Messages>
@@ -34,7 +34,7 @@
          <Members>
           <Member Name="#SkiDays" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-24 12:28:43Z" FixCategory="Breaking">
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-25 14:53:31Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="Warning">Change 'Slope.SkiDays' to be read-only by removing the property setter.</Issue>
             </Message>
            </Messages>

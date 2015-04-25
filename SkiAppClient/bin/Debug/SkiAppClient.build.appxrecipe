@@ -25,6 +25,12 @@
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\Hemsedal.jpg">
       <PackagePath>Assets\BackgroundPictures\Hemsedal.jpg</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\skistarBruker.jpg">
+      <PackagePath>Assets\BackgroundPictures\skistarBruker.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\skistarBruker2.jpg">
+      <PackagePath>Assets\BackgroundPictures\skistarBruker2.jpg</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\trysil.jpg">
       <PackagePath>Assets\BackgroundPictures\trysil.jpg</PackagePath>
     </AppxPackagedFile>
@@ -39,6 +45,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\skistar.png">
       <PackagePath>Assets\BackgroundPictures\skistar.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\userIcon.png">
+      <PackagePath>Assets\BackgroundPictures\userIcon.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\Loypekart\loypekartAare.PNG">
       <PackagePath>Assets\Loypekart\loypekartAare.PNG</PackagePath>

@@ -12,40 +12,18 @@
          <Members>
           <Member Name="#SplitPage_Unloaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message Id="e" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
+            <Message Id="e" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="InformationPage.xaml.cs" Line="82">Parameter 'e' of 'InformationPage.SplitPage_Unloaded(object, RoutedEventArgs)' is never used. Remove the parameter or use it in the method body.</Issue>
             </Message>
-            <Message Id="sender" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
+            <Message Id="sender" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="InformationPage.xaml.cs" Line="82">Parameter 'sender' of 'InformationPage.SplitPage_Unloaded(object, RoutedEventArgs)' is never used. Remove the parameter or use it in the method body.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#UsingLogicalPageNavigation()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="InformationPage.xaml.cs" Line="177">The 'this' parameter (or 'Me' in Visual Basic) of 'InformationPage.UsingLogicalPageNavigation()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="ItemsPage" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#user" Kind="Field" Static="False" Accessibility="Private" ExternallyVisible="False">
-           <Messages>
-            <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
-             <Issue Certainty="75" Level="Warning">It appears that field 'ItemsPage.user' is never used or is only ever assigned to. Use this field or remove it.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-        <Type Name="LogOnPage" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#givenUserName" Kind="Field" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="NonConstantFieldsShouldNotBeVisible" Category="Microsoft.Usage" CheckId="CA2211" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
-             <Issue Certainty="90" Level="Warning">Consider making 'LogOnPage.givenUserName' non-public or a constant.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -53,10 +31,10 @@
         </Type>
         <Type Name="LogOnPage+NavigationParameter" Kind="Struct" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+          <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
            <Issue Certainty="90" Level="Error">Do not nest type 'LogOnPage.NavigationParameter'. Alternatively, change its accessibility so that it is not externally visible.</Issue>
           </Message>
-          <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
+          <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
            <Issue Name="Equals" Certainty="75" Level="Warning">'LogOnPage.NavigationParameter' should override Equals.</Issue>
            <Issue Name="op_Equality" Certainty="75" Level="Warning">'LogOnPage.NavigationParameter' should override the equality (==) and inequality (!=) operators.</Issue>
           </Message>
@@ -64,27 +42,27 @@
          <Members>
           <Member Name="#.ctor(System.Boolean,SkiAppClient.DataModel.User)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="loged" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
-             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="LogOnPage.xaml.cs" Line="169">In method 'LogOnPage.NavigationParameter.NavigationParameter(bool, User)', correct the spelling of 'loged' in parameter name 'logedOn' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            <Message Id="loged" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="LogOnPage.xaml.cs" Line="105">In method 'LogOnPage.NavigationParameter.NavigationParameter(bool, User)', correct the spelling of 'loged' in parameter name 'logedOn' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#LogedOn" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="90" Level="Error">Because field 'LogOnPage.NavigationParameter.LogedOn' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
             </Message>
-            <Message Id="Loged" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message Id="Loged" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Loged' in member name 'LogOnPage.NavigationParameter.LogedOn' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#LogedOnUser" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="90" Level="Error">Because field 'LogOnPage.NavigationParameter.LogedOnUser' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
             </Message>
-            <Message Id="Loged" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message Id="Loged" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Loged' in member name 'LogOnPage.NavigationParameter.LogedOnUser' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
             </Message>
            </Messages>
@@ -95,10 +73,10 @@
          <Members>
           <Member Name="#navigationHelper_LoadState(System.Object,SkiAppClient.Common.LoadStateEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message Id="destination" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
+            <Message Id="destination" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="PricePage.xaml.cs" Line="73">'PricePage.navigationHelper_LoadState(object, LoadStateEventArgs)' declares a variable, 'destination', of type 'Destination', which is never used or is only assigned to. Use this variable or remove it.</Issue>
             </Message>
-            <Message Id="prices" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
+            <Message Id="prices" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="PricePage.xaml.cs" Line="71">'PricePage.navigationHelper_LoadState(object, LoadStateEventArgs)' declares a variable, 'prices', of type 'ObservableCollection&lt;OpeningHours&gt;', which is never used or is only assigned to. Use this variable or remove it.</Issue>
             </Message>
            </Messages>
@@ -109,11 +87,11 @@
          <Members>
           <Member Name="#Button_Click(System.Object,Windows.UI.Xaml.RoutedEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message Id="Ikke" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="DependsOnFix">
+            <Message Id="Ikke" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="299">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget"'.</Issue>
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="306">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget"'.</Issue>
             </Message>
-            <Message Id="innlogget" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="DependsOnFix">
+            <Message Id="innlogget" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="299">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget"'.</Issue>
              <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="306">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget"'.</Issue>
             </Message>
@@ -121,28 +99,28 @@
           </Member>
           <Member Name="#navigationHelper_LoadState(System.Object,SkiAppClient.Common.LoadStateEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message Id="Brukernavn" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="95">Correct the spelling of the unrecognized token 'Brukernavn' in the literal '"Brukernavn: "'.</Issue>
+            <Message Id="Brukernavn" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="96">Correct the spelling of the unrecognized token 'Brukernavn' in the literal '"Brukernavn: "'.</Issue>
             </Message>
-            <Message Id="Ikke" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="101">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget "'.</Issue>
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="107">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget "'.</Issue>
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="114">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget "'.</Issue>
+            <Message Id="Ikke" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="102">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget "'.</Issue>
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="108">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget "'.</Issue>
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="115">Correct the spelling of the unrecognized token 'Ikke' in the literal '"Ikke innlogget "'.</Issue>
             </Message>
-            <Message Id="innlogget" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="101">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget "'.</Issue>
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="107">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget "'.</Issue>
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="114">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget "'.</Issue>
+            <Message Id="innlogget" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="102">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget "'.</Issue>
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="108">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget "'.</Issue>
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="115">Correct the spelling of the unrecognized token 'innlogget' in the literal '"Ikke innlogget "'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#SplitPage_Unloaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message Id="e" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="66">Parameter 'e' of 'UserPage.SplitPage_Unloaded(object, RoutedEventArgs)' is never used. Remove the parameter or use it in the method body.</Issue>
+            <Message Id="e" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="67">Parameter 'e' of 'UserPage.SplitPage_Unloaded(object, RoutedEventArgs)' is never used. Remove the parameter or use it in the method body.</Issue>
             </Message>
-            <Message Id="sender" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="NonBreaking">
-             <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="66">Parameter 'sender' of 'UserPage.SplitPage_Unloaded(object, RoutedEventArgs)' is never used. Remove the parameter or use it in the method body.</Issue>
+            <Message Id="sender" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="c:\Users\Isabel\Documents\Visual Studio 2013\Projects\SkiApp\SkiAppClient" File="UserPage.xaml.cs" Line="67">Parameter 'sender' of 'UserPage.SplitPage_Unloaded(object, RoutedEventArgs)' is never used. Remove the parameter or use it in the method body.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -156,7 +134,7 @@
          <Members>
           <Member Name="#SkiDays" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="Warning">Change 'Lift.SkiDays' to be read-only by removing the property setter.</Issue>
             </Message>
            </Messages>
@@ -165,54 +143,54 @@
         </Type>
         <Type Name="SkiAppDataSource" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
            <Issue Certainty="90" Level="Error">Because type 'SkiAppDataSource' contains only 'static' ('Shared' in Visual Basic) members, add a default private constructor to prevent the compiler from adding a default public constructor.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#AddUserAsync(System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'SkiAppDataSource.AddUserAsync(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetLiftsAsync()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalError">Consider a design where 'SkiAppDataSource.GetLiftsAsync()' doesn't nest generic type 'Task&lt;ObservableCollection&lt;Lift&gt;&gt;'.</Issue>
             </Message>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'SkiAppDataSource.GetLiftsAsync()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetSkiDaysAsync()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalError">Consider a design where 'SkiAppDataSource.GetSkiDaysAsync()' doesn't nest generic type 'Task&lt;ObservableCollection&lt;SkiDay&gt;&gt;'.</Issue>
             </Message>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'SkiAppDataSource.GetSkiDaysAsync()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetSlopesAsync()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalError">Consider a design where 'SkiAppDataSource.GetSlopesAsync()' doesn't nest generic type 'Task&lt;ObservableCollection&lt;Slope&gt;&gt;'.</Issue>
             </Message>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'SkiAppDataSource.GetSlopesAsync()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetUsersAsync()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalError">Consider a design where 'SkiAppDataSource.GetUsersAsync()' doesn't nest generic type 'Task&lt;ObservableCollection&lt;User&gt;&gt;'.</Issue>
             </Message>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'SkiAppDataSource.GetUsersAsync()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
@@ -223,7 +201,7 @@
          <Members>
           <Member Name="#SkiDays" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-24 18:01:24Z" FixCategory="Breaking">
+            <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Status="Active" Created="2015-04-25 19:51:28Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="Warning">Change 'Slope.SkiDays' to be read-only by removing the property setter.</Issue>
             </Message>
            </Messages>
@@ -238,16 +216,6 @@
   </Target>
  </Targets>
  <Rules>
-  <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
-   <Name>Avoid unused private fields</Name>
-   <Description>Private fields were detected that do not appear to be accessed within the assembly. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
-   <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms245042.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="75">Warning</MessageLevel>
-   <File Name="performancerules.dll" Version="12.0.0.0" />
-  </Rule>
   <Rule TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227">
    <Name>Collection properties should be read only</Name>
    <Description>Properties that return collections should be read-only so that users cannot entirely replace the backing store. Users can still modify the contents of the collection by calling relevant methods on the collection. Note that the XmlSerializer class has special support for deserializing read-only collections. See the XmlSerializer overview for more information.</Description>
@@ -329,16 +297,6 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="90">Error</MessageLevel>
    <File Name="designrules.dll" Version="12.0.0.0" />
-  </Rule>
-  <Rule TypeName="NonConstantFieldsShouldNotBeVisible" Category="Microsoft.Usage" CheckId="CA2211">
-   <Name>Non-constant fields should not be visible</Name>
-   <Description>Static fields should be constant unless you carefully manage access to the field using locks. Using static variables without making them thread safe can compromise execution state. This rule applies to managed code libraries. If the analyzed assembly is an application, it is usually safe to exclude violations of this rule.</Description>
-   <Resolution Name="Default">Consider making {0} non-public or a constant.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182353.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="90">Warning</MessageLevel>
-   <File Name="usagerules.dll" Version="12.0.0.0" />
   </Rule>
   <Rule TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815">
    <Name>Override equals and operator equals on value types</Name>

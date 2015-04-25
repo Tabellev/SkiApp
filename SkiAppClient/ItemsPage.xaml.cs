@@ -72,6 +72,10 @@ namespace SkiAppClient
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DefaultViewModel["Destination"] = await SkiAppDataSource.GetDestinationAsync();
+            /*if (e.NavigationParameter != null)
+            {
+                user = (User)e.NavigationParameter;
+            }*/
         }
 
         /// <summary>
@@ -112,7 +116,15 @@ namespace SkiAppClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(UserPage));
+            if (user != null)
+            {
+                this.Frame.Navigate(typeof(UserPage),user);
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(UserPage));
+            }
+            
         }
     }
 }

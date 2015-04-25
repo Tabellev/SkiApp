@@ -330,7 +330,6 @@ namespace SkiAppClient.SkiAppClient_XamlTypeInfo
             case 14:   //  SkiAppClient.LogOnPage
                 userType = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_14_LogOnPage;
-                userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
@@ -483,82 +482,77 @@ namespace SkiAppClient.SkiAppClient_XamlTypeInfo
             var that = (global::SkiAppClient.HistoryPage)instance;
             return that.NavigationHelper;
         }
-        private object get_12_LogOnPage_DefaultViewModel(object instance)
-        {
-            var that = (global::SkiAppClient.LogOnPage)instance;
-            return that.DefaultViewModel;
-        }
-        private object get_13_LogOnPage_NavigationHelper(object instance)
+        private object get_12_LogOnPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.LogOnPage)instance;
             return that.NavigationHelper;
         }
-        private object get_14_OpeningHoursPage_DefaultViewModel(object instance)
+        private object get_13_OpeningHoursPage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.OpeningHoursPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_15_OpeningHoursPage_NavigationHelper(object instance)
+        private object get_14_OpeningHoursPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.OpeningHoursPage)instance;
             return that.NavigationHelper;
         }
-        private object get_16_ItemsPage_NavigationHelper(object instance)
+        private object get_15_ItemsPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.ItemsPage)instance;
             return that.NavigationHelper;
         }
-        private object get_17_ItemsPage_DefaultViewModel(object instance)
+        private object get_16_ItemsPage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.ItemsPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_18_PricePage_DefaultViewModel(object instance)
+        private object get_17_PricePage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.PricePage)instance;
             return that.DefaultViewModel;
         }
-        private object get_19_PricePage_NavigationHelper(object instance)
+        private object get_18_PricePage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.PricePage)instance;
             return that.NavigationHelper;
         }
-        private object get_20_SkiDayPage_DefaultViewModel(object instance)
+        private object get_19_SkiDayPage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.SkiDayPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_21_SkiDayPage_NavigationHelper(object instance)
+        private object get_20_SkiDayPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.SkiDayPage)instance;
             return that.NavigationHelper;
         }
-        private object get_22_SlopeInformationPage_DefaultViewModel(object instance)
+        private object get_21_SlopeInformationPage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.SlopeInformationPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_23_SlopeInformationPage_NavigationHelper(object instance)
+        private object get_22_SlopeInformationPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.SlopeInformationPage)instance;
             return that.NavigationHelper;
         }
-        private object get_24_InformationPage_DefaultViewModel(object instance)
+        private object get_23_InformationPage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.InformationPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_25_InformationPage_NavigationHelper(object instance)
+        private object get_24_InformationPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.InformationPage)instance;
             return that.NavigationHelper;
         }
-        private object get_26_UserPage_DefaultViewModel(object instance)
+        private object get_25_UserPage_DefaultViewModel(object instance)
         {
             var that = (global::SkiAppClient.UserPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_27_UserPage_NavigationHelper(object instance)
+        private object get_26_UserPage_NavigationHelper(object instance)
         {
             var that = (global::SkiAppClient.UserPage)instance;
             return that.NavigationHelper;
@@ -643,100 +637,94 @@ namespace SkiAppClient.SkiAppClient_XamlTypeInfo
                 xamlMember.Getter = get_11_HistoryPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
-            case "SkiAppClient.LogOnPage.DefaultViewModel":
-                userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.LogOnPage");
-                xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_12_LogOnPage_DefaultViewModel;
-                xamlMember.SetIsReadOnly();
-                break;
             case "SkiAppClient.LogOnPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.LogOnPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_13_LogOnPage_NavigationHelper;
+                xamlMember.Getter = get_12_LogOnPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.OpeningHoursPage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.OpeningHoursPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_14_OpeningHoursPage_DefaultViewModel;
+                xamlMember.Getter = get_13_OpeningHoursPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.OpeningHoursPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.OpeningHoursPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_15_OpeningHoursPage_NavigationHelper;
+                xamlMember.Getter = get_14_OpeningHoursPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.ItemsPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.ItemsPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_16_ItemsPage_NavigationHelper;
+                xamlMember.Getter = get_15_ItemsPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.ItemsPage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.ItemsPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_17_ItemsPage_DefaultViewModel;
+                xamlMember.Getter = get_16_ItemsPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.PricePage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.PricePage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_18_PricePage_DefaultViewModel;
+                xamlMember.Getter = get_17_PricePage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.PricePage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.PricePage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_19_PricePage_NavigationHelper;
+                xamlMember.Getter = get_18_PricePage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.SkiDayPage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.SkiDayPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_20_SkiDayPage_DefaultViewModel;
+                xamlMember.Getter = get_19_SkiDayPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.SkiDayPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.SkiDayPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_21_SkiDayPage_NavigationHelper;
+                xamlMember.Getter = get_20_SkiDayPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.SlopeInformationPage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.SlopeInformationPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_22_SlopeInformationPage_DefaultViewModel;
+                xamlMember.Getter = get_21_SlopeInformationPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.SlopeInformationPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.SlopeInformationPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_23_SlopeInformationPage_NavigationHelper;
+                xamlMember.Getter = get_22_SlopeInformationPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.InformationPage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.InformationPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_24_InformationPage_DefaultViewModel;
+                xamlMember.Getter = get_23_InformationPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.InformationPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.InformationPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_25_InformationPage_NavigationHelper;
+                xamlMember.Getter = get_24_InformationPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.UserPage.DefaultViewModel":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.UserPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "SkiAppClient.Common.ObservableDictionary");
-                xamlMember.Getter = get_26_UserPage_DefaultViewModel;
+                xamlMember.Getter = get_25_UserPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "SkiAppClient.UserPage.NavigationHelper":
                 userType = (global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SkiAppClient.UserPage");
                 xamlMember = new global::SkiAppClient.SkiAppClient_XamlTypeInfo.XamlMember(this, "NavigationHelper", "SkiAppClient.Common.NavigationHelper");
-                xamlMember.Getter = get_27_UserPage_NavigationHelper;
+                xamlMember.Getter = get_26_UserPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             }
@@ -1064,5 +1052,7 @@ namespace SkiAppClient.SkiAppClient_XamlTypeInfo
         }
     }
 }
+
+
 
 

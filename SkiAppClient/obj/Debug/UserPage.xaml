@@ -113,17 +113,15 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" Margin="0,22,10,0">
-
+                <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" Margin="0,0,10,0">
+                    <TextBlock x:Name="tbWarning" TextWrapping="Wrap" Text="Du må logge på for å lagre eller se skidager!" Foreground="DarkSeaGreen" FontSize="50" Height="115" Visibility="Collapsed"/>
                     <TextBlock x:Name="itemTitle" Margin="0,0,0,0" Text="Bruker" HorizontalAlignment="Left" FontSize="50"/>
                     <TextBlock x:Name="itemSubtitle" Margin="0,10,0,20" Text="På disse sidene kan du finne opprette bruker,&#xA;logge inn og ut, endre passord,&#xA;og lagre innlegg til din skidagbok." FontSize="30"  Height="387"/>
-                    <TextBlock x:Name="tbWarning" TextWrapping="Wrap" Text="Du må logge på for å lagre eller se skidager!" Foreground="DarkSeaGreen" FontSize="50" Height="115" Visibility="Collapsed"/>
                 </StackPanel>
-                <Button x:ConnectionId='2' x:Name="logInButton" Content="Logg inn" Grid.Column="1" HorizontalAlignment="Left" Margin="720,-6,0,0" VerticalAlignment="Top" FontFamily="Global User Interface"                     />
-                <TextBlock x:Name="logInName" HorizontalAlignment="Right" Margin="0,0,97,0" TextWrapping="Wrap" Text="Ikke innlogget" VerticalAlignment="Top" Height="28" Width="187" FontSize="20" Foreground="Pink" Grid.Column="1" />
             </Grid>
         </ScrollViewer>
-       
+        <Button x:ConnectionId='2' x:Name="logInButton" Content="Logg inn" HorizontalAlignment="Left" Margin="756,17,0,0" VerticalAlignment="Top" FontFamily="Global User Interface"                      Width="102" Grid.Column="1"/>
+        <TextBlock x:Name="logInName" HorizontalAlignment="Right" Margin="0,24,216,0" TextWrapping="Wrap" Text="Ikke innlogget" VerticalAlignment="Top" Height="28" Width="187" FontSize="20" Foreground="Pink" Grid.Column="1" />
 
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->

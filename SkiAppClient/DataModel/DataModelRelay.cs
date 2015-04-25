@@ -144,7 +144,36 @@ namespace SkiAppClient.DataModel
 
     }
 
-    public class Price
+    public class SlopeInformation
+    {
+        public SlopeInformation() { }
+        public SlopeInformation(string destinationName, string numberOfLifts, string numberOfSlopes, string numberOfParks, string childrenArea, string otherInformation, string imagePath)
+        {
+            this.DestinationName = destinationName;
+            this.NumberOfLifts = numberOfLifts;
+            this.NumberOfSlopes = numberOfSlopes;
+            this.NumberOfParks = numberOfParks;
+            this.ChildrenArea = childrenArea;
+            this.OtherInformation = otherInformation;
+            this.ImagePath = imagePath;
+        }
+        public string DestinationName { get; set; }
+
+        public string NumberOfLifts { get; set; }
+
+        public string NumberOfSlopes { get; set; }
+
+        public string NumberOfParks { get; set; }
+
+        public string ChildrenArea { get; set; }
+
+        public string OtherInformation { get; set; }
+
+        public string ImagePath { get; set; }
+
+    }
+
+    /*public class Price
     {
         public Price() { }
 
@@ -161,5 +190,5 @@ namespace SkiAppClient.DataModel
         public const string PassPriceChildren = "Gratis";
 
        
-    }
+    }*/
 }

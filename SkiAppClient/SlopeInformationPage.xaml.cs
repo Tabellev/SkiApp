@@ -68,59 +68,36 @@ namespace SkiAppClient
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             var destination = (Destination)e.NavigationParameter;
-            var slopeInformation = new SlopeInformation();
-            if (destination.DestinationName.Equals("Hemsedal"))
-            {
-                slopeInformation.ImagePath = "Assets/Loypekart/loypekartHemsedal.PNG";
-                slopeInformation.DestinationName = "Hemsedal";
-                slopeInformation.NumberOfLifts = "20 heiser";
-                slopeInformation.NumberOfSlopes = "49 bakker";
-                slopeInformation.NumberOfParks = "3 parker og 1 skicrossarena";
-                slopeInformation.ChildrenArea = "Stort barneområde med barnevennlige heiser og bakker";
-                slopeInformation.OtherInformation = "Arena for speedtesting, parallellslalåm, big air bag, skøytebane m.m";
-            }
-            else if (destination.DestinationName.Equals("Trysil"))
-            {
-                slopeInformation.ImagePath = "Assets/Loypekart/loypekartTrysil.PNG";
-                slopeInformation.DestinationName = "Trysil";
-                slopeInformation.NumberOfLifts = "31 heiser";
-                slopeInformation.NumberOfSlopes = "68 bakker";
-                slopeInformation.NumberOfParks = "Terrengparker for alle nivåer";
-                slopeInformation.ChildrenArea = "3 barneområder";
-                slopeInformation.OtherInformation = "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m";
-            }
-            else if (destination.DestinationName.Equals("Vemdalen"))
-            {
-                slopeInformation.ImagePath = "Assets/Loypekart/loypekartVemdalen.PNG";
-                slopeInformation.DestinationName = "Vemdalen";
-                slopeInformation.NumberOfLifts = "50 heiser";
-                slopeInformation.NumberOfSlopes = "110 bakker";
-                slopeInformation.NumberOfParks = "Terrengparker for alle nivåer";
-                slopeInformation.ChildrenArea = "4 barneområder";
-                slopeInformation.OtherInformation = "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m";
-            }
-            else if (destination.DestinationName.Equals("Sälen"))
-            {
-                slopeInformation.ImagePath = "Assets/Loypekart/loypekartSalen.PNG";
-                slopeInformation.DestinationName = "Sälen";
-                slopeInformation.NumberOfLifts = "36 heiser";
-                slopeInformation.NumberOfSlopes = "64 bakker";
-                slopeInformation.NumberOfParks = "Terrengparker for alle nivåer";
-                slopeInformation.ChildrenArea = "2 barneområder";
-                slopeInformation.OtherInformation = "Arena for cross, speedtesting, parallellslalåm m.m";
-            }
-            else if (destination.DestinationName.Equals("Åre"))
-            {
-                slopeInformation.ImagePath = "Assets/Loypekart/loypekartAare.PNG";
-                slopeInformation.DestinationName = "Åre";
-                slopeInformation.NumberOfLifts = "46 heiser";
-                slopeInformation.NumberOfSlopes = "120 bakker";
-                slopeInformation.NumberOfParks = "Terrengparker for alle nivåer";
-                slopeInformation.ChildrenArea = "1 barneområde";
-                slopeInformation.OtherInformation = "Arena for cross, speedtesting, parallellslalåm, kuler m.m";
-            }
+            SlopeInformation slopeInformation = new SlopeInformation();
 
-            this.DefaultViewModel["SlopeInformation"] = slopeInformation;
+            if (destination != null)
+            {
+                switch (destination.DestinationName)
+                {
+                    case "Hemsedal":
+                        slopeInformation = new SlopeInformation("Hemsedal", "20 heiser", "49 bakker", "3 parker og 1 skicrossarena",
+                            "Stort barneområde med barnevennlige heiser og bakker", "Arena for speedtesting, parallellslalåm, big air bag, skøytebane m.m", "Assets/Loypekart/loypekartHemsedal.PNG");
+                        break;
+                    case "Trysil":
+                        slopeInformation = new SlopeInformation("Trysil", "31 heiser", "68 bakker", "Terrengparker for alle nivåer",
+                           "3 barneområder", "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m", "Assets/Loypekart/loypekartTrysil.PNG");
+                        break;
+                    case "Vemdalen":
+                        slopeInformation = new SlopeInformation("Vemdalen", "50 heiser", "110 bakker", "Terrengparker for alle nivåer",
+                   "4 barneområder", "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m", "Assets/Loypekart/loypekartVemdalen.PNG");
+                        break;
+                    case "Sälen":
+                        slopeInformation = new SlopeInformation("Sälen", "36 heiser", "64 bakker", "Terrengparker for alle nivåer",
+                   "2 barneområder", "Arena for cross, speedtesting, parallellslalåm m.m", "Assets/Loypekart/loypekartSalen.PNG");
+                        break;
+                    case "Åre":
+                        slopeInformation = new SlopeInformation("Åre", "46 heiser", "120 bakker", "Terrengparker for alle nivåer",
+                  "1 barneområder", "Arena for cross, speedtesting, parallellslalåm, kuler m.m", "Assets/Loypekart/loypekartAare.PNG");
+                        break;
+                }
+                
+                this.DefaultViewModel["SlopeInformation"] = slopeInformation;
+            }
 
             /*tbName.Text = slopeInformation.DestinationName;
             tbNumberOfLifts.Text = slopeInformation.NumberOfLifts;

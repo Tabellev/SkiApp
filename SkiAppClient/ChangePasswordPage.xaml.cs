@@ -150,7 +150,18 @@ namespace SkiAppClient
             }
         }
 
-        private void StartPage_Click(object sender, RoutedEventArgs e)
+         private async void StartPage_Click(object sender, RoutedEventArgs e)
+        {
+            MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?" );
+            UICommand c1 = new UICommand("Fortsett");
+            UICommand c2 = new UICommand("Avbryt");
+            c1.Invoked = OkBtnClick;
+            md.Commands.Add(c1);
+            md.Commands.Add(c2);
+            await md.ShowAsync();
+        }
+
+        private void OkBtnClick(IUICommand command)
         {
             this.Frame.Navigate(typeof(ItemsPage));
         }
