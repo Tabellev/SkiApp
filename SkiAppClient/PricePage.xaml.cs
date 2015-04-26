@@ -68,39 +68,8 @@ namespace SkiAppClient
         /// session. The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            ObservableCollection<OpeningHours> prices = new ObservableCollection<OpeningHours>();
-            //prices.Add(makePrice("1 Dag", ))
-            var destination = (Destination)e.NavigationParameter;
-            //var openingHours = await SkiAppDataSource.GetOpeningHoursAsync();
-            /*foreach (var oh in openingHours)
-            {
-
-                if (oh.OpeningHoursId == destination.DestinationId)
-                {
-                    openingHour.Add(oh);
-                }
-            }
-            this.DefaultViewModel["OpeningHours"] = openingHour;
-            if (openingHour != null)
-            {
-
-            }*/
         }
 
-        /*private Price makePrice(string duration, int passPrice)
-        {
-            Price price = new Price(duration, passPrice);
-            return price;
-        }*/
-
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
-        /// <param name="e">Event data that provides an empty dictionary to be populated with
-        /// serializable state.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }

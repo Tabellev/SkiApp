@@ -28,6 +28,7 @@ namespace SkiAppClient
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private bool deleteUserOk;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -126,10 +127,21 @@ namespace SkiAppClient
                 {
                     if (givenPassword.Equals(currentUser.Password))
                     {
-                        await SkiAppDataSource.DeleteUserAsync(currentUser.UserId);
-                        MessageDialog md = new MessageDialog("Bruker " + currentUser.UserName + " er slettet!");
-                        await md.ShowAsync();
-                        this.Frame.Navigate(typeof(UserPage));
+                        MessageDialog message = new MessageDialog("Er du sikker på at du vil slette " + currentUser.UserName + "?");
+                        UICommand c1 = new UICommand("Slett");
+                        UICommand c2 = new UICommand("Avbryt");
+                        c1.Invoked = DeletBtnClick;
+                        c2.Invoked = CancelDeleteBtnClick;
+                        message.Commands.Add(c1);
+                        message.Commands.Add(c2);
+                        await message.ShowAsync();
+                        if (deleteUserOk)
+                        {
+                            await SkiAppDataSource.DeleteUserAsync(currentUser.UserId);
+                            MessageDialog md = new MessageDialog("Bruker " + currentUser.UserName + " er slettet!");
+                            await md.ShowAsync();
+                            this.Frame.Navigate(typeof(UserPage));
+                        }
                     }
                     else
                     {
@@ -145,6 +157,16 @@ namespace SkiAppClient
                     await md.ShowAsync();
                 }
             }
+        }
+
+        private void CancelDeleteBtnClick(IUICommand command)
+        {
+            deleteUserOk = false;
+        }
+
+        private void DeletBtnClick(IUICommand command)
+        {
+            deleteUserOk = true;
         }
 
         private void StartPage_Click(object sender, RoutedEventArgs e)

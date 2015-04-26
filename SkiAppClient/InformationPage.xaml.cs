@@ -61,7 +61,6 @@ namespace SkiAppClient
         {
             //Dårlig Maintainability Index, Class Coupling og Lines of code. Dette er autogenerert kode, så regner med at det er ok?
             this.InitializeComponent();
-
             // Setup the navigation helper
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
@@ -100,10 +99,8 @@ namespace SkiAppClient
         {
             // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
             // Mulig jeg finner en bedre måte å gjøre det på etterhvert. Men måtte la det være sånn for å vise frem data nå.
-            this.itemListView.SelectedItem = null;
-            destination = (Destination)e.NavigationParameter;//await SkiAppDataSource.GetDestinationAsync();
-            //var destinationInformation = await SkiAppDataSource.GetDestinationInfoTypeAsync();
-            this.itemListView.SelectedItem = null;
+           // this.itemListView.SelectedItem = null;
+            destination = (Destination)e.NavigationParameter;
             openingHours = new DestinationInfoType("Åpningstider");
             prices = new DestinationInfoType("Priser");
             slopeInformation = new DestinationInfoType("Løypeinformasjon");
@@ -112,29 +109,6 @@ namespace SkiAppClient
             destinationInformation.Add(prices);
             destinationInformation.Add(slopeInformation);
             this.DefaultViewModel["DestinationInfoType"] = destinationInformation;
-
-            if (e.PageState == null)
-            {
-                this.itemListView.SelectedItem = null;
-                // When this is a new page, select the first item automatically unless logical page
-                // navigation is being used (see the logical page navigation #region below.)
-                if (!this.UsingLogicalPageNavigation() && this.itemsViewSource.View != null)
-                {
-                    //this.itemsViewSource.View.MoveCurrentToFirst();
-                    this.itemListView.SelectedItem = null;
-                }
-            }
-            else
-            {
-                // Restore the previously saved state associated with this page
-                if (e.PageState.ContainsKey("SelectedItem") && this.itemsViewSource.View != null)
-                {
-                    //var selectedItem = this.itemListView.SelectedItem;//await SampleDataSource.GetItemAsync((String)e.PageState["SelectedItem"]);
-                    //this.itemsViewSource.View.MoveCurrentTo(selectedItem);
-                }
-            }
-            //var currentItem = this.itemsViewSource.View.CurrentItem;
-            //this.DefaultViewModel["Items"] = currentItem;
         }
 
 
@@ -150,9 +124,6 @@ namespace SkiAppClient
         {
             if (this.itemsViewSource.View != null)
             {
-                // TODO: Derive a serializable navigation parameter and assign it to
-                //       pageState("SelectedItem")
-                //this.itemListView.SelectedItem = null;
 
             }
         }
@@ -234,15 +205,10 @@ namespace SkiAppClient
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
             {
-                // When logical page navigation is in effect and there's a selected item that
-                // item's details are currently displayed.  Clearing the selection will return to
-                // the item list.  From the user's point of view this is a logical backward
-                // navigation.
-                this.itemListView.SelectedItem = null;
+              
             }
             else
             {
-                this.itemListView.SelectedItem = null;
                 this.navigationHelper.GoBack();
             }
         }
@@ -267,7 +233,7 @@ namespace SkiAppClient
                 return "PrimaryView";
 
             // Update the back button's enabled state when the view state changes
-            var logicalPageBack = this.UsingLogicalPageNavigation(); //&& this.itemListView.SelectedItem != null;
+            var logicalPageBack = this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null;
 
             return logicalPageBack ? "SinglePane_Detail" : "SinglePane";
         }
@@ -287,7 +253,6 @@ namespace SkiAppClient
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.itemListView.SelectedItem = null;
             navigationHelper.OnNavigatedTo(e);
         }
 
@@ -303,9 +268,5 @@ namespace SkiAppClient
         {
             this.Frame.Navigate(typeof(ItemsPage));
         }
-
-
-
-
     }
 }

@@ -20,13 +20,13 @@
     <AppXManifest Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-04-25T20:30:18.873</Modified>
+      <Modified>2015-04-26T18:19:03.241</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.exe">
       <PackagePath>SkiAppClient.exe</PackagePath>
-      <Modified>2015-04-25T21:09:26.917</Modified>
+      <Modified>2015-04-26T18:18:58.889</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\aare.jpg">
       <PackagePath>Assets\BackgroundPictures\aare.jpg</PackagePath>
@@ -112,61 +112,57 @@
       <PackagePath>Assets\DarkGray.png</PackagePath>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\DataModel\SampleData.json">
-      <PackagePath>DataModel\SampleData.json</PackagePath>
-      <Modified>2015-04-13T14:43:42.781</Modified>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\ChangePasswordPage.xbf">
       <PackagePath>ChangePasswordPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\CreateUserPage.xbf">
       <PackagePath>CreateUserPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\DeleteUserPage.xbf">
       <PackagePath>DeleteUserPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\HistoryPage.xbf">
       <PackagePath>HistoryPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\LogOnPage.xbf">
       <PackagePath>LogOnPage.xbf</PackagePath>
-      <Modified>2015-04-25T20:30:14.152</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\OpeningHoursPage.xbf">
       <PackagePath>OpeningHoursPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\ItemsPage.xbf">
       <PackagePath>ItemsPage.xbf</PackagePath>
-      <Modified>2015-04-25T20:30:14.152</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\PricePage.xbf">
       <PackagePath>PricePage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiDayPage.xbf">
       <PackagePath>SkiDayPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SlopeInformationPage.xbf">
       <PackagePath>SlopeInformationPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\InformationPage.xbf">
       <PackagePath>InformationPage.xbf</PackagePath>
-      <Modified>2015-04-25T14:53:31.439</Modified>
+      <Modified>2015-04-26T18:18:58.358</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\UserPage.xbf">
       <PackagePath>UserPage.xbf</PackagePath>
-      <Modified>2015-04-25T20:30:14.152</Modified>
+      <Modified>2015-04-26T18:18:58.359</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.xr.xml">
       <PackagePath>SkiAppClient.xr.xml</PackagePath>
@@ -174,7 +170,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-04-25T20:30:18.749</Modified>
+      <Modified>2015-04-26T18:19:03.184</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

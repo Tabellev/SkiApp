@@ -9,38 +9,43 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace SkiAppClient.DataModel
 {
     public sealed class SkiAppDataSource
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //Må ha med setter eller så får jeg feilmelding.
-        //public ObservableCollection<Destination> Destinations { get; set; }
-
+        private SkiAppDataSource() { }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         //Not appropriate
-        public static async Task<ObservableCollection<Destination>> GetDestinationAsync() 
-        {   using (var client = new HttpClient())
+        public static async Task<ObservableCollection<Destination>> GetDestinationAsync()
+        {
+            using (var client = new HttpClient())
             {
-              client.BaseAddress = new Uri("http://localhost:2219/"); 
-              client.DefaultRequestHeaders.Accept.Clear(); 
-              client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")); 
-            
-              var result = await client.GetAsync("api/Destinations"); 
-            
-              if (result.IsSuccessStatusCode) 
-              { var resultStream = await result.Content.ReadAsStreamAsync(); 
-                var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Destination>)); 
-                ObservableCollection<Destination> destinations = (ObservableCollection<Destination>)serializer.ReadObject(resultStream); 
-                return destinations; 
-              } else 
-              { 
-                return null; 
-              } 
-        } 
-      }
+                client.BaseAddress = new Uri("http://localhost:2219/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.GetAsync("api/Destinations");
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var resultStream = await result.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Destination>));
+                    ObservableCollection<Destination> destinations = (ObservableCollection<Destination>)serializer.ReadObject(resultStream);
+                    return destinations;
+                }
+                else
+                {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    await d.ShowAsync();
+                    Application.Current.Exit();
+                    return null;
+                }
+            }
+        }
 
         public static async Task<Destination> GetOneDestinationAsync(int id)
         {
@@ -141,7 +146,7 @@ namespace SkiAppClient.DataModel
             }
         }
 
-        public static async Task AddUserAsync(string username, string password)
+        public static async Task AddUserAsync(string userName, string password)
         {
             using (var client = new HttpClient())
             {
@@ -149,7 +154,7 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                User newUser = new User() { UserName = username, Password = password };
+                User newUser = new User() { UserName = userName, Password = password };
                 var jsonSerializer = new DataContractJsonSerializer(typeof(User));
 
                 var stream = new MemoryStream();

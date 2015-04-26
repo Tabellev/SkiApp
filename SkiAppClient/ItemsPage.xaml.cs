@@ -1,5 +1,4 @@
 ﻿using SkiAppClient.Common;
-using SkiAppClient.Data;
 using SkiAppClient.DataModel;
 using System;
 using System.Collections.Generic;

@@ -72,9 +72,8 @@ namespace SkiAppClient
                         await md.ShowAsync();
                         userName.Text = String.Empty;
                         password.Password = String.Empty;
-                        NavigationParameter navigationParameter = new NavigationParameter(isLogedOn, currentUser);
+                        NavigationParameters navigationParameter = new NavigationParameters(isLogedOn, currentUser);
                         this.Frame.Navigate(typeof(UserPage), navigationParameter);
-
                     }
                     else
                     {
@@ -96,16 +95,10 @@ namespace SkiAppClient
 
 
         //Bruker en struct for å kunne sende med to verdier som navigationpatameter.
-        public struct NavigationParameter
+        //Trenger ikke masse funksjonalitet, så derfor velger jeg en struct isteden for en klasse.
+        private struct NavigationParametesUserPage
         {
-            public bool LogedOn;
-
-            public User LogedOnUser;
-            public NavigationParameter(bool logedOn, User user)
-            {
-                LogedOn = logedOn;
-                LogedOnUser = user;
-            }
+            
 
         }
 

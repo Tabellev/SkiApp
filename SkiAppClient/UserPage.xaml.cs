@@ -30,7 +30,7 @@ namespace SkiAppClient
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         private bool hasLogedOn = false;
         //private SkiAppClient.LogOnPage.NavigationParameter navigationParameter;
-        private SkiAppClient.LogOnPage.NavigationParameter navigationParameter;
+        private NavigationParameters navigationParameter;
         private User user;
         private UserText createUser;
         private UserText deleteUser;
@@ -86,11 +86,11 @@ namespace SkiAppClient
 
             if (e.NavigationParameter != null)
             {
-                navigationParameter = (SkiAppClient.LogOnPage.NavigationParameter)e.NavigationParameter;
-                hasLogedOn = navigationParameter.LogedOn;
-                if (navigationParameter.LogedOnUser != null)
+                navigationParameter = (NavigationParameters)e.NavigationParameter;
+                hasLogedOn = navigationParameter.LoggedOn;
+                if (navigationParameter.LoggedOnUser != null)
                 {
-                    user = navigationParameter.LogedOnUser;
+                    user = navigationParameter.LoggedOnUser;
                     if (hasLogedOn)
                     {
                         logInName.Text = "Brukernavn: " + user.UserName;

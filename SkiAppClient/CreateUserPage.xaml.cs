@@ -115,14 +115,34 @@ namespace SkiAppClient
             string givenUserName = userName.Text;
             string givenPassword = password.Password;
             string givenRepeatPassword = repeatPassword.Password;
-            
+            var isUniqueUserName = false;
+            var users = await SkiAppDataSource.GetUsersAsync();
+
+            foreach (var user in users)
+            {
+                if (givenUserName.Equals(user.UserName))
+                {
+                    MessageDialog md = new MessageDialog("Brukernavn er opptatt, velg et annet brukernavn!");
+                    await md.ShowAsync();
+                    isUniqueUserName = false;
+                    userName.Text = "";
+                    password.Password = "";
+                    repeatPassword.Password = "";
+                    return;
+                }
+                else
+                {
+                    isUniqueUserName = true;
+                }
+            }
             if (givenUserName.Equals("") || givenPassword.Equals("") || givenRepeatPassword.Equals(""))
             {
                 MessageDialog md = new MessageDialog("Alle felt må fylles ut!");
                 await md.ShowAsync();
-            }else
+            }
+            else
             {
-                if (givenPassword.Equals(givenRepeatPassword))
+                if (givenPassword.Equals(givenRepeatPassword) && isUniqueUserName)
                 {
                     await SkiAppDataSource.AddUserAsync(givenUserName, givenPassword);
                     userName.Text = String.Empty;
@@ -132,7 +152,8 @@ namespace SkiAppClient
                     await md.ShowAsync();
 
                     this.Frame.Navigate(typeof(UserPage));
-                }else
+                }
+                else
                 {
                     MessageDialog md = new MessageDialog("Passord er ulike! Venligst fyll ut på nytt.");
                     await md.ShowAsync();

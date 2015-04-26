@@ -83,9 +83,6 @@
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\DarkGray.png">
       <PackagePath>Assets\DarkGray.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\DataModel\SampleData.json">
-      <PackagePath>DataModel\SampleData.json</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>

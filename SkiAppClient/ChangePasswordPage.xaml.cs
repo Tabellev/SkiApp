@@ -114,14 +114,17 @@ namespace SkiAppClient
             var givenNewPassword = newPassword.Text;
             User currentUser = null;
 
-            foreach (var user in users)
+            if (users != null)
             {
-                if (givenUserName.Equals(user.UserName))
+                foreach (var user in users)
                 {
-                    currentUser = user; 
+                    if (givenUserName.Equals(user.UserName))
+                    {
+                        currentUser = user;
+                    }
                 }
             }
-
+           
             if (currentUser != null)
             {
                 if (givenPassword.Equals(currentUser.Password))
