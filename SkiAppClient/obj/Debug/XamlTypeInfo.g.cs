@@ -1054,3 +1054,4 @@ namespace SkiAppClient.SkiAppClient_XamlTypeInfo
 }
 
 
+

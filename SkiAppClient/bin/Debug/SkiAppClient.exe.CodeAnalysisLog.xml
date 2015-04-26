@@ -10,7 +10,7 @@
        <Types>
         <Type Name="NavigationParameters" Kind="Struct" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Status="Active" Created="2015-04-26 18:25:18Z" FixCategory="NonBreaking">
+          <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Status="Active" Created="2015-04-26 20:37:08Z" FixCategory="NonBreaking">
            <Issue Name="Equals" Certainty="75" Level="Warning">'NavigationParameters' should override Equals.</Issue>
            <Issue Name="op_Equality" Certainty="75" Level="Warning">'NavigationParameters' should override the equality (==) and inequality (!=) operators.</Issue>
           </Message>
@@ -18,14 +18,14 @@
          <Members>
           <Member Name="#LoggedOn" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-26 18:25:18Z" FixCategory="Breaking">
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-26 20:37:08Z" FixCategory="Breaking">
              <Issue Certainty="90" Level="Error">Because field 'NavigationParameters.LoggedOn' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#LoggedOnUser" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-26 18:25:18Z" FixCategory="Breaking">
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-26 20:37:08Z" FixCategory="Breaking">
              <Issue Certainty="90" Level="Error">Because field 'NavigationParameters.LoggedOnUser' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
             </Message>
            </Messages>

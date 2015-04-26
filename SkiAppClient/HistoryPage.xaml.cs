@@ -53,7 +53,7 @@ namespace SkiAppClient
             skiDays = await SkiAppDataSource.GetSkiDaysAsync();
             user = (User)e.NavigationParameter;
 
-            if (skiDays.Count != 0 || skiDays != null)
+            if ((skiDays.Count != 0 || skiDays != null) && user != null)
             {
                 foreach (var s in skiDays)
                 {
@@ -170,7 +170,7 @@ namespace SkiAppClient
                         tbComment.Text = "-";
                     }
 
-                    var lifts = (ObservableCollection<Lift>)skiDay.Lifts;
+                    var lifts = skiDay.Lifts;
                     var allLifts = "";
                     var slopes = skiDay.Slopes;
                     var allSlopes = "";
@@ -240,7 +240,7 @@ namespace SkiAppClient
                
                 if (deleteSkiDayOk)
                 {
-                    if (skiDays != null && skiDays.Count != 0)
+                    if ((skiDays != null && skiDays.Count != 0) && user != null)
                     {
                         foreach (var s in skiDays)
                         {

@@ -99,8 +99,11 @@ namespace SkiAppClient
         {
             // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
             // Mulig jeg finner en bedre måte å gjøre det på etterhvert. Men måtte la det være sånn for å vise frem data nå.
-           // this.itemListView.SelectedItem = null;
-            destination = (Destination)e.NavigationParameter;
+
+            if (e.NavigationParameter != null)
+            {
+                destination = (Destination)e.NavigationParameter;
+            }
             openingHours = new DestinationInfoType("Åpningstider");
             prices = new DestinationInfoType("Priser");
             slopeInformation = new DestinationInfoType("Løypeinformasjon");
@@ -122,10 +125,6 @@ namespace SkiAppClient
         /// serializable state.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            if (this.itemsViewSource.View != null)
-            {
-
-            }
         }
 
         #region Logical page navigation
@@ -209,6 +208,7 @@ namespace SkiAppClient
             }
             else
             {
+                this.itemListView.SelectedItem = null;
                 this.navigationHelper.GoBack();
             }
         }

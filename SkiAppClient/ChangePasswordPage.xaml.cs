@@ -110,8 +110,8 @@ namespace SkiAppClient
         {
             var users = await SkiAppDataSource.GetUsersAsync();
             var givenUserName = userName.Text;
-            var givenPassword = oldPassword.Text;
-            var givenNewPassword = newPassword.Text;
+            var givenPassword = oldPassword.Password;
+            var givenNewPassword = newPassword.Password;
             User currentUser = null;
 
             if (users != null)
@@ -129,18 +129,26 @@ namespace SkiAppClient
             {
                 if (givenPassword.Equals(currentUser.Password))
                 {
-                    await SkiAppDataSource.ChangePasswordAsync(currentUser, givenNewPassword);
-                    MessageDialog md = new MessageDialog("Passord endret for " + givenUserName);
-                    await md.ShowAsync();
-                    this.Frame.Navigate(typeof(UserPage));
+                    if (!givenNewPassword.Equals(""))
+                    {
+                        await SkiAppDataSource.ChangePasswordAsync(currentUser, givenNewPassword);
+                        MessageDialog md = new MessageDialog("Passord endret for " + givenUserName);
+                        await md.ShowAsync();
+                        this.Frame.Navigate(typeof(UserPage));
+                    }
+                    else
+                    {
+                        MessageDialog md = new MessageDialog("Nytt passord må fylles ut!");
+                        await md.ShowAsync();
+                    }
                 }
                 else
                 {
-                    MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
+                    MessageDialog md = new MessageDialog("Feil brukernavn eller passord!");
                     await md.ShowAsync();
                     userName.Text = String.Empty;
-                    oldPassword.Text = String.Empty;
-                    newPassword.Text = String.Empty;
+                    oldPassword.Password = String.Empty;
+                    newPassword.Password = String.Empty;
                 }
             }
             else
@@ -148,8 +156,8 @@ namespace SkiAppClient
                 MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
                 await md.ShowAsync();
                 userName.Text = String.Empty;
-                oldPassword.Text = String.Empty;
-                newPassword.Text = String.Empty;
+                oldPassword.Password = String.Empty;
+                newPassword.Password = String.Empty;
             }
         }
 

@@ -140,6 +140,15 @@
       <RootProperty Name="FontFamily" />
       <RootProperty Name="Height" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Height" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
@@ -157,14 +166,6 @@
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="SkiAppClient.ChangePasswordPage" />
-    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="FontFamily" />
-    </RootType>
     <RootType FullName="SkiAppClient.CreateUserPage" />
     <RootType FullName="SkiAppClient.DeleteUserPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">

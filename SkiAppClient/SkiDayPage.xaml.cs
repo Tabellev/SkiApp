@@ -79,12 +79,20 @@ namespace SkiAppClient
             liftNames = new ObservableCollection<string>();
             slopes = new ObservableCollection<Slope>();
             slopeNames = new ObservableCollection<string>();
-            user = (User)e.NavigationParameter;
-            destinations = await SkiAppDataSource.GetDestinationAsync();
-            foreach (var d in destinations)
+            if (e.NavigationParameter != null)
             {
-                 cbDestinations.Items.Add(d.DestinationName);
+                user = (User)e.NavigationParameter;
             }
+
+            destinations = await SkiAppDataSource.GetDestinationAsync();
+            if (destinations != null && destinations.Count != 0)
+            {
+                foreach (var d in destinations)
+                {
+                    cbDestinations.Items.Add(d.DestinationName);
+                }
+            }
+            
         }
 
         /// <summary>
@@ -158,28 +166,41 @@ namespace SkiAppClient
             var comment = tbComment.Text;
             ObservableCollection<Lift> destinationLifts = new ObservableCollection<Lift>();
             ObservableCollection<Slope> destinationSlopes = new ObservableCollection<Slope>();
-            foreach(var lift in lifts)
+
+            if (lifts != null && lifts.Count != 0)
             {
-                foreach (var chosenLift in liftNames)
+                foreach (var lift in lifts)
                 {
-                    if (lift.LiftName.Equals(chosenLift))
+                    if (liftNames != null && liftNames.Count != 0)
                     {
-                        destinationLifts.Add(lift);
+                        foreach (var chosenLift in liftNames)
+                        {
+                            if (lift.LiftName.Equals(chosenLift))
+                            {
+                                destinationLifts.Add(lift);
+                            }
+                        }
                     }
                 }
             }
 
-            foreach (var slope in slopes)
+            if (slopes != null && slopes.Count != 0)
             {
-                foreach (var chosenSlope in slopeNames)
+                foreach (var slope in slopes)
                 {
-                    if (slope.SlopeName.Equals(chosenSlope))
+                    if (slopeNames != null && slopeNames.Count != 0)
                     {
-                        destinationSlopes.Add(slope);
+                        foreach (var chosenSlope in slopeNames)
+                        {
+                            if (slope.SlopeName.Equals(chosenSlope))
+                            {
+                                destinationSlopes.Add(slope);
+                            }
+                        }
                     }
                 }
             }
-
+           
            await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, destinationLifts, destinationSlopes);
            MessageDialog md = new MessageDialog("Skidag lagret!");
            await md.ShowAsync();
@@ -193,8 +214,6 @@ namespace SkiAppClient
            cbDestinations.SelectedItem = null;
            cbChosenLifts.Items.Clear();
            cbChosenSlopes.Items.Clear();
-
-            
         }
 
         private void SeeHistory_Click(object sender, RoutedEventArgs e)
@@ -233,29 +252,29 @@ namespace SkiAppClient
             if (cbDestinations.SelectedItem != null)
             {
                 var selectedDestination = (string)cbDestinations.SelectedItem.ToString();
-                var chosenDestination = destinations.FirstOrDefault(i => i.DestinationName == selectedDestination);
-
-                var destinationLifts = from lift in lifts
-                                 where lift.LiftDestination.DestinationId == chosenDestination.DestinationId
-                                 select lift.LiftName;
-
-                if (destinationLifts != null)
+                if (destinations != null && destinations.Count != 0)
                 {
-                    foreach (var l in destinationLifts)
+                    var chosenDestination = destinations.FirstOrDefault(i => i.DestinationName == selectedDestination);
+                    var destinationLifts = from lift in lifts
+                                           where lift.LiftDestination.DestinationId == chosenDestination.DestinationId
+                                           select lift.LiftName;
+                    if (destinationLifts != null)
                     {
-                        cbLifts.Items.Add(l);
+                        foreach (var l in destinationLifts)
+                        {
+                            cbLifts.Items.Add(l);
+                        }
                     }
-                }
 
-                var destinationSlopes = from slope in slopes
-                                  where slope.SlopeDestination.DestinationId == chosenDestination.DestinationId
-                                  select slope.SlopeName;
-
-                if (destinationSlopes != null)
-                {
-                    foreach (var s in destinationSlopes)
+                    var destinationSlopes = from slope in slopes
+                                            where slope.SlopeDestination.DestinationId == chosenDestination.DestinationId
+                                            select slope.SlopeName;
+                    if (destinationSlopes != null)
                     {
-                        cbSlopes.Items.Add(s);
+                        foreach (var s in destinationSlopes)
+                        {
+                            cbSlopes.Items.Add(s);
+                        }
                     }
                 }
             }
@@ -283,7 +302,7 @@ namespace SkiAppClient
 
         private async void StartPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?" );
+            MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?");
             UICommand c1 = new UICommand("Fortsett");
             UICommand c2 = new UICommand("Avbryt");
             c1.Invoked = OkBtnClick;

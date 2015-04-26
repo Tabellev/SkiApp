@@ -118,23 +118,27 @@ namespace SkiAppClient
             var isUniqueUserName = false;
             var users = await SkiAppDataSource.GetUsersAsync();
 
-            foreach (var user in users)
+            if (users != null && users.Count != 0)
             {
-                if (givenUserName.Equals(user.UserName))
+                foreach (var user in users)
                 {
-                    MessageDialog md = new MessageDialog("Brukernavn er opptatt, velg et annet brukernavn!");
-                    await md.ShowAsync();
-                    isUniqueUserName = false;
-                    userName.Text = "";
-                    password.Password = "";
-                    repeatPassword.Password = "";
-                    return;
-                }
-                else
-                {
-                    isUniqueUserName = true;
+                    if (givenUserName.Equals(user.UserName))
+                    {
+                        MessageDialog md = new MessageDialog("Brukernavn er opptatt, velg et annet brukernavn!");
+                        await md.ShowAsync();
+                        isUniqueUserName = false;
+                        userName.Text = "";
+                        password.Password = "";
+                        repeatPassword.Password = "";
+                        return;
+                    }
+                    else
+                    {
+                        isUniqueUserName = true;
+                    }
                 }
             }
+           
             if (givenUserName.Equals("") || givenPassword.Equals("") || givenRepeatPassword.Equals(""))
             {
                 MessageDialog md = new MessageDialog("Alle felt må fylles ut!");

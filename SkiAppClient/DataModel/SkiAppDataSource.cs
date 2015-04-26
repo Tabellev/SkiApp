@@ -28,26 +28,38 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Destinations");
-
-                if (result.IsSuccessStatusCode)
+                try
                 {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Destination>));
-                    ObservableCollection<Destination> destinations = (ObservableCollection<Destination>)serializer.ReadObject(resultStream);
-                    return destinations;
+                    var result = await client.GetAsync("api/Destinations");
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultStream = await result.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Destination>));
+                        ObservableCollection<Destination> destinations = (ObservableCollection<Destination>)serializer.ReadObject(resultStream);
+                        return destinations;
+                    }
+                    else
+                    {
+                        MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                        await d.ShowAsync();
+                        //Application.Current.Exit();
+                        return null;
+                    }
                 }
-                else
+                catch (TaskCanceledException)
                 {
                     MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                    await d.ShowAsync();
-                    Application.Current.Exit();
+                    d.ShowAsync();
+                    //Application.Current.Exit();
                     return null;
                 }
+                
+
+               
             }
         }
 
-        public static async Task<Destination> GetOneDestinationAsync(int id)
+        /*public static async Task<Destination> GetOneDestinationAsync(int id)
         {
             using (var client = new HttpClient())
             {
@@ -70,33 +82,7 @@ namespace SkiAppClient.DataModel
                     return null;
                 }
             }
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        //Not appropriate
-        public static async Task<ObservableCollection<DestinationInfoType>> GetDestinationInfoTypeAsync()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:2219/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-                var result = await client.GetAsync("api/DestinationInfoTypes");
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<DestinationInfoType>));
-                    ObservableCollection<DestinationInfoType> destinationInfoTypes = (ObservableCollection<DestinationInfoType>)serializer.ReadObject(resultStream);
-                    return destinationInfoTypes;
-                }
-                else
-                {
-                    return null;
-                }
-            } 
-        }
+        }*/
 
         public static async Task<ObservableCollection<OpeningHours>> GetOpeningHoursAsync()
         {
@@ -253,10 +239,6 @@ namespace SkiAppClient.DataModel
                 var response = await client.PutAsync("api/users/" + updatetUser.UserId, content);
 
                 response.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
-
-                // a smarter approach would be to update the element (remove/add is brute force)
-                //_academiaDataSource._courses.Remove(_academiaDataSource._courses.First(c => c.CourseId == aCourse.CourseId));
-                //_academiaDataSource._courses.Add(aCourse);
             }
         }
 
@@ -272,7 +254,6 @@ namespace SkiAppClient.DataModel
                 SkiDay updatedSkiDay = new SkiDay() {SkiDayId = skiDay.SkiDayId, SkiDayUser = skiDay.SkiDayUser, Date = skiDay.Date, Comment = skiDay.Comment, Destination = skiDay.Destination, 
                 Equipment = skiDay.Equipment, Lifts = null, Slopes = null};
 
-                //var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
                 var jsonSerializer = new DataContractJsonSerializer(typeof(SkiDay));
 
                 var stream = new MemoryStream();

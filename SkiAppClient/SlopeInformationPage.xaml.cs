@@ -67,44 +67,38 @@ namespace SkiAppClient
         /// session. The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            var destination = (Destination)e.NavigationParameter;
             SlopeInformation slopeInformation = new SlopeInformation();
-
-            if (destination != null)
+            if (e.NavigationParameter != null)
             {
-                switch (destination.DestinationName)
+                var destination = (Destination)e.NavigationParameter;
+                if (destination != null)
                 {
-                    case "Hemsedal":
-                        slopeInformation = new SlopeInformation("Hemsedal", "20 heiser", "49 bakker", "3 parker og 1 skicrossarena",
-                            "Stort barneområde med barnevennlige heiser og bakker", "Arena for speedtesting, parallellslalåm, big air bag, skøytebane m.m", "Assets/Loypekart/loypekartHemsedal.PNG");
-                        break;
-                    case "Trysil":
-                        slopeInformation = new SlopeInformation("Trysil", "31 heiser", "68 bakker", "Terrengparker for alle nivåer",
-                           "3 barneområder", "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m", "Assets/Loypekart/loypekartTrysil.PNG");
-                        break;
-                    case "Vemdalen":
-                        slopeInformation = new SlopeInformation("Vemdalen", "50 heiser", "110 bakker", "Terrengparker for alle nivåer",
-                   "4 barneområder", "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m", "Assets/Loypekart/loypekartVemdalen.PNG");
-                        break;
-                    case "Sälen":
-                        slopeInformation = new SlopeInformation("Sälen", "36 heiser", "64 bakker", "Terrengparker for alle nivåer",
-                   "2 barneområder", "Arena for cross, speedtesting, parallellslalåm m.m", "Assets/Loypekart/loypekartSalen.PNG");
-                        break;
-                    case "Åre":
-                        slopeInformation = new SlopeInformation("Åre", "46 heiser", "120 bakker", "Terrengparker for alle nivåer",
-                  "1 barneområder", "Arena for cross, speedtesting, parallellslalåm, kuler m.m", "Assets/Loypekart/loypekartAare.PNG");
-                        break;
+                    switch (destination.DestinationName)
+                    {
+                        case "Hemsedal":
+                            slopeInformation = new SlopeInformation("Hemsedal", "20 heiser", "49 bakker", "3 parker og 1 skicrossarena",
+                                "Stort barneområde med barnevennlige heiser og bakker", "Arena for speedtesting, parallellslalåm, big air bag, skøytebane m.m", "Assets/Loypekart/loypekartHemsedal.PNG");
+                            break;
+                        case "Trysil":
+                            slopeInformation = new SlopeInformation("Trysil", "31 heiser", "68 bakker", "Terrengparker for alle nivåer",
+                               "3 barneområder", "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m", "Assets/Loypekart/loypekartTrysil.PNG");
+                            break;
+                        case "Vemdalen":
+                            slopeInformation = new SlopeInformation("Vemdalen", "50 heiser", "110 bakker", "Terrengparker for alle nivåer",
+                       "4 barneområder", "Arena for cross, speedtesting, parallellslalåm, self-timer, kuler m.m", "Assets/Loypekart/loypekartVemdalen.PNG");
+                            break;
+                        case "Sälen":
+                            slopeInformation = new SlopeInformation("Sälen", "36 heiser", "64 bakker", "Terrengparker for alle nivåer",
+                       "2 barneområder", "Arena for cross, speedtesting, parallellslalåm m.m", "Assets/Loypekart/loypekartSalen.PNG");
+                            break;
+                        case "Åre":
+                            slopeInformation = new SlopeInformation("Åre", "46 heiser", "120 bakker", "Terrengparker for alle nivåer",
+                      "1 barneområder", "Arena for cross, speedtesting, parallellslalåm, kuler m.m", "Assets/Loypekart/loypekartAare.PNG");
+                            break;
+                    }
                 }
-                
                 this.DefaultViewModel["SlopeInformation"] = slopeInformation;
             }
-
-            /*tbName.Text = slopeInformation.DestinationName;
-            tbNumberOfLifts.Text = slopeInformation.NumberOfLifts;
-            tbNumberOfSlopes.Text = slopeInformation.NumberOfSlopes;
-            tbNumberOfParks.Text = slopeInformation.NumberOfParks;
-            tbChildrenAreas.Text = slopeInformation.ChildrenArea;
-            tbOtherInformation.Text = slopeInformation.OtherInformation;*/
         }
 
         /// <summary>

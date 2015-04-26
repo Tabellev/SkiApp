@@ -29,7 +29,6 @@ namespace SkiAppClient
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         private bool hasLogedOn = false;
-        //private SkiAppClient.LogOnPage.NavigationParameter navigationParameter;
         private NavigationParameters navigationParameter;
         private User user;
         private UserText createUser;
@@ -68,6 +67,11 @@ namespace SkiAppClient
             Window.Current.SizeChanged -= Window_SizeChanged;
         }
 
+        /// <summary>
+        /// Handles the LoadState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="LoadStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
@@ -88,6 +92,7 @@ namespace SkiAppClient
             {
                 navigationParameter = (NavigationParameters)e.NavigationParameter;
                 hasLogedOn = navigationParameter.LoggedOn;
+                
                 if (navigationParameter.LoggedOnUser != null)
                 {
                     user = navigationParameter.LoggedOnUser;
@@ -121,12 +126,7 @@ namespace SkiAppClient
                
                 if (!this.UsingLogicalPageNavigation() && this.itemsViewSource.View != null)
                 {
-                    //this.itemListView.SelectedItem = null;
                 }
-            }
-            else
-            {
-                //this.itemListView.SelectedItem = null;
             }
         }
 
@@ -179,7 +179,6 @@ namespace SkiAppClient
         /// <param name="sender">The GridView displaying the selected item.</param>
         /// <param name="e">Event data that describes how the selection was changed.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        //Kan hende jeg skal bruke de senere
         private void  itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.itemListView.SelectedItem != null)
@@ -216,6 +215,10 @@ namespace SkiAppClient
         }
 
 
+        /// <summary>
+        /// Determines whether this instance [can go back].
+        /// </summary>
+        /// <returns></returns>
         private bool CanGoBack()
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
@@ -224,22 +227,25 @@ namespace SkiAppClient
             }
             else
             {
+                this.itemListView.SelectedItem = null;
                 return this.navigationHelper.CanGoBack();
             }
         }
+       
         private void GoBack()
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
             {
-                //this.itemListView.SelectedItem = null;
+                this.itemListView.SelectedItem = null;
             }
             else
             {
-                //this.itemListView.SelectedItem = null;
+                this.itemListView.SelectedItem = null;
                 this.navigationHelper.GoBack();
             }
         }
 
+        
         private void InvalidateVisualState()
         {
             var visualState = DetermineVisualState();
@@ -269,13 +275,16 @@ namespace SkiAppClient
 
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
+        /// Page specific logic should be placed in event handlers for the
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState" />
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
+        /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -284,6 +293,10 @@ namespace SkiAppClient
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);
@@ -291,6 +304,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the Button control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (hasLogedOn)
@@ -308,6 +326,11 @@ namespace SkiAppClient
             } 
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void StartPage_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?" );
@@ -319,10 +342,13 @@ namespace SkiAppClient
             await md.ShowAsync();
         }
 
+        /// <summary>
+        /// Oks the BTN click.
+        /// </summary>
+        /// <param name="command">The command.</param>
         private void OkBtnClick(IUICommand command)
         {
             this.Frame.Navigate(typeof(ItemsPage));
         }
     }
-
 }

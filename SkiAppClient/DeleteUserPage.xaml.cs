@@ -113,7 +113,7 @@ namespace SkiAppClient
             var givenPassword = password.Password;
             User currentUser = null;
 
-            if (users != null)
+            if (users != null && users.Count != 0)
             {
                 foreach (var user in users)
                 {

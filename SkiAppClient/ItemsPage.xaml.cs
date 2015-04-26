@@ -30,21 +30,12 @@ namespace SkiAppClient
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private User user;
-       
 
-        /// <summary>
-        /// NavigationHelper is used on each page to aid in navigation and 
-        /// process lifetime management
-        /// </summary>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
-        /// <summary>
-        /// This can be changed to a strongly typed view model.
-        /// </summary>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
@@ -71,35 +62,15 @@ namespace SkiAppClient
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DefaultViewModel["Destination"] = await SkiAppDataSource.GetDestinationAsync();
-            /*if (e.NavigationParameter != null)
-            {
-                user = (User)e.NavigationParameter;
-            }*/
         }
 
-        /// <summary>
-        /// Invoked when an item is clicked.
-        /// </summary>
-        /// <param name="sender">The GridView (or ListView when the application is snapped)
-        /// displaying the item clicked.</param>
-        /// <param name="e">Event data that describes the item clicked.</param>
         void ItemGridView_DestinationClick(object sender, ItemClickEventArgs e)
         {
             var destination = (Destination)e.ClickedItem;
-            //destinationInfo.setDestination(destination);
             this.Frame.Navigate(typeof(InformationPage), destination);
         }
 
         #region NavigationHelper registration
-
-        /// The methods provided in this section are simply used to allow
-        /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
-        /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -115,15 +86,7 @@ namespace SkiAppClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (user != null)
-            {
-                this.Frame.Navigate(typeof(UserPage),user);
-            }
-            else
-            {
                 this.Frame.Navigate(typeof(UserPage));
-            }
-            
         }
     }
 }

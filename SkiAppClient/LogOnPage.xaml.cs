@@ -43,7 +43,7 @@ namespace SkiAppClient
 
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            isLogedOn = false;
+            //isLogedOn = false;
         }
 
         private async void LogOn_Click(object sender, RoutedEventArgs e)
@@ -91,15 +91,6 @@ namespace SkiAppClient
                     await md.ShowAsync();
                 }
             }
-        }
-
-
-        //Bruker en struct for å kunne sende med to verdier som navigationpatameter.
-        //Trenger ikke masse funksjonalitet, så derfor velger jeg en struct isteden for en klasse.
-        private struct NavigationParametesUserPage
-        {
-            
-
         }
 
         private void StartPage_Click(object sender, RoutedEventArgs e)
