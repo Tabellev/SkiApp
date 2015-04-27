@@ -99,8 +99,6 @@ namespace SkiAppClient.DataModel
 
         public string DestinationName { get; set; }
 
-        //public string DestinationUrl { get; set; }
-
         public string ImagePath { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

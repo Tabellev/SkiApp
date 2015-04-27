@@ -31,10 +31,6 @@ namespace SkiAppClient
         private bool hasLogedOn = false;
         private NavigationParameters navigationParameter;
         private User user;
-        private UserText createUser;
-        private UserText deleteUser;
-        private UserText changePassword;
-        private UserText skiDiary;
 
         /// <summary>
         /// Gets the default view model.
@@ -94,55 +90,39 @@ namespace SkiAppClient
         /// <param name="e">The <see cref="LoadStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
-            // Mulig jeg finner en bedre måte å gjøre det på etterhvert. Men måtte la det være sånn for å vise frem data nå.
-            this.itemListView.SelectedItem = null;
-            createUser = new UserText("Opprett bruker");
-            deleteUser = new UserText("Slett bruker");
-            changePassword = new UserText("Endre passord");
-            skiDiary = new UserText("Skidagbok");
-            var userInfo = new ObservableCollection<UserText>();
-            userInfo.Add(createUser);
-            userInfo.Add(changePassword);
-            userInfo.Add(deleteUser);
-            userInfo.Add(skiDiary);
+            var userInfo = CreateUserInfoText();
             try
             {
                 this.DefaultViewModel["UserChoice"] = userInfo;
             }
             catch (UnauthorizedAccessException)
             {
-                this.DefaultViewModel["UserChoice"] = null;
-                try
-                {
-                    MessageDialog md = new MessageDialog("Kan ikke vise valg for bruker. Sjekk internettkoblingen din og prøv på nytt!");
-                    md.ShowAsync();
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
-                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
-                }
+                MessageDialog md = new MessageDialog("Kan ikke vise valg for bruker. Sjekk internettkoblingen din og prøv på nytt!");
+                md.ShowAsync();
             }
             
             if (e.NavigationParameter != null)
             {
                 navigationParameter = (NavigationParameters)e.NavigationParameter;
-                hasLogedOn = navigationParameter.GetLoggedOn();
-                
-                if (navigationParameter.GetLoggedOnUser() != null)
+                SetLoggedInText(navigationParameter);
+            }
+        }
+
+        /// <summary>
+        /// Sets the text to "Ikke logget inn" or the username and button content to "Logg inn" or "Logg ut" .
+        /// </summary>
+        /// <param name="navigationParameters">The navigation parameters.</param>
+        public void SetLoggedInText(NavigationParameters navigationParameters)
+        {
+            hasLogedOn = navigationParameters.GetLoggedOn();
+
+            if (navigationParameters.GetLoggedOnUser() != null)
+            {
+                user = navigationParameters.GetLoggedOnUser();
+                if (hasLogedOn)
                 {
-                    user = navigationParameter.GetLoggedOnUser();
-                    if (hasLogedOn)
-                    {
-                        logInName.Text = "Brukernavn: " + user.UserName;
-                        logInButton.Content = "Logg ut";
-                    }
-                    else
-                    {
-                        logInButton.Content = "Logg inn";
-                        logInName.Text = "Ikke innlogget ";
-                    }
+                    logInName.Text = "Brukernavn: " + user.UserName;
+                    logInButton.Content = "Logg ut";
                 }
                 else
                 {
@@ -150,21 +130,24 @@ namespace SkiAppClient
                     logInName.Text = "Ikke innlogget ";
                 }
             }
-            else if (e.NavigationParameter == null)
-            {
-                hasLogedOn = false;
-                logInButton.Content = "Logg inn";
-                logInName.Text = "Ikke innlogget ";
-            }
-            
-            if (e.PageState == null)
-            {
-                this.itemListView.SelectedItem = null;
-               
-                if (!this.UsingLogicalPageNavigation() && this.itemsViewSource.View != null)
-                {
-                }
-            }
+        }
+
+        /// <summary>
+        /// Creates the user information text that is used as DefaultViewModel.
+        /// </summary>
+        /// <returns></returns>
+        private static ObservableCollection<UserText> CreateUserInfoText()
+        {
+            /*createUser = new UserText("Opprett bruker");
+            deleteUser = new UserText("Slett bruker");
+            changePassword = new UserText("Endre passord");
+            skiDiary = new UserText("Skidagbok");*/
+            var userInfo = new ObservableCollection<UserText>();
+            userInfo.Add(new UserText("Opprett bruker"));
+            userInfo.Add(new UserText("Slett bruker"));
+            userInfo.Add(new UserText("Endre passord"));
+            userInfo.Add( new UserText("Skidagbok"));
+            return userInfo;
         }
 
         /// <summary>
@@ -221,34 +204,48 @@ namespace SkiAppClient
             if (this.itemListView.SelectedItem != null)
             {
                 var selected = (UserText)this.itemListView.SelectedItem;
-                var selectedType = selected.Information;
-                
-                if (selectedType.Equals(createUser.Information))
-                {
-                    this.Frame.Navigate(typeof(CreateUserPage));
-                }
-                else if(selectedType.Equals(changePassword.Information))
-                {
-                    this.Frame.Navigate(typeof(ChangePasswordPage));
-                }
-                else if (selectedType.Equals(deleteUser.Information))
-                {
-                    this.Frame.Navigate(typeof(DeleteUserPage));
-                }
-                else if (selectedType.Equals(skiDiary.Information))
-                {
-                    if (user != null)
-                    {
-                        this.Frame.Navigate(typeof(SkiDayPage), user);
-                    }
-                    else
-                    {
-                        tbWarning.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    } 
-                }
+                SelectPage(selected);
             }
             
             if (this.UsingLogicalPageNavigation()) this.InvalidateVisualState();
+        }
+
+        /// <summary>
+        /// Navigates to the selected the page.
+        /// </summary>
+        /// <param name="selected">The selected.</param>
+        private void SelectPage(UserText selected)
+        {
+            switch (selected.Information)
+            {
+                case "Opprett bruker":
+                    this.Frame.Navigate(typeof(CreateUserPage));
+                    break;
+                case "Endre passord":
+                    this.Frame.Navigate(typeof(ChangePasswordPage));
+                    break;
+                case "Slett bruker":
+                    this.Frame.Navigate(typeof(DeleteUserPage));
+                    break;
+                case "Skidagbok":
+                    CheckUserBeforeNavigate();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the user is logged on before navigating to SkiDayPage if logged on. If not gives a message to the user that he must logg on first.
+        /// </summary>
+        public void CheckUserBeforeNavigate()
+        {
+            if (user != null)
+            {
+                this.Frame.Navigate(typeof(SkiDayPage), user);
+            }
+            else
+            {
+                tbWarning.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
         }
 
 
@@ -287,7 +284,7 @@ namespace SkiAppClient
 
 
         /// <summary>
-        /// Invalidates the state of the visual.
+        /// Sets the new visual state.
         /// </summary>
         private void InvalidateVisualState()
         {
@@ -387,7 +384,7 @@ namespace SkiAppClient
         }
 
         /// <summary>
-        /// Oks the bacl to start page button click.
+        /// Oks the back to start page button click.
         /// </summary>
         /// <param name="command">The command.</param>
         private void OkBtnClick(IUICommand command)

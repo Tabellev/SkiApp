@@ -39,6 +39,10 @@ namespace SkiAppClient
         private DestinationInfoType openingHours;
         private DestinationInfoType prices;
         private DestinationInfoType slopeInformation;
+        private const string oh = "Åpningstider";
+        private const string price = "Priser";
+        private const string slopeInf = "Løypeinformasjon";
+
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -105,8 +109,6 @@ namespace SkiAppClient
         /// session.  The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
-
             if (e.NavigationParameter != null)
             {
                 destination = (Destination)e.NavigationParameter;
@@ -184,22 +186,30 @@ namespace SkiAppClient
              if (this.itemListView.SelectedItem != null)
              {
                 var selected = (DestinationInfoType)this.itemListView.SelectedItem;
-                var selectedType = selected.InfoType;
-                if (selectedType.Equals(openingHours.InfoType))
-                {
-                    this.Frame.Navigate(typeof(OpeningHoursPage), destination);
-                }
-                else if (selectedType.Equals(prices.InfoType))
-                {
-                    this.Frame.Navigate(typeof(PricePage), destination);
-                }
-                else if (selectedType.Equals(slopeInformation.InfoType))
-                {
-                    this.Frame.Navigate(typeof(SlopeInformationPage), destination);
-                }
+                SelectPageToShow(selected);
              }
 
              if (this.UsingLogicalPageNavigation()) this.InvalidateVisualState();
+        }
+
+        /// <summary>
+        /// Selects the page to show.
+        /// </summary>
+        /// <param name="destinationInfoType">Type of the destination information.</param>
+        private void SelectPageToShow(DestinationInfoType destinationInfoType)
+        {
+            switch (destinationInfoType.InfoType)
+            {
+                case oh:
+                    this.Frame.Navigate(typeof(OpeningHoursPage), destination);
+                    break;
+                case price:
+                    this.Frame.Navigate(typeof(PricePage), destination);
+                    break;
+                case slopeInf:
+                    this.Frame.Navigate(typeof(SlopeInformationPage), destination);
+                    break;
+            }
         }
 
         /// <summary>

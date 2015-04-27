@@ -70,7 +70,7 @@ namespace SkiAppDataService.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DataException)
             {
                 if (!DestinationExists(id))
                 {
@@ -78,9 +78,21 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
+            /*catch(NotSupportedException)
+            {
+                return BadRequest();
+            }
+            catch (ObjectDisposedException)
+            {
+                return BadRequest();
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest();
+            }*/
 
             return StatusCode(HttpStatusCode.NoContent);
         }
