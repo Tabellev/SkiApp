@@ -17,12 +17,21 @@ namespace SkiAppDataService.Controllers
         private SkiEntities db = new SkiEntities();
 
         // GET: api/Destinations
+        /// <summary>
+        /// Gets the destinations.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Destination> GetDestinations()
         {
             return db.Destinations;
         }
 
         // GET: api/Destinations/5
+        /// <summary>
+        /// Gets a destination.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Destination))]
         public IHttpActionResult GetDestination(int id)
         {
@@ -36,6 +45,12 @@ namespace SkiAppDataService.Controllers
         }
 
         // PUT: api/Destinations/5
+        /// <summary>
+        /// Changes/updates a destination.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="destination">The destination.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDestination(int id, Destination destination)
         {
@@ -71,6 +86,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // POST: api/Destinations
+        /// <summary>
+        /// Saves a new destination.
+        /// </summary>
+        /// <param name="destination">The destination.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Destination))]
         public IHttpActionResult PostDestination(Destination destination)
         {
@@ -86,6 +106,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // DELETE: api/Destinations/5
+        /// <summary>
+        /// Deletes a destination.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Destination))]
         public IHttpActionResult DeleteDestination(int id)
         {
@@ -101,6 +126,10 @@ namespace SkiAppDataService.Controllers
             return Ok(destination);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -110,6 +139,11 @@ namespace SkiAppDataService.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a destination exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool DestinationExists(int id)
         {
             return db.Destinations.Count(e => e.DestinationId == id) > 0;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -46,6 +47,9 @@ namespace SkiAppClient
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlopeInformationPage"/> class.
+        /// </summary>
         public SlopeInformationPage()
         {
             this.InitializeComponent();
@@ -97,7 +101,24 @@ namespace SkiAppClient
                             break;
                     }
                 }
-                this.DefaultViewModel["SlopeInformation"] = slopeInformation;
+                try
+                {
+                    this.DefaultViewModel["SlopeInformation"] = slopeInformation;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    this.DefaultViewModel["SlopeInformation"] = null;
+                    try
+                    {
+                        MessageDialog md = new MessageDialog("Får ikke vist løypeinformasjon. Sjekk internettkoblingen din og prøv på nytt!");
+                        md.ShowAsync();
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                        //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                    }
+                }
             }
         }
 
@@ -136,6 +157,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));

@@ -17,6 +17,10 @@ namespace SkiAppDataService.Controllers
         private SkiEntities db = new SkiEntities();
 
         // GET: api/Lifts
+        /// <summary>
+        /// Gets the lifts.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Lift> GetLifts()
         {
             return db.Lifts
@@ -24,6 +28,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // GET: api/Lifts/5
+        /// <summary>
+        /// Gets a lift.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Lift))]
         public IHttpActionResult GetLift(int id)
         {
@@ -38,6 +47,12 @@ namespace SkiAppDataService.Controllers
         }
 
         // PUT: api/Lifts/5
+        /// <summary>
+        /// Changes/updates a lift.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="lift">The lift.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLift(int id, Lift lift)
         {
@@ -73,6 +88,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // POST: api/Lifts
+        /// <summary>
+        /// Saves a new lift.
+        /// </summary>
+        /// <param name="lift">The lift.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Lift))]
         public IHttpActionResult PostLift(Lift lift)
         {
@@ -93,6 +113,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // DELETE: api/Lifts/5
+        /// <summary>
+        /// Deletes a lift.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Lift))]
         public IHttpActionResult DeleteLift(int id)
         {
@@ -108,6 +133,10 @@ namespace SkiAppDataService.Controllers
             return Ok(lift);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -117,6 +146,11 @@ namespace SkiAppDataService.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a lift exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool LiftExists(int id)
         {
             return db.Lifts.Count(e => e.LiftId == id) > 0;

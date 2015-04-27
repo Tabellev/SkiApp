@@ -17,12 +17,21 @@ namespace SkiAppDataService.Controllers
         private SkiEntities db = new SkiEntities();
 
         // GET: api/OpeningHours
+        /// <summary>
+        /// Gets the opening hours.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<OpeningHours> GetOpeningHours()
         {
             return db.OpeningHours;
         }
 
         // GET: api/OpeningHours/5
+        /// <summary>
+        /// Gets a opening hours.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(OpeningHours))]
         public IHttpActionResult GetOpeningHours(int id)
         {
@@ -36,6 +45,12 @@ namespace SkiAppDataService.Controllers
         }
 
         // PUT: api/OpeningHours/5
+        /// <summary>
+        /// Changes/updates a opening hours.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="openingHours">The opening hours.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOpeningHours(int id, OpeningHours openingHours)
         {
@@ -71,6 +86,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // POST: api/OpeningHours
+        /// <summary>
+        /// Saves a new opening hours.
+        /// </summary>
+        /// <param name="openingHours">The opening hours.</param>
+        /// <returns></returns>
         [ResponseType(typeof(OpeningHours))]
         public IHttpActionResult PostOpeningHours(OpeningHours openingHours)
         {
@@ -86,6 +106,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // DELETE: api/OpeningHours/5
+        /// <summary>
+        /// Deletes a opening hours.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(OpeningHours))]
         public IHttpActionResult DeleteOpeningHours(int id)
         {
@@ -101,6 +126,10 @@ namespace SkiAppDataService.Controllers
             return Ok(openingHours);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -110,6 +139,11 @@ namespace SkiAppDataService.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a opening hours exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool OpeningHoursExists(int id)
         {
             return db.OpeningHours.Count(e => e.OpeningHoursId == id) > 0;

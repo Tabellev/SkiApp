@@ -29,7 +29,6 @@ namespace SkiAppClient
     /// </summary>
     public sealed partial class CreateUserPage : Page
     {
-
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -51,6 +50,9 @@ namespace SkiAppClient
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateUserPage"/> class.
+        /// </summary>
         public CreateUserPage()
         {
             this.InitializeComponent();
@@ -110,15 +112,20 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the RegisterUser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void RegisterUser_Click(object sender, RoutedEventArgs e)
         {
             string givenUserName = userName.Text;
             string givenPassword = password.Password;
             string givenRepeatPassword = repeatPassword.Password;
-            var isUniqueUserName = false;
+            var isUniqueUserName = true;
             var users = await SkiAppDataSource.GetUsersAsync();
 
-            if (users != null && users.Count != 0)
+            if (users != null)
             {
                 foreach (var user in users)
                 {
@@ -137,36 +144,54 @@ namespace SkiAppClient
                         isUniqueUserName = true;
                     }
                 }
-            }
-           
-            if (givenUserName.Equals("") || givenPassword.Equals("") || givenRepeatPassword.Equals(""))
-            {
-                MessageDialog md = new MessageDialog("Alle felt må fylles ut!");
-                await md.ShowAsync();
-            }
-            else
-            {
-                if (givenPassword.Equals(givenRepeatPassword) && isUniqueUserName)
-                {
-                    await SkiAppDataSource.AddUserAsync(givenUserName, givenPassword);
-                    userName.Text = String.Empty;
-                    password.Password = String.Empty;
-                    repeatPassword.Password = String.Empty;
-                    MessageDialog md = new MessageDialog("Bruker " + givenUserName + " er opprettet!");
-                    await md.ShowAsync();
 
-                    this.Frame.Navigate(typeof(UserPage));
+                if (givenUserName.Equals("") || givenPassword.Equals("") || givenRepeatPassword.Equals(""))
+                {
+                    MessageDialog md = new MessageDialog("Alle felt må fylles ut!");
+                    await md.ShowAsync();
                 }
                 else
                 {
-                    MessageDialog md = new MessageDialog("Passord er ulike! Venligst fyll ut på nytt.");
+                    if (givenPassword.Equals(givenRepeatPassword) && isUniqueUserName)
+                    {
+                        await SkiAppDataSource.AddUserAsync(givenUserName, givenPassword);
+                        userName.Text = String.Empty;
+                        password.Password = String.Empty;
+                        repeatPassword.Password = String.Empty;
+                        MessageDialog md = new MessageDialog("Bruker " + givenUserName + " er opprettet!");
+                        await md.ShowAsync();
+
+                        this.Frame.Navigate(typeof(UserPage));
+                    }
+                    else
+                    {
+                        MessageDialog md = new MessageDialog("Passord er ulike! Venligst fyll ut på nytt.");
+                        await md.ShowAsync();
+                        password.Password = String.Empty;
+                        repeatPassword.Password = String.Empty;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    MessageDialog md = new MessageDialog("Bruker ble ikke opprett. Sjekk internettkoblingen din og prøv på nytt!");
                     await md.ShowAsync();
-                    password.Password = String.Empty;
-                    repeatPassword.Password = String.Empty;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
                 }
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));

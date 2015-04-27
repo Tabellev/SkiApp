@@ -17,6 +17,10 @@ namespace SkiAppDataService.Controllers
         private SkiEntities db = new SkiEntities();
 
         // GET: api/Slopes
+        /// <summary>
+        /// Gets the slopes.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Slope> GetSlopes()
         {
             return db.Slopes
@@ -24,6 +28,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // GET: api/Slopes/5
+        /// <summary>
+        /// Gets a slope.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Slope))]
         public IHttpActionResult GetSlope(int id)
         {
@@ -37,6 +46,12 @@ namespace SkiAppDataService.Controllers
         }
 
         // PUT: api/Slopes/5
+        /// <summary>
+        /// Changes/updates a slope.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="slope">The slope.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSlope(int id, Slope slope)
         {
@@ -72,6 +87,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // POST: api/Slopes
+        /// <summary>
+        /// Saves a new slope.
+        /// </summary>
+        /// <param name="slope">The slope.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Slope))]
         public IHttpActionResult PostSlope(Slope slope)
         {
@@ -92,6 +112,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // DELETE: api/Slopes/5
+        /// <summary>
+        /// Deletes a slope.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(Slope))]
         public IHttpActionResult DeleteSlope(int id)
         {
@@ -107,6 +132,10 @@ namespace SkiAppDataService.Controllers
             return Ok(slope);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -116,6 +145,11 @@ namespace SkiAppDataService.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a slope exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool SlopeExists(int id)
         {
             return db.Slopes.Count(e => e.SlopeId == id) > 0;

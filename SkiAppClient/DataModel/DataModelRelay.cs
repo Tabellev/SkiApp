@@ -101,9 +101,7 @@ namespace SkiAppClient.DataModel
 
         //public string DestinationUrl { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Img")]
-        //Short for image
-        public string ImgPath { get; set; }
+        public string ImagePath { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //Må ha med setter eller så får jeg feilmelding.
@@ -132,7 +130,6 @@ namespace SkiAppClient.DataModel
 
         public string ToDate { get; set; }
 
-        //public enum Days { Man, Tirs, Ons, Tors, Fre, Lør, Søn };
         public string FromClockToClockWeek { get; set; }
         public string FromClockToClockSat { get; set; }
         public string FromClockToClockSun { get; set; }
@@ -172,23 +169,4 @@ namespace SkiAppClient.DataModel
         public string ImagePath { get; set; }
 
     }
-
-    /*public class Price
-    {
-        public Price() { }
-
-        public int PriceId { get; set; }
-
-        public string Duration { get; set; }
-
-        public int PassPriceAdult { get; set; }
-        public int PassPriceTeenSenior { get; set; }
-
-        public const string Adult = "Voksen";
-        public const string TeenSenior = "Ungdom/Senior";
-        public const string Children = "Barn";
-        public const string PassPriceChildren = "Gratis";
-
-       
-    }*/
 }

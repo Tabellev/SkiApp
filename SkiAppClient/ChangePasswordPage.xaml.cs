@@ -47,6 +47,9 @@ namespace SkiAppClient
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChangePasswordPage"/> class.
+        /// </summary>
         public ChangePasswordPage()
         {
             this.InitializeComponent();
@@ -106,6 +109,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the ChangePassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
             var users = await SkiAppDataSource.GetUsersAsync();
@@ -123,28 +131,36 @@ namespace SkiAppClient
                         currentUser = user;
                     }
                 }
-            }
-           
-            if (currentUser != null)
-            {
-                if (givenPassword.Equals(currentUser.Password))
+
+                if (currentUser != null)
                 {
-                    if (!givenNewPassword.Equals(""))
+                    if (givenPassword.Equals(currentUser.Password))
                     {
-                        await SkiAppDataSource.ChangePasswordAsync(currentUser, givenNewPassword);
-                        MessageDialog md = new MessageDialog("Passord endret for " + givenUserName);
-                        await md.ShowAsync();
-                        this.Frame.Navigate(typeof(UserPage));
+                        if (!givenNewPassword.Equals(""))
+                        {
+                            await SkiAppDataSource.ChangePasswordAsync(currentUser, givenNewPassword);
+                            MessageDialog md = new MessageDialog("Passord endret for " + givenUserName);
+                            await md.ShowAsync();
+                            this.Frame.Navigate(typeof(UserPage));
+                        }
+                        else
+                        {
+                            MessageDialog md = new MessageDialog("Nytt passord må fylles ut!");
+                            await md.ShowAsync();
+                        }
                     }
                     else
                     {
-                        MessageDialog md = new MessageDialog("Nytt passord må fylles ut!");
+                        MessageDialog md = new MessageDialog("Feil brukernavn eller passord!");
                         await md.ShowAsync();
+                        userName.Text = String.Empty;
+                        oldPassword.Password = String.Empty;
+                        newPassword.Password = String.Empty;
                     }
                 }
                 else
                 {
-                    MessageDialog md = new MessageDialog("Feil brukernavn eller passord!");
+                    MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
                     await md.ShowAsync();
                     userName.Text = String.Empty;
                     oldPassword.Password = String.Empty;
@@ -153,14 +169,24 @@ namespace SkiAppClient
             }
             else
             {
-                MessageDialog md = new MessageDialog("Feil brukernavn eller passord! Prøv på nytt!");
-                await md.ShowAsync();
-                userName.Text = String.Empty;
-                oldPassword.Password = String.Empty;
-                newPassword.Password = String.Empty;
+                try
+                {
+                    MessageDialog md = new MessageDialog("Passordet ble ikke endret. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                }
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
          private async void StartPage_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?" );
@@ -172,6 +198,10 @@ namespace SkiAppClient
             await md.ShowAsync();
         }
 
+         /// <summary>
+         /// OKs the go to start page click.
+         /// </summary>
+         /// <param name="command">The command.</param>
         private void OkBtnClick(IUICommand command)
         {
             this.Frame.Navigate(typeof(ItemsPage));

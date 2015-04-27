@@ -28,7 +28,10 @@ namespace SkiAppClient
         private NavigationHelper navigationHelper;
         private string givenUserName;
         private bool isLogedOn;
-       
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogOnPage"/> class.
+        /// </summary>
         public LogOnPage()
         {
             this.InitializeComponent();
@@ -36,17 +39,32 @@ namespace SkiAppClient
             this.navigationHelper.LoadState += navigationHelper_LoadState;
         }
 
+        /// <summary>
+        /// Gets the navigation helper.
+        /// </summary>
+        /// <value>
+        /// The navigation helper.
+        /// </value>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
+        /// <summary>
+        /// Handles the LoadState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="LoadStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            //isLogedOn = false;
         }
 
-        private async void LogOn_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Handles the Click event of the LoggOn control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private async void LoggOn_Click(object sender, RoutedEventArgs e)
         {
             var users = await SkiAppDataSource.GetUsersAsync();
             givenUserName = userName.Text;
@@ -91,18 +109,39 @@ namespace SkiAppClient
                     await md.ShowAsync();
                 }
             }
+            else
+            {
+                try
+                {
+                    MessageDialog md = new MessageDialog("Du ble ikke logget inn. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                }
+            }
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));
         }
 
+        /// <summary>
+        /// Handles the Click event of the Cancel control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(UserPage));
         }
-        
-
     }
 }

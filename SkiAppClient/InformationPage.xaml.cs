@@ -57,6 +57,9 @@ namespace SkiAppClient
             get { return this.navigationHelper; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationPage"/> class.
+        /// </summary>
         public InformationPage()
         {
             //Dårlig Maintainability Index, Class Coupling og Lines of code. Dette er autogenerert kode, så regner med at det er ok?
@@ -77,6 +80,11 @@ namespace SkiAppClient
             this.InvalidateVisualState();
         }
 
+        /// <summary>
+        /// Handles the Unloaded event of the SplitPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void SplitPage_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Window_SizeChanged;
@@ -98,12 +106,12 @@ namespace SkiAppClient
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // Dette var eneste måten jeg fikk til å binde til det jeg skulle. Er det samme som alltid skal stå der. Ble veldig dårlig på Maintainability Index og lines of code.
-            // Mulig jeg finner en bedre måte å gjøre det på etterhvert. Men måtte la det være sånn for å vise frem data nå.
 
             if (e.NavigationParameter != null)
             {
                 destination = (Destination)e.NavigationParameter;
             }
+
             openingHours = new DestinationInfoType("Åpningstider");
             prices = new DestinationInfoType("Priser");
             slopeInformation = new DestinationInfoType("Løypeinformasjon");
@@ -111,7 +119,15 @@ namespace SkiAppClient
             destinationInformation.Add(openingHours);
             destinationInformation.Add(prices);
             destinationInformation.Add(slopeInformation);
-            this.DefaultViewModel["DestinationInfoType"] = destinationInformation;
+
+            try
+            {
+                this.DefaultViewModel["DestinationInfoType"] = destinationInformation;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                this.DefaultViewModel["DestinationInfoType"] = null;
+            }
         }
 
 
@@ -163,8 +179,6 @@ namespace SkiAppClient
         /// </summary>
         /// <param name="sender">The GridView displaying the selected item.</param>
         /// <param name="e">Event data that describes how the selection was changed.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        //Kan hende jeg skal bruke de senere
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
              if (this.itemListView.SelectedItem != null)
@@ -188,6 +202,10 @@ namespace SkiAppClient
              if (this.UsingLogicalPageNavigation()) this.InvalidateVisualState();
         }
 
+        /// <summary>
+        /// Determines whether this instance [can go back].
+        /// </summary>
+        /// <returns></returns>
         private bool CanGoBack()
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
@@ -200,6 +218,9 @@ namespace SkiAppClient
                 return this.navigationHelper.CanGoBack();
             }
         }
+        /// <summary>
+        /// Goes back
+        /// </summary>
         private void GoBack()
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
@@ -213,6 +234,9 @@ namespace SkiAppClient
             }
         }
 
+        /// <summary>
+        /// Invalidates the state of the visual.
+        /// </summary>
         private void InvalidateVisualState()
         {
             var visualState = DetermineVisualState();
@@ -242,13 +266,16 @@ namespace SkiAppClient
 
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
+        /// Page specific logic should be placed in event handlers for the
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState" />
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
+        /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -256,6 +283,10 @@ namespace SkiAppClient
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.itemListView.SelectedItem = null;
@@ -264,6 +295,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));

@@ -17,12 +17,21 @@ namespace SkiAppDataService.Controllers
         private SkiEntities db = new SkiEntities();
 
         // GET: api/SkiDays
+        /// <summary>
+        /// Gets the skidays.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<SkiDay> GetSkidays()
         {
             return db.SkiDays.Include(s => s.Lifts).Include(s => s.Slopes).Include(s => s.SkiDayUser);
         }
 
         // GET: api/SkiDays/5
+        /// <summary>
+        /// Gets a ski day.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(SkiDay))]
         public IHttpActionResult GetSkiDay(int id)
         {
@@ -36,6 +45,12 @@ namespace SkiAppDataService.Controllers
         }
 
         // PUT: api/SkiDays/5
+        /// <summary>
+        /// Changes/updates a ski day.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="skiDay">The ski day.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSkiDay(int id, SkiDay skiDay)
         {
@@ -71,6 +86,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // POST: api/SkiDays
+        /// <summary>
+        /// Saves a new ski day.
+        /// </summary>
+        /// <param name="skiDay">The ski day.</param>
+        /// <returns></returns>
         [ResponseType(typeof(SkiDay))]
         public IHttpActionResult PostSkiDay(SkiDay skiDay)
         {
@@ -111,6 +131,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // DELETE: api/SkiDays/5
+        /// <summary>
+        /// Deletes a ski day.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(SkiDay))]
         public IHttpActionResult DeleteSkiDay(int id)
         {
@@ -126,6 +151,10 @@ namespace SkiAppDataService.Controllers
             return Ok(skiDay);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -135,6 +164,11 @@ namespace SkiAppDataService.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a ski day exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool SkiDayExists(int id)
         {
             return db.SkiDays.Count(e => e.SkiDayId == id) > 0;

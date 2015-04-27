@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -20,23 +21,39 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SkiAppClient
 {
+    
     public sealed partial class OpeningHoursPage : Page
     {
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
+        /// <summary>
+        /// Gets the default view model.
+        /// </summary>
+        /// <value>
+        /// The default view model.
+        /// </value>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
 
+        /// <summary>
+        /// Gets the navigation helper.
+        /// </summary>
+        /// <value>
+        /// The navigation helper.
+        /// </value>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpeningHoursPage"/> class.
+        /// </summary>
         public OpeningHoursPage()
         {
             this.InitializeComponent();
@@ -45,22 +62,54 @@ namespace SkiAppClient
             this.navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
+        /// <summary>
+        /// Handles the LoadState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="LoadStateEventArgs"/> instance containing the event data.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             ObservableCollection<OpeningHours> openingHour = new ObservableCollection<OpeningHours>();
             var destination = (Destination)e.NavigationParameter;
             var openingHours = await SkiAppDataSource.GetOpeningHoursAsync();
-            if(destination != null && openingHours != null)
-            foreach (var oh in openingHours)
+            if (destination != null && openingHours != null)
             {
-                if (oh.OpeningHoursId == destination.DestinationId)
+                foreach (var oh in openingHours)
                 {
-                    openingHour.Add(oh);
+                    if (oh.OpeningHoursId == destination.DestinationId)
+                    {
+                        openingHour.Add(oh);
+                    }
+                }
+                try
+                {
+                    this.DefaultViewModel["OpeningHours"] = openingHour;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    this.DefaultViewModel["OpeningHours"] = null;
                 }
             }
-            this.DefaultViewModel["OpeningHours"] = openingHour; 
+            else
+            {
+                try
+                {
+                    MessageDialog md = new MessageDialog("Kan ikke hente åpningstider. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                }
+            }
         }
 
+        /// <summary>
+        /// Handles the SaveState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SaveStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }
@@ -88,6 +137,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));

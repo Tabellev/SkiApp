@@ -1,67 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 12.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
 <FxCopReport Version="12.0">
- <Targets>
-  <Target Name="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\bin\Debug\SkiAppClient.exe">
-   <Modules>
-    <Module Name="skiappclient.exe">
-     <Namespaces>
-      <Namespace Name="SkiAppClient">
-       <Types>
-        <Type Name="NavigationParameters" Kind="Struct" Accessibility="Public" ExternallyVisible="True">
-         <Messages>
-          <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Status="Active" Created="2015-04-26 20:37:08Z" FixCategory="NonBreaking">
-           <Issue Name="Equals" Certainty="75" Level="Warning">'NavigationParameters' should override Equals.</Issue>
-           <Issue Name="op_Equality" Certainty="75" Level="Warning">'NavigationParameters' should override the equality (==) and inequality (!=) operators.</Issue>
-          </Message>
-         </Messages>
-         <Members>
-          <Member Name="#LoggedOn" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-26 20:37:08Z" FixCategory="Breaking">
-             <Issue Certainty="90" Level="Error">Because field 'NavigationParameters.LoggedOn' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#LoggedOnUser" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2015-04-26 20:37:08Z" FixCategory="Breaking">
-             <Issue Certainty="90" Level="Error">Because field 'NavigationParameters.LoggedOnUser' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-       </Types>
-      </Namespace>
-     </Namespaces>
-    </Module>
-   </Modules>
-  </Target>
- </Targets>
- <Rules>
-  <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
-   <Name>Do not declare visible instance fields</Name>
-   <Description>Instance fields that are visible outside of the type that declares them, limit your ability to change the implementation details for those data items. Use properties instead. They do not compromise usability or performance and they do provide flexibility in that they conceal the implementation details of the underlying data.</Description>
-   <Resolution Name="Default">Because field {0} is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182141.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="90">Error</MessageLevel>
-   <File Name="designrules.dll" Version="12.0.0.0" />
-  </Rule>
-  <Rule TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815">
-   <Name>Override equals and operator equals on value types</Name>
-   <Description>The default System.ValueType implementation might not perform as well as a custom implementation.</Description>
-   <Resolution Name="Equals">{0} should override Equals.</Resolution>
-   <Resolution Name="op_Equality">{0} should override the equality (==) and inequality (!=) operators.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182276.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="75">Warning</MessageLevel>
-   <File Name="performancerules.dll" Version="12.0.0.0" />
-  </Rule>
- </Rules>
  <Localized>
   <String Key="Category">Category</String>
   <String Key="Certainty">Certainty</String>

@@ -106,6 +106,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the DeleteUser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
             var users = await SkiAppDataSource.GetUsersAsync();
@@ -157,18 +162,44 @@ namespace SkiAppClient
                     await md.ShowAsync();
                 }
             }
+            else
+            {
+                try
+                {
+                    MessageDialog md = new MessageDialog("Bruker ble ikke slettet. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                }
+            }
         }
 
+        /// <summary>
+        ///Cancels the delete user click.
+        /// </summary>
+        /// <param name="command">The command.</param>
         private void CancelDeleteBtnClick(IUICommand command)
         {
             deleteUserOk = false;
         }
 
+        /// <summary>
+        /// Oks the delete user click.
+        /// </summary>
+        /// <param name="command">The command.</param>
         private void DeletBtnClick(IUICommand command)
         {
             deleteUserOk = true;
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));

@@ -17,11 +17,7 @@ namespace skiAppDatamodel
          [StringLength(50)]
         public string DestinationName { get; set; }
 
-        //public string DestinationUrl { get; set; }
-
-         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Img"), Required]
-        //Short for Image
-        public string ImgPath { get; set; }
+        public string ImagePath { get; set; }
 
          [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly"), Required]
         //Får feilmelding hvis jeg fjerner setter.

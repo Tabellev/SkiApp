@@ -52,7 +52,7 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left" Width="250" Height="250">
                         <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="{Binding ImgPath}" Stretch="UniformToFill"/>
+                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill"/>
                         </Border>
                         <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
                             <TextBlock Text="{Binding DestinationName}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}"  Height="40" Margin="15,20,15,0" FontWeight="SemiBold" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
@@ -62,7 +62,7 @@
             </GridView.ItemTemplate>
         </GridView>
         
-          <Button x:ConnectionId='2' Content="Bruker" HorizontalAlignment="Left" Margin="908,76,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250" Height="250"                      Background="#FFEC0ED8" Foreground="Black" FontSize="50">
+          <Button x:ConnectionId='2' Content="Bruker" HorizontalAlignment="Left" Margin="908,76,0,0" Grid.Row="1" VerticalAlignment="Top" Width="250" Height="250"                    Background="#FFEC0ED8" Foreground="Black" FontSize="50">
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="Assets/BackgroundPictures/userIcon.png"/>

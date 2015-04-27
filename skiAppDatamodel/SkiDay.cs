@@ -22,7 +22,7 @@ namespace skiAppDatamodel
        [StringLength(50)] 
        public string Destination { get; set; }
 
-       [StringLength(10)] 
+       [StringLength(20)] 
          public string Date { get; set; }
 
         [StringLength(5)] 

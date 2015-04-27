@@ -3,6 +3,7 @@ using SkiAppClient.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -54,6 +55,9 @@ namespace SkiAppClient
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkiDayPage"/> class.
+        /// </summary>
         public SkiDayPage()
         {
             this.InitializeComponent();
@@ -84,7 +88,7 @@ namespace SkiAppClient
                 user = (User)e.NavigationParameter;
             }
 
-            destinations = await SkiAppDataSource.GetDestinationAsync();
+            destinations = await SkiAppDataSource.GetDestinationsAsync();
             if (destinations != null && destinations.Count != 0)
             {
                 foreach (var d in destinations)
@@ -92,7 +96,11 @@ namespace SkiAppClient
                     cbDestinations.Items.Add(d.DestinationName);
                 }
             }
-            
+            else
+            {
+                MessageDialog md = new MessageDialog("Skidag kan ikke opprettes. Sjekk internettkoblingen din og prøv på nytt!");
+                await md.ShowAsync();
+            }
         }
 
         /// <summary>
@@ -130,29 +138,51 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the SaveSkiDay control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void SaveSkiDay_Click(object sender, RoutedEventArgs e)
         {
             int totalTrips;
-            var date = "";
             var destinationName = "";
             if (cbDestinations.SelectedItem != null)
             {
                destinationName = cbDestinations.SelectedItem.ToString();
             }
 
-            if (tbDate.Text.Equals(""))
+            var dayOfWeek = "";
+
+            switch (dpDate.Date.DayOfWeek)
             {
-                MessageDialog message = new MessageDialog("Datofeltet må fylles ut!");
-                await message.ShowAsync();
-                return;
+                case DayOfWeek.Monday:
+                    dayOfWeek = NorwegianDayOfWeek.Mandag.ToString();
+                    break;
+                case DayOfWeek.Tuesday:
+                    dayOfWeek = NorwegianDayOfWeek.Tirsdag.ToString();
+                    break;
+                case DayOfWeek.Wednesday:
+                    dayOfWeek =NorwegianDayOfWeek.Onsdag.ToString();
+                    break;
+                case DayOfWeek.Thursday:
+                    dayOfWeek = NorwegianDayOfWeek.Torsdag.ToString();
+                    break;
+                case DayOfWeek.Friday:
+                    dayOfWeek = NorwegianDayOfWeek.Fredag.ToString();
+                    break;
+                case DayOfWeek.Saturday:
+                    dayOfWeek = NorwegianDayOfWeek.Lørdag.ToString();
+                    break;
+                case DayOfWeek.Sunday:
+                    dayOfWeek = NorwegianDayOfWeek.Søndag.ToString();
+                    break;
             }
-            else
-            {
-                date = tbDate.Text;
-            }
-          
-            var fromClock = tbFromClock.Text;
-            var toClock = tbToClock.Text;
+           
+            var date = dayOfWeek + " " + dpDate.Date.ToString("dd/MM-yyyy");
+            
+            var fromClock = tpFromClock.Time.ToString().Substring(0,5);
+            var toClock = tpToClock.Time.ToString().Substring(0,5);
             var equipment = tbEquipment.Text;
             if (tbTotalTrips.Text.Equals(""))
             {
@@ -200,14 +230,19 @@ namespace SkiAppClient
                     }
                 }
             }
-           
-           await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, destinationLifts, destinationSlopes);
-           MessageDialog md = new MessageDialog("Skidag lagret!");
-           await md.ShowAsync();
 
-           tbDate.Text = "";
-           tbFromClock.Text = "";
-           tbToClock.Text = "";
+            if (user != null)
+            {
+                await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, destinationLifts, destinationSlopes);
+                MessageDialog md = new MessageDialog("Skidag lagret!");
+                await md.ShowAsync();
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("Skidag ikke lagret. Prøv på nytt!!");
+                await md.ShowAsync();
+            }
+
            tbEquipment.Text = "";
            tbTotalTrips.Text = "";
            tbComment.Text = "";
@@ -216,11 +251,21 @@ namespace SkiAppClient
            cbChosenSlopes.Items.Clear();
         }
 
+        /// <summary>
+        /// Handles the Click event of the SeeHistory control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void SeeHistory_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(HistoryPage), user);
+                this.Frame.Navigate(typeof(HistoryPage), user);
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddLift control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void AddLift_Click(object sender, RoutedEventArgs e)
         {
             if (cbLifts.SelectedItem != null)
@@ -229,9 +274,15 @@ namespace SkiAppClient
                 liftNames.Add(lift);
                 cbChosenLifts.Items.Add(lift);
                 cbLifts.Items.Remove(lift);
+                cbChosenLifts.SelectedIndex = 0;
             }
        }
-            
+
+        /// <summary>
+        /// Handles the Click event of the AddSlope control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void AddSlope_Click(object sender, RoutedEventArgs e)
         {
             if (cbSlopes.SelectedItem != null)
@@ -240,46 +291,104 @@ namespace SkiAppClient
                 slopeNames.Add(slope);
                 cbChosenSlopes.Items.Add(slope);
                 cbSlopes.Items.Remove(slope);
+                cbChosenSlopes.SelectedIndex = 0;
             }
         }
 
+        /// <summary>
+        /// Handles the SelectionChanged event of the cbDestinations control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private async void cbDestinations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.cbLifts.Items.Clear();
             this.cbSlopes.Items.Clear();
             slopes = await SkiAppDataSource.GetSlopesAsync();
             lifts = await SkiAppDataSource.GetLiftsAsync();
+           
             if (cbDestinations.SelectedItem != null)
             {
                 var selectedDestination = (string)cbDestinations.SelectedItem.ToString();
                 if (destinations != null && destinations.Count != 0)
                 {
                     var chosenDestination = destinations.FirstOrDefault(i => i.DestinationName == selectedDestination);
-                    var destinationLifts = from lift in lifts
-                                           where lift.LiftDestination.DestinationId == chosenDestination.DestinationId
-                                           select lift.LiftName;
-                    if (destinationLifts != null)
+
+                    if (lifts != null && chosenDestination != null)
                     {
-                        foreach (var l in destinationLifts)
+                        var destinationLifts = from lift in lifts
+                                               where lift.LiftDestination.DestinationId == chosenDestination.DestinationId
+                                               select lift.LiftName;
+                        if (destinationLifts != null)
                         {
-                            cbLifts.Items.Add(l);
+                            foreach (var l in destinationLifts)
+                            {
+                                cbLifts.Items.Add(l);
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                MessageDialog md = new MessageDialog("Kunne ikke hente informasjon. Sjekk internettkoblingen din og prøv på nytt!");
+                                await md.ShowAsync();
+                            }
+                            catch (UnauthorizedAccessException)
+                            {
+                                //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                                //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                            }
                         }
                     }
 
-                    var destinationSlopes = from slope in slopes
-                                            where slope.SlopeDestination.DestinationId == chosenDestination.DestinationId
-                                            select slope.SlopeName;
-                    if (destinationSlopes != null)
+                    if (slopes != null)
                     {
-                        foreach (var s in destinationSlopes)
+                        var destinationSlopes = from slope in slopes
+                                                where slope.SlopeDestination.DestinationId == chosenDestination.DestinationId
+                                                select slope.SlopeName;
+                        if (destinationSlopes != null)
                         {
-                            cbSlopes.Items.Add(s);
+                            foreach (var s in destinationSlopes)
+                            {
+                                cbSlopes.Items.Add(s);
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                MessageDialog md = new MessageDialog("Kunne ikke hente informasjon. Sjekk internettkoblingen din og prøv på nytt!");
+                                await md.ShowAsync();
+                            }
+                            catch (UnauthorizedAccessException)
+                            {
+                                //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                                //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                            }
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            MessageDialog md = new MessageDialog("Kunne ikke hente informasjon. Sjekk internettkoblingen din og prøv på nytt!");
+                            await md.ShowAsync();
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                            //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
                         }
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveLift control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void RemoveLift_Click(object sender, RoutedEventArgs e)
         {
             if (cbChosenLifts.SelectedItem != null)
@@ -290,6 +399,11 @@ namespace SkiAppClient
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveSlope control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void RemoveSlope_Click(object sender, RoutedEventArgs e)
         {
             if (cbChosenSlopes.SelectedItem != null)
@@ -300,6 +414,11 @@ namespace SkiAppClient
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void StartPage_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?");
@@ -311,6 +430,10 @@ namespace SkiAppClient
             await md.ShowAsync();
         }
 
+        /// <summary>
+        /// Oks the back to start page button click.
+        /// </summary>
+        /// <param name="command">The command.</param>
         private void OkBtnClick(IUICommand command)
         {
             this.Frame.Navigate(typeof(ItemsPage));

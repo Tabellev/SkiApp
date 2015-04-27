@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-//using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -31,16 +30,31 @@ namespace SkiAppClient
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
+        /// <summary>
+        /// Gets the navigation helper.
+        /// </summary>
+        /// <value>
+        /// The navigation helper.
+        /// </value>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
+        /// <summary>
+        /// Gets the default view model.
+        /// </summary>
+        /// <value>
+        /// The default view model.
+        /// </value>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemsPage"/> class.
+        /// </summary>
         public ItemsPage()
         {
             this.InitializeComponent();
@@ -61,9 +75,23 @@ namespace SkiAppClient
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            this.DefaultViewModel["Destination"] = await SkiAppDataSource.GetDestinationAsync();
+
+             try
+             {
+                this.DefaultViewModel["Destination"] = await SkiAppDataSource.GetDestinationsAsync();
+             }
+             catch (UnauthorizedAccessException)
+             {
+                 this.DefaultViewModel["Destination"] = null;
+             }
+
         }
 
+        /// <summary>
+        /// Handles the DestinationClick event of the ItemGridView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemClickEventArgs"/> instance containing the event data.</param>
         void ItemGridView_DestinationClick(object sender, ItemClickEventArgs e)
         {
             var destination = (Destination)e.ClickedItem;
@@ -72,11 +100,19 @@ namespace SkiAppClient
 
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);
@@ -84,7 +120,12 @@ namespace SkiAppClient
 
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Handles the Click event of the User control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void User_Click(object sender, RoutedEventArgs e)
         {
                 this.Frame.Navigate(typeof(UserPage));
         }

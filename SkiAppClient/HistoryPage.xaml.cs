@@ -30,16 +30,31 @@ namespace SkiAppClient
         private bool deleteSkiDayOk = true;
         private delegate string NumberOfTripsAsString();
 
+        /// <summary>
+        /// Gets the default view model.
+        /// </summary>
+        /// <value>
+        /// The default view model.
+        /// </value>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
 
+        /// <summary>
+        /// Gets the navigation helper.
+        /// </summary>
+        /// <value>
+        /// The navigation helper.
+        /// </value>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HistoryPage"/> class.
+        /// </summary>
         public HistoryPage()
         {
             this.InitializeComponent();
@@ -48,12 +63,17 @@ namespace SkiAppClient
             this.navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
+        /// <summary>
+        /// Handles the LoadState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="LoadStateEventArgs"/> instance containing the event data.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             skiDays = await SkiAppDataSource.GetSkiDaysAsync();
             user = (User)e.NavigationParameter;
 
-            if ((skiDays.Count != 0 || skiDays != null) && user != null)
+            if ((skiDays != null && skiDays.Count != 0) && user != null)
             {
                 foreach (var s in skiDays)
                 {
@@ -63,8 +83,26 @@ namespace SkiAppClient
                     }
                 }
             }
+            else
+            {
+                try
+                {
+                    MessageDialog md = new MessageDialog("Kunne ikke hente dine skidager. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                }
+            }
         }
 
+        /// <summary>
+        /// Handles the SaveState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SaveStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }
@@ -92,6 +130,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the SeeSkiDay control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void SeeSkiDay_Click(object sender, RoutedEventArgs e)
         {
             var skiDayDate= (string)lbSkiDays.SelectedItem;
@@ -153,6 +196,7 @@ namespace SkiAppClient
 
                     if (skiDay.NumberOfTrips != 0)
                     {
+                        //Bruk av delegate
                         NumberOfTripsAsString numberOfTrips = new NumberOfTripsAsString(skiDay.NumberOfTrips.ToString);
                         tbTotalTrips.Text = numberOfTrips();
                     }
@@ -175,7 +219,7 @@ namespace SkiAppClient
                     var slopes = skiDay.Slopes;
                     var allSlopes = "";
 
-                    if (lifts.Count != 0)
+                    if (lifts != null && lifts.Count != 0)
                     {
                         foreach (var l in lifts)
                         {
@@ -195,7 +239,7 @@ namespace SkiAppClient
                         tbLifts.Text = "-";
                     }
 
-                    if (slopes.Count != 0)
+                    if (slopes != null && slopes.Count != 0)
                     {
                         foreach (var s in slopes)
                         {
@@ -223,6 +267,11 @@ namespace SkiAppClient
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the DeleteSkiDay control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void DeleteSkiDay_Click(object sender, RoutedEventArgs e)
         {
             var skiDayDate = (string)lbSkiDays.SelectedItem;
@@ -232,7 +281,7 @@ namespace SkiAppClient
                 MessageDialog message = new MessageDialog("Er du sikker på at du vil slette den valgte skidagen?");
                 UICommand c1 = new UICommand("Slett");
                 UICommand c2 = new UICommand("Avbryt");
-                c1.Invoked = DeletBtnClick;
+                c1.Invoked = DeleteBtnClick;
                 c2.Invoked = CancelDeleteBtnClick;
                 message.Commands.Add(c1);
                 message.Commands.Add(c2);
@@ -253,6 +302,7 @@ namespace SkiAppClient
                         if (skiDay != null)
                         {
                             await SkiAppDataSource.DeleteSkiDayAsync(skiDay.SkiDayId);
+                            skiDays = await SkiAppDataSource.GetSkiDaysAsync();
                             lbSkiDays.Items.Remove(skiDayDate);
                             tbDate.Text = "-";
                             tbFromClock.Text = "-";
@@ -265,7 +315,6 @@ namespace SkiAppClient
                             tbComment.Text = "-";
                         }
                     }
-                    
                 }
             }
             else
@@ -275,16 +324,29 @@ namespace SkiAppClient
             }
         }
 
-        private void DeletBtnClick(IUICommand command)
+        /// <summary>
+        /// OKs the delete skiDay click.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        private void DeleteBtnClick(IUICommand command)
         {
             deleteSkiDayOk = true;
         }
 
+        /// <summary>
+        /// Cancels the delete skiDay click.
+        /// </summary>
+        /// <param name="command">The command.</param>
         private void CancelDeleteBtnClick(IUICommand command)
         {
             deleteSkiDayOk = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
          private async void StartPage_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog md = new MessageDialog("Du blir logget ut dersom du går tilbake til startsiden. Vil du fortsette?" );
@@ -296,6 +358,10 @@ namespace SkiAppClient
             await md.ShowAsync();
         }
 
+         /// <summary>
+         /// Oks the go to start page click.
+         /// </summary>
+         /// <param name="command">The command.</param>
         private void OkBtnClick(IUICommand command)
         {
             this.Frame.Navigate(typeof(ItemsPage));

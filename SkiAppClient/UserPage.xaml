@@ -120,7 +120,7 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        <Button x:Name="logInButton" Content="Logg inn" HorizontalAlignment="Left" Margin="756,17,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" Click="Button_Click" Width="102" Grid.Column="1"/>
+        <Button x:Name="logInButton" Content="Logg inn" HorizontalAlignment="Left" Margin="756,17,0,0" VerticalAlignment="Top" FontFamily="Global User Interface" Click="LoggIn_Click" Width="102" Grid.Column="1"/>
         <TextBlock x:Name="logInName" HorizontalAlignment="Right" Margin="0,24,216,0" TextWrapping="Wrap" Text="Ikke innlogget" VerticalAlignment="Top" Height="28" Width="187" FontSize="20" Foreground="Pink" Grid.Column="1" />
 
         <VisualStateManager.VisualStateGroups>

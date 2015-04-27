@@ -49,7 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Destination.cs" />
-    <Compile Include="DestinationInfoType.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Lift.cs" />
     <Compile Include="OpeningHours.cs" />

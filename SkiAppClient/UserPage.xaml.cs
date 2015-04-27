@@ -36,16 +36,31 @@ namespace SkiAppClient
         private UserText changePassword;
         private UserText skiDiary;
 
+        /// <summary>
+        /// Gets the default view model.
+        /// </summary>
+        /// <value>
+        /// The default view model.
+        /// </value>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
 
+        /// <summary>
+        /// Gets the navigation helper.
+        /// </summary>
+        /// <value>
+        /// The navigation helper.
+        /// </value>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserPage"/> class.
+        /// </summary>
         public UserPage()
         {
             //Dårlig Maintainability Index, Class Coupling og Lines of code. Dette er autogenerert kode, så regner med at det er ok?
@@ -62,6 +77,11 @@ namespace SkiAppClient
             this.InvalidateVisualState();
         }
 
+        /// <summary>
+        /// Handles the Unloaded event of the SplitPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void SplitPage_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Window_SizeChanged;
@@ -86,16 +106,33 @@ namespace SkiAppClient
             userInfo.Add(changePassword);
             userInfo.Add(deleteUser);
             userInfo.Add(skiDiary);
-            this.DefaultViewModel["UserChoice"] = userInfo;
-
+            try
+            {
+                this.DefaultViewModel["UserChoice"] = userInfo;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                this.DefaultViewModel["UserChoice"] = null;
+                try
+                {
+                    MessageDialog md = new MessageDialog("Kan ikke vise valg for bruker. Sjekk internettkoblingen din og prøv på nytt!");
+                    md.ShowAsync();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
+                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
+                }
+            }
+            
             if (e.NavigationParameter != null)
             {
                 navigationParameter = (NavigationParameters)e.NavigationParameter;
-                hasLogedOn = navigationParameter.LoggedOn;
+                hasLogedOn = navigationParameter.GetLoggedOn();
                 
-                if (navigationParameter.LoggedOnUser != null)
+                if (navigationParameter.GetLoggedOnUser() != null)
                 {
-                    user = navigationParameter.LoggedOnUser;
+                    user = navigationParameter.GetLoggedOnUser();
                     if (hasLogedOn)
                     {
                         logInName.Text = "Brukernavn: " + user.UserName;
@@ -231,7 +268,10 @@ namespace SkiAppClient
                 return this.navigationHelper.CanGoBack();
             }
         }
-       
+
+        /// <summary>
+        /// Goes back.
+        /// </summary>
         private void GoBack()
         {
             if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
@@ -245,7 +285,10 @@ namespace SkiAppClient
             }
         }
 
-        
+
+        /// <summary>
+        /// Invalidates the state of the visual.
+        /// </summary>
         private void InvalidateVisualState()
         {
             var visualState = DetermineVisualState();
@@ -309,13 +352,14 @@ namespace SkiAppClient
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoggIn_Click(object sender, RoutedEventArgs e)
         {
             if (hasLogedOn)
             {
                 hasLogedOn = false;
                 logInName.Text = "Ikke innlogget";
                 logInButton.Content = "Logg inn";
+                user = null;
             }
             else
             {
@@ -343,7 +387,7 @@ namespace SkiAppClient
         }
 
         /// <summary>
-        /// Oks the BTN click.
+        /// Oks the bacl to start page button click.
         /// </summary>
         /// <param name="command">The command.</param>
         private void OkBtnClick(IUICommand command)

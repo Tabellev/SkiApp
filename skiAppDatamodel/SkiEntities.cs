@@ -19,8 +19,6 @@ namespace skiAppDatamodel
 
         public DbSet<Destination> Destinations { get; set; }
 
-        public DbSet<DestinationInfoType> DestinationInfoTypes { get; set; }
-
         public DbSet<OpeningHours> OpeningHours { get; set; }
 
 
@@ -57,6 +55,5 @@ namespace skiAppDatamodel
                         });
             }
         }
-
     }
 }

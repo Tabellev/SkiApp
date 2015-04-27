@@ -16,11 +16,18 @@ namespace SkiAppClient.DataModel
 {
     public sealed class SkiAppDataSource
     {
+        /// <summary>
+        /// Prevents a default instance of the <see cref="SkiAppDataSource"/> class from being created.
+        /// </summary>
         private SkiAppDataSource() { }
 
+        /// <summary>
+        /// Gets the destinations asynchronous.
+        /// </summary>
+        /// <returns></returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         //Not appropriate
-        public static async Task<ObservableCollection<Destination>> GetDestinationAsync()
+        public static async Task<ObservableCollection<Destination>> GetDestinationsAsync()
         {
             using (var client = new HttpClient())
             {
@@ -50,12 +57,8 @@ namespace SkiAppClient.DataModel
                 {
                     MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
                     d.ShowAsync();
-                    //Application.Current.Exit();
                     return null;
                 }
-                
-
-               
             }
         }
 
@@ -84,6 +87,10 @@ namespace SkiAppClient.DataModel
             }
         }*/
 
+        /// <summary>
+        /// Gets the opening hours asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<OpeningHours>> GetOpeningHoursAsync()
         {
             using (var client = new HttpClient())
@@ -103,11 +110,17 @@ namespace SkiAppClient.DataModel
                 }
                 else
                 {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    await d.ShowAsync();
                     return null;
                 }
             }
         }
 
+        /// <summary>
+        /// Gets the users asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<User>> GetUsersAsync()
         {
             using (var client = new HttpClient())
@@ -132,6 +145,12 @@ namespace SkiAppClient.DataModel
             }
         }
 
+        /// <summary>
+        /// Adds a user asynchronous.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public static async Task AddUserAsync(string userName, string password)
         {
             using (var client = new HttpClient())
@@ -145,14 +164,23 @@ namespace SkiAppClient.DataModel
 
                 var stream = new MemoryStream();
                 jsonSerializer.WriteObject(stream, newUser);
-                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                stream.Position = 0;
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Users", content);
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Bruker ble ikke opprett. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
             }
         }
 
+        /// <summary>
+        /// Deletes a user asynchronous.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
         public static async Task DeleteUserAsync(int userId)
         {
             using (var client = new HttpClient())
@@ -162,11 +190,28 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 var response = await client.DeleteAsync("api/Users/" + userId);
-
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Bruker ble ikke slettet. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
             }
         }
 
+        /// <summary>
+        /// Adds a ski day asynchronous.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="destination">The destination.</param>
+        /// <param name="date">The date.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="stopTime">The stop time.</param>
+        /// <param name="equipment">The equipment.</param>
+        /// <param name="numberOfTrips">The number of trips.</param>
+        /// <param name="comment">The comment.</param>
+        /// <param name="lifts">The lifts.</param>
+        /// <param name="slopes">The slopes.</param>
+        /// <returns></returns>
         public static async Task AddSkiDayAsync(User user, string destination, string date, string startTime, string stopTime, string equipment, int numberOfTrips, string comment, 
             ObservableCollection<Lift> lifts, ObservableCollection<Slope> slopes)
         {
@@ -187,10 +232,18 @@ namespace SkiAppClient.DataModel
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/SkiDays", content);
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Skidag ble ikke lagret. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
             }
         }
 
+        /// <summary>
+        /// Gets the ski days asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<SkiDay>> GetSkiDaysAsync()
         {
             using (var client = new HttpClient())
@@ -215,6 +268,12 @@ namespace SkiAppClient.DataModel
             }
         }
 
+        /// <summary>
+        /// Changes the password asynchronous.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public static async Task ChangePasswordAsync(User user, string password)
         {
             using (var client = new HttpClient())
@@ -227,22 +286,29 @@ namespace SkiAppClient.DataModel
                 updatetUser.UserId = user.UserId;
                 updatetUser.UserName = user.UserName;
                 updatetUser.Password = password;
-                //var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
                 var jsonSerializer = new DataContractJsonSerializer(typeof(User));
 
                 var stream = new MemoryStream();
                 jsonSerializer.WriteObject(stream, updatetUser);
-                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                stream.Position = 0;
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
 
-                //var client = new HttpClient { BaseAddress = new Uri(RestServiceUrl) };
                 var response = await client.PutAsync("api/users/" + updatetUser.UserId, content);
 
-                response.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Passord ble ikke endret. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
             }
         }
 
-       
+
+        /// <summary>
+        /// Changes the ski day asynchronous.
+        /// </summary>
+        /// <param name="skiDay">The ski day.</param>
+        /// <returns></returns>
         public static async Task ChangeSkiDayAsync(SkiDay skiDay)
         {
             using (var client = new HttpClient())
@@ -264,14 +330,19 @@ namespace SkiAppClient.DataModel
                 //var client = new HttpClient { BaseAddress = new Uri(RestServiceUrl) };
                 var response = await client.PutAsync("api/SkiDays/" + skiDay.SkiDayId, content);
 
-                response.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
-
-                // a smarter approach would be to update the element (remove/add is brute force)
-                //_academiaDataSource._courses.Remove(_academiaDataSource._courses.First(c => c.CourseId == aCourse.CourseId));
-                //_academiaDataSource._courses.Add(aCourse);
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Skidag ble ikke endret. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
             }
         }
 
+        /// <summary>
+        /// Deletes a ski day asynchronous.
+        /// </summary>
+        /// <param name="skiDayId">The ski day identifier.</param>
+        /// <returns></returns>
         public static async Task DeleteSkiDayAsync(int skiDayId)
         {
             using (var client = new HttpClient())
@@ -282,11 +353,19 @@ namespace SkiAppClient.DataModel
    
                 var response = await client.DeleteAsync("api/SkiDays/" + skiDayId);
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Skidag ble ikke slettet. Sjekk internettkoblingen din og prøv på nytt!");
+                    await md.ShowAsync();
+                }
             }
         }
 
 
+        /// <summary>
+        /// Gets the lifts asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<Lift>> GetLiftsAsync()
         {
             using (var client = new HttpClient())
@@ -311,6 +390,10 @@ namespace SkiAppClient.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the slopes asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<Slope>> GetSlopesAsync()
         {
             using (var client = new HttpClient())

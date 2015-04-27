@@ -127,6 +127,7 @@
       <DependentUpon>LogOnPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="NavigationParameters.cs" />
+    <Compile Include="NorwegianDayOfWeek.cs" />
     <Compile Include="OpeningHoursPage.xaml.cs">
       <DependentUpon>OpeningHoursPage.xaml</DependentUpon>
     </Compile>

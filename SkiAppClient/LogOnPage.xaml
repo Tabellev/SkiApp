@@ -62,7 +62,7 @@
                 <TextBox x:Name="userName"  Grid.Column="1" HorizontalAlignment="Left" Margin="320,23,0,0" Grid.Row="2" TextWrapping="Wrap" PlaceholderText="Brukernavn" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,72,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Passord:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
                 <PasswordBox x:Name="password" PlaceholderText="Passord" Grid.Column="1" HorizontalAlignment="Left" Margin="320,75,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
-                <Button Grid.Column="1" HorizontalAlignment="Left" Margin="281,150,0,0" Grid.Row="2" Content="Logg inn" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="LogOn_Click"/>
+                <Button Grid.Column="1" HorizontalAlignment="Left" Margin="281,150,0,0" Grid.Row="2" Content="Logg inn" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="LoggOn_Click"/>
                 <Button Grid.Column="1" HorizontalAlignment="Left" Margin="508,150,0,0" Grid.Row="2" Content="Avbryt" VerticalAlignment="Top" Width="156" FontFamily="Global User Interface" Height="45" Click="Cancel_Click"/>
             </Grid>
         </ScrollViewer>

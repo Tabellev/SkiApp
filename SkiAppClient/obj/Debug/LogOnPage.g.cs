@@ -23,7 +23,7 @@ namespace SkiAppClient
             {
             case 1:
                 #line 65 "..\..\LogOnPage.xaml"
-                ((global::Windows.UI.Xaml.Controls.Primitives.ButtonBase)(target)).Click += this.LogOn_Click;
+                ((global::Windows.UI.Xaml.Controls.Primitives.ButtonBase)(target)).Click += this.LoggOn_Click;
                  #line default
                  #line hidden
                 break;

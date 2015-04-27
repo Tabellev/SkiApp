@@ -26,17 +26,32 @@ namespace SkiAppClient
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
+        /// <summary>
+        /// Gets the default view model.
+        /// </summary>
+        /// <value>
+        /// The default view model.
+        /// </value>
         public ObservableDictionary DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
 
+        /// <summary>
+        /// Gets the navigation helper.
+        /// </summary>
+        /// <value>
+        /// The navigation helper.
+        /// </value>
         public NavigationHelper NavigationHelper
         {
             get { return this.navigationHelper; }
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PricePage"/> class.
+        /// </summary>
         public PricePage()
         {
             this.InitializeComponent();
@@ -45,10 +60,20 @@ namespace SkiAppClient
             this.navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
+        /// <summary>
+        /// Handles the LoadState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="LoadStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
         }
 
+        /// <summary>
+        /// Handles the SaveState event of the navigationHelper control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SaveStateEventArgs"/> instance containing the event data.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }
@@ -75,6 +100,11 @@ namespace SkiAppClient
 
         #endregion
 
+        /// <summary>
+        /// Handles the Click event of the StartPage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void StartPage_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ItemsPage));

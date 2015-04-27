@@ -17,12 +17,21 @@ namespace SkiAppDataService.Controllers
         private SkiEntities db = new SkiEntities();
 
         // GET: api/Users
+        /// <summary>
+        /// Gets the users.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
         // GET: api/Users/5
+        /// <summary>
+        /// Gets a user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
@@ -36,6 +45,12 @@ namespace SkiAppDataService.Controllers
         }
 
         // PUT: api/Users/5
+        /// <summary>
+        /// Changes/updates a user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)
         {
@@ -71,6 +86,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // POST: api/Users
+        /// <summary>
+        /// Saves a new user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
@@ -86,6 +106,11 @@ namespace SkiAppDataService.Controllers
         }
 
         // DELETE: api/Users/5
+        /// <summary>
+        /// Deletes a user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
@@ -101,6 +126,10 @@ namespace SkiAppDataService.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -110,6 +139,11 @@ namespace SkiAppDataService.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a user exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool UserExists(int id)
         {
             return db.Users.Count(e => e.UserId == id) > 0;
