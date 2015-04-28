@@ -32,6 +32,7 @@ namespace skiAppDatamodel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Litt lav på Maintainability Index(58) og høy på Class Coupling(16). Dette er kode som må til for å få riktig mange-til-mange forhold i databasen.
             if (modelBuilder != null)
             {
                 modelBuilder.Entity<SkiDay>()

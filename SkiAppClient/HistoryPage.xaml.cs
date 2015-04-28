@@ -20,6 +20,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SkiAppClient
 {
+    /// <summary>
+    /// A basic page that provides characteristics common to most applications.
+    /// </summary>
     public sealed partial class HistoryPage : Page
     {
 

@@ -54,6 +54,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOpeningHours(int id, OpeningHours openingHours)
         {
+            //Litt høy på Lines of code(12), men kan ikke ta bort eller flytte noe.
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -69,6 +70,7 @@ namespace SkiAppDataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,11 +80,9 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(HttpStatusCode.NotModified);
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/OpeningHours
@@ -100,9 +100,16 @@ namespace SkiAppDataService.Controllers
             }
 
             db.OpeningHours.Add(openingHours);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = openingHours.OpeningHoursId }, openingHours);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = openingHours.OpeningHoursId }, openingHours);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE: api/OpeningHours/5
@@ -114,6 +121,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(OpeningHours))]
         public IHttpActionResult DeleteOpeningHours(int id)
         {
+            //Litt høy på Lines of code(11), men kan ikke ta bort eller flytte noe.
             OpeningHours openingHours = db.OpeningHours.Find(id);
             if (openingHours == null)
             {
@@ -121,9 +129,23 @@ namespace SkiAppDataService.Controllers
             }
 
             db.OpeningHours.Remove(openingHours);
-            db.SaveChanges();
 
-            return Ok(openingHours);
+            try
+            {
+                db.SaveChanges();
+                return Ok(openingHours);
+            }
+            catch (DataException)
+            {
+                if (!OpeningHoursExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
 
         /// <summary>

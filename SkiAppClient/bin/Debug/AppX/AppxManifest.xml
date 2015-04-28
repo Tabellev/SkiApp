@@ -22,8 +22,16 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="SkiAppClient.exe" EntryPoint="SkiAppClient.App">
-      <m2:VisualElements DisplayName="SkiAppClient" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="SkiAppClient" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="Skistar" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="SkiAppClient" ForegroundText="dark" BackgroundColor="#f61d8c">
+        <m2:DefaultTile ShortName="Skistar">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
         <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#9b3569" />
+        <m2:InitialRotationPreference>
+          <m2:Rotation Preference="landscape" />
+        </m2:InitialRotationPreference>
       </m2:VisualElements>
     </Application>
   </Applications>

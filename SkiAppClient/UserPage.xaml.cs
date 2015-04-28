@@ -138,10 +138,6 @@ namespace SkiAppClient
         /// <returns></returns>
         private static ObservableCollection<UserText> CreateUserInfoText()
         {
-            /*createUser = new UserText("Opprett bruker");
-            deleteUser = new UserText("Slett bruker");
-            changePassword = new UserText("Endre passord");
-            skiDiary = new UserText("Skidagbok");*/
             var userInfo = new ObservableCollection<UserText>();
             userInfo.Add(new UserText("Opprett bruker"));
             userInfo.Add(new UserText("Slett bruker"));
@@ -326,7 +322,6 @@ namespace SkiAppClient
         /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
         /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.itemListView.SelectedItem = null;

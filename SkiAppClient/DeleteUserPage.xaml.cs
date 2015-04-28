@@ -25,7 +25,6 @@ namespace SkiAppClient
     /// </summary>
     public sealed partial class DeleteUserPage : Page
     {
-
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         private bool deleteUserOk;
@@ -48,6 +47,9 @@ namespace SkiAppClient
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteUserPage"/> class.
+        /// </summary>
         public DeleteUserPage()
         {
             this.InitializeComponent();

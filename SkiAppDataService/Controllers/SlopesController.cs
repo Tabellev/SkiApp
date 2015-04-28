@@ -23,8 +23,7 @@ namespace SkiAppDataService.Controllers
         /// <returns></returns>
         public IQueryable<Slope> GetSlopes()
         {
-            return db.Slopes
-                           .Include(s => s.SlopeDestination);
+            return db.Slopes.Include(s => s.SlopeDestination);
         }
 
         // GET: api/Slopes/5
@@ -55,6 +54,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSlope(int id, Slope slope)
         {
+            //Litt høy på Lines of code(12), men kan ikke ta bort eller flytte noe.
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -70,6 +70,7 @@ namespace SkiAppDataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,11 +80,9 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(HttpStatusCode.NotModified);
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Slopes
@@ -95,6 +94,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Slope))]
         public IHttpActionResult PostSlope(Slope slope)
         {
+            //Litt høy på Lines of code(12) og lav på Maintainability Index(59), men kan ikke ta bort eller flytte noe.
             var destination = slope.SlopeDestination;
             Destination slopeDestination = db.Destinations.Find(destination.DestinationId);
             slope.SlopeDestination = slopeDestination;
@@ -106,9 +106,16 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Slopes.Add(slope);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = slope.SlopeId }, slope);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = slope.SlopeId }, slope);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE: api/Slopes/5
@@ -120,6 +127,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Slope))]
         public IHttpActionResult DeleteSlope(int id)
         {
+            //Litt høy på Lines of code(11), men kan ikke ta bort eller flytte noe.
             Slope slope = db.Slopes.Find(id);
             if (slope == null)
             {
@@ -127,9 +135,23 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Slopes.Remove(slope);
-            db.SaveChanges();
 
-            return Ok(slope);
+            try
+            {
+                db.SaveChanges();
+                return Ok(slope);
+            }
+            catch (DataException)
+            {
+                if (!SlopeExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
 
         /// <summary>

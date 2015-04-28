@@ -54,6 +54,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)
         {
+            //Litt høy på Lines of code(12), men kan ikke ta bort eller flytte noe.
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -69,6 +70,7 @@ namespace SkiAppDataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,11 +80,9 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(HttpStatusCode.NotModified);
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Users
@@ -100,9 +100,16 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Users.Add(user);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
+            
         }
 
         // DELETE: api/Users/5
@@ -114,6 +121,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
+            //Litt høy på Lines of code(11), men kan ikke ta bort eller flytte noe.
             User user = db.Users.Find(id);
             if (user == null)
             {
@@ -121,9 +129,23 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Users.Remove(user);
-            db.SaveChanges();
 
-            return Ok(user);
+            try
+            {
+                db.SaveChanges();
+                return Ok(user);
+            }
+            catch (DataException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
 
         /// <summary>

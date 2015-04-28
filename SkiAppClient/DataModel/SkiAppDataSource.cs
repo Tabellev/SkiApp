@@ -24,7 +24,7 @@ namespace SkiAppClient.DataModel
         /// <summary>
         /// Gets the destinations asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Observable collection with all destinations in the database or null if it fails.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         //Not appropriate
         public static async Task<ObservableCollection<Destination>> GetDestinationsAsync()
@@ -62,35 +62,10 @@ namespace SkiAppClient.DataModel
             }
         }
 
-        /*public static async Task<Destination> GetOneDestinationAsync(int id)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:2219/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-                var result = await client.GetAsync("api/Destinations/" + id);
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(Destination));
-                    Destination destination = (Destination)serializer.ReadObject(resultStream);
-
-                    return destination;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }*/
-
         /// <summary>
         /// Gets the opening hours asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Observable collection with all opening hours in the database or null if it fails</returns>
         public static async Task<ObservableCollection<OpeningHours>> GetOpeningHoursAsync()
         {
             using (var client = new HttpClient())
@@ -99,19 +74,28 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/OpeningHours");
-
-                if (result.IsSuccessStatusCode)
+                try
                 {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<OpeningHours>));
-                    ObservableCollection<OpeningHours> openingHours = (ObservableCollection<OpeningHours>)serializer.ReadObject(resultStream);
-                    return openingHours;
+                    var result = await client.GetAsync("api/OpeningHours");
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultStream = await result.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<OpeningHours>));
+                        ObservableCollection<OpeningHours> openingHours = (ObservableCollection<OpeningHours>)serializer.ReadObject(resultStream);
+                        return openingHours;
+                    }
+                    else
+                    {
+                        MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                        await d.ShowAsync();
+                        return null;
+                    }
                 }
-                else
+                catch (TaskCanceledException)
                 {
                     MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                    await d.ShowAsync();
+                    d.ShowAsync();
                     return null;
                 }
             }
@@ -120,7 +104,7 @@ namespace SkiAppClient.DataModel
         /// <summary>
         /// Gets the users asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Observable collection with all users in the database or null if it fails</returns>
         public static async Task<ObservableCollection<User>> GetUsersAsync()
         {
             using (var client = new HttpClient())
@@ -128,18 +112,26 @@ namespace SkiAppClient.DataModel
                 client.BaseAddress = new Uri("http://localhost:2219/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-                var result = await client.GetAsync("api/Users");
-
-                if (result.IsSuccessStatusCode)
+                try
                 {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<User>));
-                    ObservableCollection<User> users = (ObservableCollection<User>)serializer.ReadObject(resultSTream);
-                    return users;
+                    var result = await client.GetAsync("api/Users");
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultSTream = await result.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<User>));
+                        ObservableCollection<User> users = (ObservableCollection<User>)serializer.ReadObject(resultSTream);
+                        return users;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch (TaskCanceledException)
                 {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    d.ShowAsync();
                     return null;
                 }
             }
@@ -150,7 +142,6 @@ namespace SkiAppClient.DataModel
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <param name="password">The password.</param>
-        /// <returns></returns>
         public static async Task AddUserAsync(string userName, string password)
         {
             using (var client = new HttpClient())
@@ -180,7 +171,6 @@ namespace SkiAppClient.DataModel
         /// Deletes a user asynchronous.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
-        /// <returns></returns>
         public static async Task DeleteUserAsync(int userId)
         {
             using (var client = new HttpClient())
@@ -211,7 +201,6 @@ namespace SkiAppClient.DataModel
         /// <param name="comment">The comment.</param>
         /// <param name="lifts">The lifts.</param>
         /// <param name="slopes">The slopes.</param>
-        /// <returns></returns>
         public static async Task AddSkiDayAsync(User user, string destination, string date, string startTime, string stopTime, string equipment, int numberOfTrips, string comment, 
             ObservableCollection<Lift> lifts, ObservableCollection<Slope> slopes)
         {
@@ -223,7 +212,6 @@ namespace SkiAppClient.DataModel
 
                 SkiDay newSkiDay = new SkiDay() { SkiDayUser = user, Destination = destination, Date = date, StartTime = startTime, StopTime = stopTime, Equipment = equipment, NumberOfTrips = numberOfTrips, Comment = comment, Lifts = lifts, Slopes = slopes };
                 
-                //var jsonSerializerSettings = new DataContractJsonSerializerSettings();
                 var jsonSerializer = new DataContractJsonSerializer(typeof(SkiDay));
 
                 var stream = new MemoryStream();
@@ -243,7 +231,7 @@ namespace SkiAppClient.DataModel
         /// <summary>
         /// Gets the ski days asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Observable collection with all ski days in the database or null if it fails</returns>
         public static async Task<ObservableCollection<SkiDay>> GetSkiDaysAsync()
         {
             using (var client = new HttpClient())
@@ -252,17 +240,26 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/SkiDays");
+                try
+                {
+                    var result = await client.GetAsync("api/SkiDays");
 
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<SkiDay>));
-                    ObservableCollection<SkiDay> skiDays = (ObservableCollection<SkiDay>)serializer.ReadObject(resultSTream);
-                    return skiDays;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultSTream = await result.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<SkiDay>));
+                        ObservableCollection<SkiDay> skiDays = (ObservableCollection<SkiDay>)serializer.ReadObject(resultSTream);
+                        return skiDays;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch (TaskCanceledException)
                 {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    d.ShowAsync();
                     return null;
                 }
             }
@@ -273,7 +270,6 @@ namespace SkiAppClient.DataModel
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
-        /// <returns></returns>
         public static async Task ChangePasswordAsync(User user, string password)
         {
             using (var client = new HttpClient())
@@ -308,7 +304,6 @@ namespace SkiAppClient.DataModel
         /// Changes the ski day asynchronous.
         /// </summary>
         /// <param name="skiDay">The ski day.</param>
-        /// <returns></returns>
         public static async Task ChangeSkiDayAsync(SkiDay skiDay)
         {
             using (var client = new HttpClient())
@@ -342,7 +337,6 @@ namespace SkiAppClient.DataModel
         /// Deletes a ski day asynchronous.
         /// </summary>
         /// <param name="skiDayId">The ski day identifier.</param>
-        /// <returns></returns>
         public static async Task DeleteSkiDayAsync(int skiDayId)
         {
             using (var client = new HttpClient())
@@ -365,7 +359,7 @@ namespace SkiAppClient.DataModel
         /// <summary>
         /// Gets the lifts asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Observable collection with all lifts in the database or null if it fails</returns>
         public static async Task<ObservableCollection<Lift>> GetLiftsAsync()
         {
             using (var client = new HttpClient())
@@ -374,17 +368,26 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Lifts");
+                try
+                {
+                    var result = await client.GetAsync("api/Lifts");
 
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lift>));
-                    ObservableCollection<Lift> lifts = (ObservableCollection<Lift>)serializer.ReadObject(resultSTream);
-                    return lifts;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultSTream = await result.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lift>));
+                        ObservableCollection<Lift> lifts = (ObservableCollection<Lift>)serializer.ReadObject(resultSTream);
+                        return lifts;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch (TaskCanceledException)
                 {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    d.ShowAsync();
                     return null;
                 }
             }
@@ -393,7 +396,7 @@ namespace SkiAppClient.DataModel
         /// <summary>
         /// Gets the slopes asynchronous.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Observable collection with all slopes in the database or null if it fails</returns>
         public static async Task<ObservableCollection<Slope>> GetSlopesAsync()
         {
             using (var client = new HttpClient())
@@ -402,17 +405,26 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Slopes");
+                try
+                {
+                    var result = await client.GetAsync("api/Slopes");
 
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Slope>));
-                    ObservableCollection<Slope> slopes = (ObservableCollection<Slope>)serializer.ReadObject(resultSTream);
-                    return slopes;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var resultSTream = await result.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Slope>));
+                        ObservableCollection<Slope> slopes = (ObservableCollection<Slope>)serializer.ReadObject(resultSTream);
+                        return slopes;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch (TaskCanceledException)
                 {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    d.ShowAsync();
                     return null;
                 }
             }

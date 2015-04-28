@@ -76,7 +76,6 @@
                 <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" Margin="0,0,0,20" HorizontalAlignment="Center">
                     <TextBlock x:Name="itemTitle" Text="Priser" TextAlignment="Center" HorizontalAlignment="Left" FontSize="50" Width="276"/>
                 </StackPanel>
-
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,20" Grid.Row="2" TextWrapping="Wrap" Text="Antall dager"  VerticalAlignment="Top" Height="35" Width="187"  FontSize="30"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="300,0,0,20" Grid.Row="2" TextWrapping="Wrap" Text="Voksen"  VerticalAlignment="Top" Height="35" Width="117"  FontSize="30"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="560,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Ungdom/Senior"  VerticalAlignment="Top" Height="35" Width="231"  FontSize="30"/>

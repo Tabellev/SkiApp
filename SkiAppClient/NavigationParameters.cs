@@ -9,8 +9,9 @@ namespace SkiAppClient
 {
     //Bruker en struct når jeg skal sende mer enn et parameter fra en side til en annen. De er av ulik type, så kan ikke bruke liste.
     //Trenger ikke masse funksjonalitet, så derfor bruker jeg struct isteden for klasse.
+   
     /// <summary>
-    /// 
+    /// A struct that has a bool and a User that is used as navigation parameters between pages.
     /// </summary>
     public struct NavigationParameters
     {
@@ -58,7 +59,7 @@ namespace SkiAppClient
         }
 
         /// <summary>
-        /// Sets the logged on.
+        /// Sets the LoggedOn to true of false.
         /// </summary>
         /// <param name="loggedOn">if set to <c>true</c> [logged on].</param>
         public void SetLoggedOn(bool loggedOn)

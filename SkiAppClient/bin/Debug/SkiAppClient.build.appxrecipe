@@ -40,6 +40,9 @@
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\skistar.png">
       <PackagePath>Assets\BackgroundPictures\skistar.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\storeLogo.PNG">
+      <PackagePath>Assets\BackgroundPictures\storeLogo.PNG</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Isabel\documents\visual studio 2013\Projects\SkiApp\SkiAppClient\Assets\BackgroundPictures\userIcon.png">
       <PackagePath>Assets\BackgroundPictures\userIcon.png</PackagePath>
     </AppxPackagedFile>

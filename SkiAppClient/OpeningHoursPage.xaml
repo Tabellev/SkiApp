@@ -77,7 +77,6 @@
                 <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1">
                     <TextBlock x:Name="itemTitle" Margin="82,0,0,0" Text="Åpningstider" HorizontalAlignment="Left" FontSize="50"/>
                 </StackPanel>
-
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,20,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding FromDate}"  VerticalAlignment="Top" Height="35" Width="823"  FontSize="30"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,76,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding FromClockToClockWeek }"  VerticalAlignment="Top" Height="35" Width="823"  FontSize="20"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,116,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding FromClockToClockSat}"  VerticalAlignment="Top" Height="35" Width="823"  FontSize="20"/>

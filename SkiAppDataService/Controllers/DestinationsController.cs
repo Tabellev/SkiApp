@@ -54,6 +54,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDestination(int id, Destination destination)
         {
+            //Er litt høy på Lines of code(12), men ingentin jeg kan ta bort eller flytte.
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -69,6 +70,7 @@ namespace SkiAppDataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DataException)
             {
@@ -78,23 +80,9 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    return BadRequest();
+                    return StatusCode(HttpStatusCode.NotModified);
                 }
             }
-            /*catch(NotSupportedException)
-            {
-                return BadRequest();
-            }
-            catch (ObjectDisposedException)
-            {
-                return BadRequest();
-            }
-            catch (InvalidOperationException)
-            {
-                return BadRequest();
-            }*/
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Destinations
@@ -112,9 +100,16 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Destinations.Add(destination);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = destination.DestinationId }, destination);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = destination.DestinationId }, destination);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE: api/Destinations/5
@@ -126,6 +121,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Destination))]
         public IHttpActionResult DeleteDestination(int id)
         {
+            //Litt høy på Lines of code(11), men kan ikke ta bort eller flytte noe.
             Destination destination = db.Destinations.Find(id);
             if (destination == null)
             {
@@ -133,9 +129,23 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Destinations.Remove(destination);
-            db.SaveChanges();
 
-            return Ok(destination);
+            try
+            {
+                db.SaveChanges();
+                return Ok(destination);
+            }
+            catch (DataException)
+            {
+                if (!DestinationExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
 
         /// <summary>

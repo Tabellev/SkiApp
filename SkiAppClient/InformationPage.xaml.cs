@@ -28,8 +28,7 @@ using Windows.UI.Xaml.Navigation;
 namespace SkiAppClient
 {
     /// <summary>
-    /// A page that displays a group title, a list of items within the group, and details for
-    /// the currently selected item.
+    /// A page that displays a group title, a list of items within the group
     /// </summary>
     public sealed partial class InformationPage : Page
     {
@@ -193,7 +192,7 @@ namespace SkiAppClient
         }
 
         /// <summary>
-        /// Selects the page to show.
+        /// Navigates to the selected page.
         /// </summary>
         /// <param name="destinationInfoType">Type of the destination information.</param>
         private void SelectPageToShow(DestinationInfoType destinationInfoType)
@@ -245,7 +244,7 @@ namespace SkiAppClient
         }
 
         /// <summary>
-        /// Invalidates the state of the visual.
+        ///  Sets the new visual state.
         /// </summary>
         private void InvalidateVisualState()
         {

@@ -75,7 +75,6 @@ namespace SkiAppClient
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-
              try
              {
                 this.DefaultViewModel["Destination"] = await SkiAppDataSource.GetDestinationsAsync();
@@ -84,7 +83,6 @@ namespace SkiAppClient
              {
                  this.DefaultViewModel["Destination"] = null;
              }
-
         }
 
         /// <summary>

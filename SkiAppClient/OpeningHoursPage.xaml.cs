@@ -21,7 +21,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SkiAppClient
 {
-    
     public sealed partial class OpeningHoursPage : Page
     {
 

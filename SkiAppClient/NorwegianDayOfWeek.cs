@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SkiAppClient
 {
     /// <summary>
-    /// enul for days of the week in norwegian.
+    /// enum for the days of the week in norwegian.
     /// </summary>
     public enum NorwegianDayOfWeek
     {

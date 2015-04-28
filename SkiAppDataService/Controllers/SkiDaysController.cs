@@ -54,6 +54,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSkiDay(int id, SkiDay skiDay)
         {
+            //Litt høy på Lines of code(12), men kan ikke ta bort eller flytte noe.
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -69,6 +70,7 @@ namespace SkiAppDataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,11 +80,9 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(HttpStatusCode.NotModified);
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/SkiDays
@@ -94,30 +94,14 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(SkiDay))]
         public IHttpActionResult PostSkiDay(SkiDay skiDay)
         {
+            //Høy på Lines of code(14) og litt lav på Maintainability Index(57). Har flyttet ut det jeg kan i egne metoder.
             var user = skiDay.SkiDayUser;
             User skiDayUser = db.Users.Find(user.UserId);
             skiDay.SkiDayUser = skiDayUser;
 
-            var lifts = skiDay.Lifts.ToList<Lift>();
-            skiDay.Lifts.Clear();
-
-            foreach (var l in lifts)
-            {
-                Lift lift = db.Lifts.Find(l.LiftId);
-                skiDay.Lifts.Add(lift);
-            }
-
-            var slopes = skiDay.Slopes.ToList<Slope>();
-            skiDay.Slopes.Clear();
-
-            foreach (var s in slopes)
-            {
-                Slope slope = db.Slopes.Find(s.SlopeId);
-                skiDay.Slopes.Add(slope);
-            }
-
-
-            
+            AddSkiDayLifts(skiDay);
+            AddSkiDaySlopes(skiDay);
+           
             ModelState.Clear();
             if (!ModelState.IsValid)
             {
@@ -125,9 +109,16 @@ namespace SkiAppDataService.Controllers
             }
 
             db.SkiDays.Add(skiDay);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = skiDay.SkiDayId }, skiDay);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = skiDay.SkiDayId }, skiDay);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE: api/SkiDays/5
@@ -139,6 +130,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(SkiDay))]
         public IHttpActionResult DeleteSkiDay(int id)
         {
+            //Litt høy på Lines of code(11), men kan ikke ta bort eller flytte noe.
             SkiDay skiDay = db.SkiDays.Find(id);
             if (skiDay == null)
             {
@@ -146,9 +138,23 @@ namespace SkiAppDataService.Controllers
             }
 
             db.SkiDays.Remove(skiDay);
-            db.SaveChanges();
 
-            return Ok(skiDay);
+            try
+            {
+                db.SaveChanges();
+                return Ok(skiDay);
+            }
+            catch (DataException)
+            {
+                if (!SkiDayExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
 
         /// <summary>
@@ -172,6 +178,30 @@ namespace SkiAppDataService.Controllers
         private bool SkiDayExists(int id)
         {
             return db.SkiDays.Count(e => e.SkiDayId == id) > 0;
+        }
+
+        private void AddSkiDayLifts(SkiDay skiDay)
+        {
+            var lifts = skiDay.Lifts.ToList<Lift>();
+            skiDay.Lifts.Clear();
+
+            foreach (var l in lifts)
+            {
+                Lift lift = db.Lifts.Find(l.LiftId);
+                skiDay.Lifts.Add(lift);
+            }
+        }
+
+        private void AddSkiDaySlopes(SkiDay skiDay)
+        {
+            var slopes = skiDay.Slopes.ToList<Slope>();
+            skiDay.Slopes.Clear();
+
+            foreach (var s in slopes)
+            {
+                Slope slope = db.Slopes.Find(s.SlopeId);
+                skiDay.Slopes.Add(slope);
+            }
         }
     }
 }

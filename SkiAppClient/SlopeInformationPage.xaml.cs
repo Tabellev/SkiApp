@@ -107,7 +107,6 @@ namespace SkiAppClient
         /// <param name="destination">The destination.</param>
         /// <returns>SlopeDestination</returns>
         /// 
-
         // Denne metoden scorer dårlig på code metrics. 56 på Maintainability Index og 14 på Lines of code. Har forklart hvorfor jeg velger å gjøre det på denne måten i rapporten under kjente problemer.
         // Er ikke noe mer jeg kan skille ut i egne metoder.
         private static SlopeInformation GetSlopeInformation(Destination destination)
@@ -167,6 +166,10 @@ namespace SkiAppClient
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);

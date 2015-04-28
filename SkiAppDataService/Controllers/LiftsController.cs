@@ -23,8 +23,7 @@ namespace SkiAppDataService.Controllers
         /// <returns></returns>
         public IQueryable<Lift> GetLifts()
         {
-            return db.Lifts
-                           .Include(l => l.LiftDestination);
+            return db.Lifts.Include(l => l.LiftDestination);
         }
 
         // GET: api/Lifts/5
@@ -56,6 +55,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutLift(int id, Lift lift)
         {
+            //Litt høy på Lines of code(12), men kan ikke ta bort eller flytte noe.
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -71,6 +71,7 @@ namespace SkiAppDataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,11 +81,9 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(HttpStatusCode.NotModified);
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Lifts
@@ -96,6 +95,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Lift))]
         public IHttpActionResult PostLift(Lift lift)
         {
+            //Litt høy på Lines of code(12) og Maintainability Index(59), men kan ikke ta bort eller flytte noe.
             var destination = lift.LiftDestination;
             Destination liftDestination = db.Destinations.Find(destination.DestinationId);
             lift.LiftDestination = liftDestination;
@@ -107,9 +107,16 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Lifts.Add(lift);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = lift.LiftId }, lift);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = lift.LiftId }, lift);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE: api/Lifts/5
@@ -121,6 +128,7 @@ namespace SkiAppDataService.Controllers
         [ResponseType(typeof(Lift))]
         public IHttpActionResult DeleteLift(int id)
         {
+            //Litt høy på Lines of code(11), men kan ikke ta bort eller flytte noe.
             Lift lift = db.Lifts.Find(id);
             if (lift == null)
             {
@@ -128,9 +136,23 @@ namespace SkiAppDataService.Controllers
             }
 
             db.Lifts.Remove(lift);
-            db.SaveChanges();
 
-            return Ok(lift);
+            try
+            {
+                db.SaveChanges();
+                return Ok(lift);
+            }
+            catch (DataException)
+            {
+                if (!LiftExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
 
         /// <summary>
