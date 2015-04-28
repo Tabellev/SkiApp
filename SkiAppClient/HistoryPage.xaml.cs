@@ -31,7 +31,6 @@ namespace SkiAppClient
         private ObservableCollection<SkiDay> skiDays;
         private User user;
         private bool deleteSkiDayOk = true;
-        private bool editSkiDayOk = true;
         private delegate string NumberOfTripsAsString();
 
         /// <summary>
