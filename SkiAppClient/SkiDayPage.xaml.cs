@@ -96,11 +96,6 @@ namespace SkiAppClient
                     cbDestinations.Items.Add(d.DestinationName);
                 }
             }
-            else
-            {
-                MessageDialog md = new MessageDialog("Skidag kan ikke opprettes. Sjekk internettkoblingen din og prøv på nytt!");
-                await md.ShowAsync();
-            }
         }
 
         /// <summary>
@@ -234,8 +229,6 @@ namespace SkiAppClient
             if (user != null)
             {
                 await SkiAppDataSource.AddSkiDayAsync(user, destinationName, date, fromClock, toClock, equipment, totalTrips, comment, destinationLifts, destinationSlopes);
-                MessageDialog md = new MessageDialog("Skidag lagret!");
-                await md.ShowAsync();
             }
             else
             {
@@ -258,7 +251,7 @@ namespace SkiAppClient
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void SeeHistory_Click(object sender, RoutedEventArgs e)
         {
-                this.Frame.Navigate(typeof(HistoryPage), user);
+            this.Frame.Navigate(typeof(HistoryPage), user);
         }
 
         /// <summary>

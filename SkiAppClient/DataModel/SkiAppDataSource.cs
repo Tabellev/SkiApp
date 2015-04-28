@@ -16,11 +16,17 @@ namespace SkiAppClient.DataModel
 {
     public sealed class SkiAppDataSource
     {
+        private static bool skiDayDeleted = true;
+
         /// <summary>
         /// Prevents a default instance of the <see cref="SkiAppDataSource"/> class from being created.
         /// </summary>
         private SkiAppDataSource() { }
 
+        public static bool GetSkiDayDeleted()
+        {
+            return skiDayDeleted;
+        }
         /// <summary>
         /// Gets the destinations asynchronous.
         /// </summary>
@@ -47,15 +53,23 @@ namespace SkiAppClient.DataModel
                     }
                     else
                     {
-                        MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                        await d.ShowAsync();
-                        //Application.Current.Exit();
-                        return null;
+                        try
+                        {
+                            MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og prøv nytt!");
+                            await d.ShowAsync();
+                            //Application.Current.Exit();
+                            return null;
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            return null;
+                        }
+                        
                     }
                 }
                 catch (TaskCanceledException)
                 {
-                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og prøv på nytt!");
                     d.ShowAsync();
                     return null;
                 }
@@ -74,28 +88,19 @@ namespace SkiAppClient.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                try
-                {
-                    var result = await client.GetAsync("api/OpeningHours");
+                var result = await client.GetAsync("api/OpeningHours");
 
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var resultStream = await result.Content.ReadAsStreamAsync();
-                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<OpeningHours>));
-                        ObservableCollection<OpeningHours> openingHours = (ObservableCollection<OpeningHours>)serializer.ReadObject(resultStream);
-                        return openingHours;
-                    }
-                    else
-                    {
-                        MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                        await d.ShowAsync();
-                        return null;
-                    }
-                }
-                catch (TaskCanceledException)
+                if (result.IsSuccessStatusCode)
                 {
-                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                    d.ShowAsync();
+                    var resultStream = await result.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<OpeningHours>));
+                    ObservableCollection<OpeningHours> openingHours = (ObservableCollection<OpeningHours>)serializer.ReadObject(resultStream);
+                    return openingHours;
+                }
+                else
+                {
+                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og prøv på nytt!");
+                    await d.ShowAsync();
                     return null;
                 }
             }
@@ -130,9 +135,17 @@ namespace SkiAppClient.DataModel
                 }
                 catch (TaskCanceledException)
                 {
-                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                    d.ShowAsync();
-                    return null;
+                    try
+                    {
+                        MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og prøv på nytt!");
+                        d.ShowAsync();
+                        return null;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        return null;
+                    }
+                   
                 }
             }
         }
@@ -225,6 +238,11 @@ namespace SkiAppClient.DataModel
                     MessageDialog md = new MessageDialog("Skidag ble ikke lagret. Sjekk internettkoblingen din og prøv på nytt!");
                     await md.ShowAsync();
                 }
+                else
+                {
+                    MessageDialog md = new MessageDialog("Skidag lagret!");
+                    await md.ShowAsync();
+                }
             }
         }
 
@@ -258,9 +276,17 @@ namespace SkiAppClient.DataModel
                 }
                 catch (TaskCanceledException)
                 {
-                    MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
-                    d.ShowAsync();
-                    return null;
+                    try
+                    {
+                        MessageDialog d = new MessageDialog("Noe gikk galt! Sjekk internettkoblingen din og start appen på nytt!");
+                        d.ShowAsync();
+                        return null;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        return null;
+                    }
+                   
                 }
             }
         }
@@ -339,6 +365,7 @@ namespace SkiAppClient.DataModel
         /// <param name="skiDayId">The ski day identifier.</param>
         public static async Task DeleteSkiDayAsync(int skiDayId)
         {
+            
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:2219/");
@@ -349,6 +376,7 @@ namespace SkiAppClient.DataModel
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    skiDayDeleted = false;
                     MessageDialog md = new MessageDialog("Skidag ble ikke slettet. Sjekk internettkoblingen din og prøv på nytt!");
                     await md.ShowAsync();
                 }

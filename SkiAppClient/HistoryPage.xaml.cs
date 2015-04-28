@@ -31,6 +31,7 @@ namespace SkiAppClient
         private ObservableCollection<SkiDay> skiDays;
         private User user;
         private bool deleteSkiDayOk = true;
+        private bool editSkiDayOk = true;
         private delegate string NumberOfTripsAsString();
 
         /// <summary>
@@ -270,6 +271,8 @@ namespace SkiAppClient
             }
         }
 
+        
+
         /// <summary>
         /// Handles the Click event of the DeleteSkiDay control.
         /// </summary>
@@ -305,17 +308,20 @@ namespace SkiAppClient
                         if (skiDay != null)
                         {
                             await SkiAppDataSource.DeleteSkiDayAsync(skiDay.SkiDayId);
-                            skiDays = await SkiAppDataSource.GetSkiDaysAsync();
-                            lbSkiDays.Items.Remove(skiDayDate);
-                            tbDate.Text = "-";
-                            tbFromClock.Text = "-";
-                            tbToClock.Text = "-";
-                            tbEquipment.Text = "-";
-                            tbDestination.Text = "-";
-                            tbLifts.Text = "-";
-                            tbSlopes.Text = "-";
-                            tbTotalTrips.Text = "-";
-                            tbComment.Text = "-";
+                            if (SkiAppDataSource.GetSkiDayDeleted())
+                            {
+                                skiDays = await SkiAppDataSource.GetSkiDaysAsync();
+                                lbSkiDays.Items.Remove(skiDayDate);
+                                tbDate.Text = "-";
+                                tbFromClock.Text = "-";
+                                tbToClock.Text = "-";
+                                tbEquipment.Text = "-";
+                                tbDestination.Text = "-";
+                                tbLifts.Text = "-";
+                                tbSlopes.Text = "-";
+                                tbTotalTrips.Text = "-";
+                                tbComment.Text = "-";
+                            }
                         }
                     }
                 }

@@ -57,7 +57,6 @@
                 <StackPanel x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1">
                     <TextBlock x:Name="itemTitle" Margin="82,0,0,0" Text="Logg inn" HorizontalAlignment="Left" FontSize="50"/>
                 </StackPanel>
-
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,20,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Brukernavn:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>
                 <TextBox x:Name="userName"  Grid.Column="1" HorizontalAlignment="Left" Margin="320,23,0,0" Grid.Row="2" TextWrapping="Wrap" PlaceholderText="Brukernavn" VerticalAlignment="Top" Width="293" FontFamily="Global User Interface"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="82,72,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Passord:" VerticalAlignment="Top" Height="35" Width="178"  FontSize="30"/>

@@ -80,7 +80,7 @@ namespace SkiAppDataService.Controllers
                 }
                 else
                 {
-                    return StatusCode(HttpStatusCode.NotModified);
+                    return BadRequest();
                 }
             }
         }

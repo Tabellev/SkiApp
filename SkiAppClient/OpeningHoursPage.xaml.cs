@@ -89,19 +89,6 @@ namespace SkiAppClient
                     this.DefaultViewModel["OpeningHours"] = null;
                 }
             }
-            else
-            {
-                try
-                {
-                    MessageDialog md = new MessageDialog("Kan ikke hente åpningstider. Sjekk internettkoblingen din og prøv på nytt!");
-                    await md.ShowAsync();
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    //Dette skjer dersom brukeren får beskjed fra et annet sted om at noe gikk galt. 
-                    //Trenger ikke gjøre noe med exception bare catche det så ikke programmet krasjer.
-                }
-            }
         }
 
         /// <summary>
